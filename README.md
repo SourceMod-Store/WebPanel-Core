@@ -1,4 +1,4 @@
-# WebPanelV2-Core
+# WebPanel-Core
 The Core for the New WebPanel
 
 One day this repo will contain the new Store Webpanel.
