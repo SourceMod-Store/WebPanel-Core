@@ -2,9 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use \App\StoreUser;
-
 use Illuminate\Http\Request;
+use App\StoreUser;
 
 class UsersController extends Controller {
 

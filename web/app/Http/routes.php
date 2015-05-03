@@ -23,10 +23,12 @@ Route::get('webpanel/empty',['as' => 'empty', function()
 }]);
 
 //Resources
+Route::group(['middleware' => 'auth'],function(){
+    Route::resource('webpanel/items', 'ItemsController');
+    Route::resource('webpanel/categories', 'CategoriesController');
+    Route::resource('webpanel/users', 'UsersController');
+});
 
-Route::resource('webpanel/items', 'ItemsController');
-Route::resource('webpanel/categories', 'CategoriesController');
-Route::resource('webpanel/users', 'UsersController');
 
 //Auth Routes
 
