@@ -30,7 +30,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		return view('templates.'.\Config::get('webpanel.template').'welcome');
 	}
 
 }
