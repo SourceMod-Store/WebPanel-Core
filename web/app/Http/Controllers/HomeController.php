@@ -30,7 +30,7 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('templates.'.\Config::get('webpanel.template').'home');
+		return view('templates.'.\Config::get('webpanel.template').'.webpanel.home');
 	}
 
 }

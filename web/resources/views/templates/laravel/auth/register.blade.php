@@ -1,4 +1,4 @@
-@extends('templates.laravel.app')
+@extends('templates.laravel.auth.app')
 
 @section('content')
 <div class="container-fluid">

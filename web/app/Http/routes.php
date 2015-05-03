@@ -36,3 +36,8 @@ Route::get('testpromote',function()
 
 	return "done";
 });
+
+Route::get('testadminlte',['as' => 'temp', function()
+{
+    return View::make('templates.adminlte205.webpanel.empty');
+}]);

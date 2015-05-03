@@ -1,4 +1,4 @@
-@extends('app')
+@extends('templates.laravel.webpanel.app')
 
 @section('content')
 <div class="container">
