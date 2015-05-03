@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \App\StoreUser;
 
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class UsersController extends Controller {
 	 */
 	public function index()
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.users.index');
+        $users = StoreUser::all();
+
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.users.index', compact('users'));
 	}
 
 	/**
@@ -78,7 +81,7 @@ class UsersController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		return "delete user with id ". $id;
 	}
 
 }
