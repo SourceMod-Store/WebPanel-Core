@@ -11,14 +11,36 @@
 |
 */
 
+//Generic Requests
+
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
+
+Route::get('webpanel/empty',['as' => 'empty', function()
+{
+    return View::make('templates.adminlte205.webpanel.empty');
+}]);
+
+//Resources
+
+Route::resource('webpanel/items', 'ItemsController');
+Route::resource('webpanel/categories', 'CategoriesController');
+Route::resource('webpanel/users', 'UsersController');
+
+//Auth Routes
+
+Route::get('/logout',['as'=>'logout','uses' => 'Auth\AuthController@getLogout']);
+Route::get('/login', ['as'=>'login' ,'uses' => 'Auth\AuthController@getLogin']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
+
+// Test Routes
 
 Route::get('testpromote',function()
 {

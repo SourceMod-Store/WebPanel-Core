@@ -11,12 +11,12 @@ return [
     | !! DO NOT FORGET THE . AT THE END !!
     |
     | Default Templates:
-    | adminlte.
+    | adminlte205.
     | laravel.
     | bored.
     |
     */
 
-    'template' => 'laravel.',
+    'template' => 'adminlte205.',
 
 ];
