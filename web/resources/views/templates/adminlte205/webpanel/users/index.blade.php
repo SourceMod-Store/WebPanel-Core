@@ -22,15 +22,23 @@
                         </tr>
                         @foreach($users as $user)
                             <tr>
-                                <td>{{$user->id}}</td>
+                                <td><a href="{{ route('webpanel.users.edit', array($user->id)) }}">{{$user->id}}</a></td>
                                 <td>{{$user->auth}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->credits}}</td>
                                 <td>
-                                {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.users.destroy',$user->id)]) !!}
-                                    {!! Form::submit('Remove') !!}
-                                {!! Form::close() !!}
-
+                                    <div>
+                                        <div style="float: right">
+                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.users.destroy',$user->id)]) !!}
+                                            {!! Form::submit('Remove',['class' => 'btn btn-danger']) !!}
+                                            {!! Form::close() !!}
+                                        </div>
+                                        <div style="float: right">
+                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.users.edit',$user->id)]) !!}
+                                            {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

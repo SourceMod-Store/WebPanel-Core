@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers;
 
+use App\StoreUser;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\StoreUser;
+use Request;
 
 class UsersController extends Controller {
 
@@ -26,7 +26,7 @@ class UsersController extends Controller {
 	 */
 	public function create()
 	{
-        return "shows creat user form";
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.users.create');
 	}
 
 	/**
@@ -36,38 +36,43 @@ class UsersController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        $input = Request::all();
+
+        StoreUser::create($input);
+
+        return redirect()->route(webpanel.users.index);
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  StoreUser $user
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($user)
 	{
-		//
+        return "shows specific user with all user items";
+        dd($user);
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  StoreUser $user
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($user)
 	{
-		//
+        return "shows edit user form for user ".$user;
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  StoreUser $user
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($user)
 	{
 		//
 	}
@@ -75,12 +80,13 @@ class UsersController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  StoreUser $user
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($user)
 	{
-		return "delete user with id ". $id;
+		$user->delete();
+        return redirect()->route(webpanel.users.index);
 	}
 
 }

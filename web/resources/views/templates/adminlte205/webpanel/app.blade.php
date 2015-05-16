@@ -61,7 +61,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.0
         </div>
-        <strong>Copyright &copy; 2013-2015 Store Plugin: Alon Gubkin ,Keith Warren - WebPanel: Werner Maisl </a>.</strong> All rights reserved.
+        Copyright &copy; 2013-2015  Store Plugin: <strong>Alon Gubkin</strong>, <strong>Keith Warren</strong> - WebPanel: <strong>Werner Maisl</strong>. All rights reserved.
     </footer>
 
 </div><!-- ./wrapper -->

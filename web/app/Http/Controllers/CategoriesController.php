@@ -2,8 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use App\StoreCategory;
 
 class CategoriesController extends Controller {
 
@@ -40,10 +40,10 @@ class CategoriesController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  StoreCategory  $category
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($category)
 	{
 		//
 	}
@@ -51,10 +51,10 @@ class CategoriesController extends Controller {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  StoreCategory  $category
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($category)
 	{
 		//
 	}
@@ -62,10 +62,10 @@ class CategoriesController extends Controller {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  StoreCategory  $category
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($category)
 	{
 		//
 	}
@@ -73,10 +73,10 @@ class CategoriesController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  StoreCategory  $category
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($category)
 	{
 		//
 	}

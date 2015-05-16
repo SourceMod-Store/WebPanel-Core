@@ -2,8 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use App\StoreItem;
 
 class ItemsController extends Controller {
 
@@ -40,10 +40,10 @@ class ItemsController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  StoreItem  $item
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($item)
 	{
 		//
 	}
@@ -51,10 +51,10 @@ class ItemsController extends Controller {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  StoreItem  $item
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($item)
 	{
 		//
 	}
@@ -62,10 +62,10 @@ class ItemsController extends Controller {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  StoreItem  $item
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($item)
 	{
 		//
 	}
@@ -73,10 +73,10 @@ class ItemsController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  StoreItem  $item
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($item)
 	{
 		//
 	}

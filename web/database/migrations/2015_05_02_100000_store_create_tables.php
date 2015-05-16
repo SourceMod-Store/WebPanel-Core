@@ -22,7 +22,6 @@ class StoreCreateTables extends Migration {
 			$table->string('web_description')->nullable();
 			$table->string('web_color',10)->nullable();
 			$table->timestamps();
-			$table->softDeletes();
         });
 
 		// Create table for store items
@@ -44,7 +43,6 @@ class StoreCreateTables extends Migration {
 			$table->integer('expiry_time');
 			$table->string('flags',11);
 			$table->timestamps();
-			$table->softDeletes();
 			
 			$table->foreign('category_id')->references('id')->on('categories')
 				->onUpdate('cascade')->onDelete('cascade');
@@ -58,7 +56,6 @@ class StoreCreateTables extends Migration {
 			$table->string('class',32)->nullable();
             $table->integer('team')->nullable();
 			$table->timestamps();
-			$table->softDeletes();
         });
 		
 		// Create table for store users
@@ -68,18 +65,16 @@ class StoreCreateTables extends Migration {
 			$table->string('name',32);
 			$table->integer('credits');
 			$table->timestamps();
-			$table->softDeletes();
         });
 		
 		// Create table for store users items
         Schema::connection('store')->create('users_items', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('user_id')->unsigned();
-			$table->integer('item_id')->unsigned();
+			$table->integer('user_id')->unsigned()->index();
+			$table->integer('item_id')->unsigned()->index();
 			$table->dateTime('acquire_date')->nullable();
 			$table->enum('acquire_method',['shop', 'trade', 'gift', 'admin', 'web', 'other'])->nullable();
 			$table->timestamps();
-			$table->softDeletes();
 			
 			$table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
@@ -94,7 +89,6 @@ class StoreCreateTables extends Migration {
 			$table->integer('useritem_id')->unsigned();
 			$table->integer('loadout_id')->unsigned();
 			$table->timestamps();
-			$table->softDeletes();
 			
 			$table->foreign('useritem_id')->references('id')->on('users_items')
                 ->onUpdate('cascade')->onDelete('cascade');
@@ -113,7 +107,6 @@ class StoreCreateTables extends Migration {
 			$table->string('server_id',64);
 			$table->timestamp('last_updated');
 			$table->timestamps();
-			$table->softDeletes();
 			
 			$table->unique(['mod_ver_convar', 'server_id']);
         });

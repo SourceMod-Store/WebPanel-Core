@@ -17,7 +17,7 @@
     @endif
     <div class="register-box">
         <div class="register-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+            <a href="../../index2.html"><b>Store</b>WebPanel</a>
         </div>
 
         <div class="register-box-body">
@@ -27,7 +27,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Name" value="{{ old('name') }}"/>
+                    <input type="text" class="form-control" placeholder="Username" name="name" value="{{ old('name') }}"/>
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
 

@@ -11,8 +11,8 @@
                     <span class="label label-primary pull-right">150</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{URL::route('webpanel.users.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
-                    <li><a href="{{URL::route('webpanel.users.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
+                    <li><a href="{{URL::route('webpanel.items.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
+                    <li><a href="{{URL::route('webpanel.items.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
                     <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
@@ -36,6 +36,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{URL::route('webpanel.users.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
+                    <li><a href="{{URL::route('webpanel.users.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
                     <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
