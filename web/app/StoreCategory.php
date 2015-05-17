@@ -14,4 +14,9 @@ class StoreCategory extends Model
         return $this->hasMany('App\StoreItem','category_id','id');
     }
 
+    public function servers()
+    {
+        return $this->belongsToMany('App\StoreServer','servers_categories', 'category_id', 'server_id')->withTimestamps();
+    }
+
 }

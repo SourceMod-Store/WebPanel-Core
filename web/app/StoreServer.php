@@ -8,4 +8,13 @@ class StoreServer extends Model {
     protected $table = 'servers';
     protected $fillable = [];
 
+    public function items()
+    {
+        return $this->belongsToMany('App\StoreItem','servers_categories', 'server_id', 'item_id')->withTimestamps();
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\StoreCategory','servers_categories', 'server_id', 'category_id')->withTimestamps();
+    }
 }

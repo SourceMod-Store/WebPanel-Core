@@ -21,7 +21,7 @@ class StoreCreateTables extends Migration {
 			$table->string('require_plugin',32)->nullable();
 			$table->string('web_description')->nullable();
 			$table->string('web_color',10)->nullable();
-            $table->integer('enable_server_restriction')->nullable()->unsigned();
+            $table->integer('enable_server_restriction')->unsigned();
 			$table->timestamps();
         });
 
@@ -43,7 +43,7 @@ class StoreCreateTables extends Migration {
 			$table->tinyInteger('is_refundable');
 			$table->integer('expiry_time');
 			$table->string('flags',11);
-            $table->integer('enable_server_restriction')->nullable()->unsigned();
+            $table->integer('enable_server_restriction')->unsigned();
 			$table->timestamps();
 			
 			$table->foreign('category_id')->references('id')->on('categories')
@@ -125,8 +125,8 @@ class StoreCreateTables extends Migration {
         // Create table for store categories
         Schema::connection('store')->create('servers_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('server_id')->unsigned()->index();
             $table->integer('item_id')->unsigned()->index();
+            $table->integer('server_id')->unsigned()->index();
             $table->timestamps();
 
             $table->foreign('server_id')->references('id')->on('servers')
@@ -139,8 +139,8 @@ class StoreCreateTables extends Migration {
         // Create table for store categories
         Schema::connection('store')->create('servers_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('server_id')->unsigned()->index();
             $table->integer('category_id')->unsigned()->index();
+            $table->integer('server_id')->unsigned()->index();
             $table->timestamps();
 
             $table->foreign('server_id')->references('id')->on('servers')

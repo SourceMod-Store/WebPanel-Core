@@ -14,6 +14,11 @@ class StoreItem extends Model
         return $this->belongsToMany('App\StoreUser','users_items', 'item_id', 'user_id')->withTimestamps();
     }
 
+    public function servers()
+    {
+        return $this->belongsToMany('App\StoreServer','servers_items', 'item_id', 'server_id')->withTimestamps();
+    }
+
     public function category()
     {
         return $this->belongsTo('App\StoreCategory','category_id','id');
