@@ -21,6 +21,7 @@ class StoreCreateTables extends Migration {
 			$table->string('require_plugin',32)->nullable();
 			$table->string('web_description')->nullable();
 			$table->string('web_color',10)->nullable();
+            $table->integer('enable_server_restriction')->nullable()->unsigned();
 			$table->timestamps();
         });
 
@@ -42,6 +43,7 @@ class StoreCreateTables extends Migration {
 			$table->tinyInteger('is_refundable');
 			$table->integer('expiry_time');
 			$table->string('flags',11);
+            $table->integer('enable_server_restriction')->nullable()->unsigned();
 			$table->timestamps();
 			
 			$table->foreign('category_id')->references('id')->on('categories')
@@ -110,6 +112,43 @@ class StoreCreateTables extends Migration {
 			
 			$table->unique(['mod_ver_convar', 'server_id']);
         });
+
+        // Create table for store categories
+        Schema::connection('store')->create('servers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('display_name',32);
+            $table->string('IP',15)->nullable();
+            $table->string('Port',5)->nullable();
+            $table->timestamps();
+        });
+
+        // Create table for store categories
+        Schema::connection('store')->create('servers_items', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('server_id')->unsigned()->index();
+            $table->integer('item_id')->unsigned()->index();
+            $table->timestamps();
+
+            $table->foreign('server_id')->references('id')->on('servers')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->foreign('item_id')->references('id')->on('items')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });
+
+        // Create table for store categories
+        Schema::connection('store')->create('servers_categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('server_id')->unsigned()->index();
+            $table->integer('category_id')->unsigned()->index();
+            $table->timestamps();
+
+            $table->foreign('server_id')->references('id')->on('servers')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->foreign('category_id')->references('id')->on('categories')
+                ->onUpdate('cascade')->onDelete('cascade');
+        });
 	}
 
 	/**
@@ -119,11 +158,15 @@ class StoreCreateTables extends Migration {
 	 */
 	public function down()
 	{
-		Schema::connection('store')->drop('categories');
-        Schema::connection('store')->drop('items');
-        Schema::connection('store')->drop('users');
+        Schema::connection('store')->drop('users_items_loadouts');
+        Schema::connection('store')->drop('loadouts');
         Schema::connection('store')->drop('users_items');
-		Schema::connection('store')->drop('users_items_loadouts');
+        Schema::connection('store')->drop('servers_items');
+        Schema::connection('store')->drop('servers_categories');
+        Schema::connection('store')->drop('servers');
+        Schema::connection('store')->drop('items');
+		Schema::connection('store')->drop('categories');
+        Schema::connection('store')->drop('users');
 		Schema::connection('store')->drop('versions');
 	}
 
