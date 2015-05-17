@@ -7,5 +7,6 @@ class StoreVersion extends Model
 {
     protected $connection = 'store';
     protected $table = 'versions';
+    protected $fillable = [];
 
 }

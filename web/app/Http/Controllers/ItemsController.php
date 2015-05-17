@@ -1,9 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\StoreItem;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\StoreItem;
 
 class ItemsController extends Controller {
 
@@ -14,7 +13,9 @@ class ItemsController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $items = StoreItem::all();
+
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.items.index', compact('items'));
 	}
 
 	/**
@@ -24,17 +25,22 @@ class ItemsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.items.create');
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+     * @param Requests\ItemRequest $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\ItemRequest $request)
 	{
-		//
+        $input = $request->all();
+
+        StoreItem::create($input);
+
+        return redirect()->route('webpanel.items.index');
 	}
 
 	/**
@@ -45,7 +51,7 @@ class ItemsController extends Controller {
 	 */
 	public function show($item)
 	{
-		//
+        return redirect()->route(['webpanel.items.edit',$item->id]);
 	}
 
 	/**
@@ -56,18 +62,20 @@ class ItemsController extends Controller {
 	 */
 	public function edit($item)
 	{
-		//
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.items.edit',compact('item'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
+     * @param  Requests\ItemRequest $request
 	 * @param  StoreItem  $item
 	 * @return Response
 	 */
-	public function update($item)
+	public function update($item, Requests\ItemRequest $request)
 	{
-		//
+        $item->update($request->all());
+        return redirect()->route('webpanel.items.index');
 	}
 
 	/**
@@ -78,7 +86,8 @@ class ItemsController extends Controller {
 	 */
 	public function destroy($item)
 	{
-		//
+        $item->delete();
+        return redirect()->route('webpanel.items.index');
 	}
 
 }

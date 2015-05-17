@@ -7,5 +7,6 @@ class StoreUserItemLoadout extends Model
 {
     protected $connection = 'store';
     protected $table = 'users_items_loadout';
+    protected $fillable = [];
 
 }
