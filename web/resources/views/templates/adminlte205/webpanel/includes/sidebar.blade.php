@@ -40,6 +40,28 @@
                     <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Loadouts</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> View </a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Create </a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-sitemap"></i>
+                    <span>Servers</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> View </a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Create </a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
+                </ul>
+            </li>
             <li><a href="{{URL::route('empty')}}"><i class="fa fa-desktop"></i> Versions</a></li> <!-- TODO: Add named route -->
             <li class="treeview">
                 <a href="#">
