@@ -21,7 +21,7 @@ class StoreCreateTables extends Migration {
 			$table->string('require_plugin',32)->nullable();
 			$table->string('web_description')->nullable();
 			$table->string('web_color',10)->nullable();
-            $table->integer('enable_server_restriction')->unsigned();
+            $table->integer('enable_server_restriction')->unsigned()->default(0);
 			$table->timestamps();
         });
 
@@ -38,12 +38,12 @@ class StoreCreateTables extends Migration {
 			$table->integer('price');
 			$table->integer('category_id')->unsigned();
 			$table->string('attrs')->nullable();
-			$table->tinyInteger('is_buyable');
-			$table->tinyInteger('is_tradeable');
-			$table->tinyInteger('is_refundable');
+			$table->tinyInteger('is_buyable')->unsigned()->default(0);
+			$table->tinyInteger('is_tradeable')->unsigned()->default(0);
+			$table->tinyInteger('is_refundable')->unsigned()->default(0);
 			$table->integer('expiry_time');
 			$table->string('flags',11);
-            $table->integer('enable_server_restriction')->unsigned();
+            $table->integer('enable_server_restriction')->unsigned()->default(0);
 			$table->timestamps();
 			
 			$table->foreign('category_id')->references('id')->on('categories')
@@ -113,16 +113,17 @@ class StoreCreateTables extends Migration {
 			$table->unique(['mod_ver_convar', 'server_id']);
         });
 
-        // Create table for store categories
+        // Create table for store servers
         Schema::connection('store')->create('servers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('display_name',32);
-            $table->string('IP',15)->nullable();
-            $table->string('Port',5)->nullable();
+            $table->string('name',32);
+            $table->string('display_name',50)->nullable();
+            $table->string('ip',15)->nullable();
+            $table->string('port',5)->nullable();
             $table->timestamps();
         });
 
-        // Create table for store categories
+        // Create table for store server items
         Schema::connection('store')->create('servers_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('item_id')->unsigned()->index();
@@ -136,7 +137,7 @@ class StoreCreateTables extends Migration {
                 ->onUpdate('cascade')->onDelete('cascade');
         });
 
-        // Create table for store categories
+        // Create table for store server categories
         Schema::connection('store')->create('servers_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned()->index();

@@ -7,7 +7,7 @@ class StoreItem extends Model
 {
     protected $connection = 'store';
     protected $table = 'items';
-    protected $fillable = ['priority','name','display_name','description','web_description','type','loadout_slot','price','category_id','attrs','is_buyable','is_tradeable','is_refundable','expiry_time','flags'];
+    protected $fillable = ['priority','name','display_name','description','web_description','type','loadout_slot','price','category_id','attrs','is_buyable','is_tradeable','is_refundable','expiry_time','flags','enable_server_restriction'];
 
     public function users()
     {

@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\StoreCategory;
+use App\StoreServer;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -25,19 +26,23 @@ class CategoriesController extends Controller {
 	 */
 	public function create()
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.create');
+        $servers = StoreServer::lists('display_name', 'id');
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.create',compact('servers'));
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+     * @param Requests\CategoryRequest $request
 	 * @return Response
 	 */
 	public function store(Requests\CategoryRequest $request)
 	{
         $input = $request->all();
 
-        StoreCategory::create($input);
+        $category = StoreCategory::create($input);
+
+        $this->SyncServers($category, $request->input('server_list'));
 
         return redirect()->route('webpanel.categories.index');
 	}
@@ -61,18 +66,23 @@ class CategoriesController extends Controller {
 	 */
 	public function edit($category)
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.edit',compact('category'));
+        $servers = StoreServer::lists('display_name', 'id');
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.edit',compact('category','servers'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  StoreCategory  $category
+     * @param  Requests\CategoryRequest $request
 	 * @return Response
 	 */
 	public function update($category, Requests\CategoryRequest $request)
 	{
         $category->update($request->all());
+
+        $this->SyncServers($category, $request->input('server_list'));
+
         return redirect()->route('webpanel.categories.index');
 	}
 
@@ -87,5 +97,18 @@ class CategoriesController extends Controller {
         $category->delete();
         return redirect()->route('webpanel.categories.index');
 	}
+
+
+
+    /**
+     * Sync the Server List
+     *
+     * @param StoreCategory $category
+     * @param array $servers
+     */
+    private function SyncServers(StoreCategory $category, array $servers)
+    {
+        $category->servers()->sync($servers);
+    }
 
 }
