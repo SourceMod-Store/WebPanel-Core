@@ -19,7 +19,7 @@ Route::get('home', 'HomeController@index');
 
 
 //WebPanel Routes
-Route::group(['middleware' => 'auth', 'prefix'=>'webpanel'],function(){
+Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],function(){
     Route::get('',['as' => 'webpanel.dashboard', 'uses' => 'DashboardController@showDashboard']);
     Route::resource('items', 'ItemsController');
     Route::resource('categories', 'CategoriesController');

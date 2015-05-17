@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class CreateUserRequest extends Request {
+class CategoryRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -11,7 +11,7 @@ class CreateUserRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return true; //TODO: Check for permissions
+		return true;
 	}
 
 	/**
@@ -22,9 +22,9 @@ class CreateUserRequest extends Request {
 	public function rules()
 	{
 		return [
-			'auth' => 'required',
-            'name' => 'required',
-            'credits' => 'required|numeric'
+			'priority' => 'numeric',
+            'display_name' => 'required',
+            'require_plugin' => 'required',
 		];
 	}
 

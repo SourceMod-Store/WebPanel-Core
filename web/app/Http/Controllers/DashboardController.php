@@ -14,6 +14,6 @@ class DashboardController extends Controller {
 	 */
 	public function showDashboard()
 	{
-        return View::make('templates.adminlte205.webpanel.empty');
+        return view('templates.adminlte205.webpanel.empty');
 	}
 }

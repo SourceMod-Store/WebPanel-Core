@@ -19,4 +19,18 @@ return [
 
     'template' => 'adminlte205.',
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ignore Permission System
+    |--------------------------------------------------------------------------
+    |
+    | Set this to true if the webpanel should not check for permissions.
+    |
+    |
+    | Default: fase
+    */
+
+    'ignore_permissions' => true,
+
 ];

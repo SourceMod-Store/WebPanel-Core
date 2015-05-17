@@ -7,6 +7,7 @@ class StoreCategory extends Model
 {
     protected $connection = 'store';
     protected $table = 'categories';
+    protected $fillable = ['priority', 'display_name', 'description', 'require_plugin', 'web_description', 'web_color'];
 
     public function items()
     {

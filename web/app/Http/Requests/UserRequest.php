@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class EditUserRequest extends Request {
+class UserRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -11,7 +11,7 @@ class EditUserRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return true; //TODO: Check for permissions
+		return true;
 	}
 
 	/**

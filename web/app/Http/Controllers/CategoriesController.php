@@ -1,9 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\StoreCategory;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\StoreCategory;
 
 class CategoriesController extends Controller {
 
@@ -14,7 +13,9 @@ class CategoriesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $categories= StoreCategory::all();
+
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.index', compact('categories'));
 	}
 
 	/**
@@ -24,7 +25,7 @@ class CategoriesController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.create');
 	}
 
 	/**
@@ -32,9 +33,13 @@ class CategoriesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\CategoryRequest $request)
 	{
-		//
+        $input = $request->all();
+
+        StoreCategory::create($input);
+
+        return redirect()->route('webpanel.categories.index');
 	}
 
 	/**
@@ -45,7 +50,7 @@ class CategoriesController extends Controller {
 	 */
 	public function show($category)
 	{
-		//
+        return redirect()->route(['webpanel.categories.edit',$category->id]);
 	}
 
 	/**
@@ -56,7 +61,7 @@ class CategoriesController extends Controller {
 	 */
 	public function edit($category)
 	{
-		//
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.edit',compact('category'));
 	}
 
 	/**
@@ -65,9 +70,10 @@ class CategoriesController extends Controller {
 	 * @param  StoreCategory  $category
 	 * @return Response
 	 */
-	public function update($category)
+	public function update($category, Requests\CategoryRequest $request)
 	{
-		//
+        $category->update($request->all());
+        return redirect()->route('webpanel.categories.index');
 	}
 
 	/**
@@ -78,7 +84,8 @@ class CategoriesController extends Controller {
 	 */
 	public function destroy($category)
 	{
-		//
+        $category->delete();
+        return redirect()->route('webpanel.categories.index');
 	}
 
 }

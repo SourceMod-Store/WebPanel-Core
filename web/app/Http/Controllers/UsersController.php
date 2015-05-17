@@ -32,10 +32,10 @@ class UsersController extends Controller {
      * Store a newly created resource in storage.
      *
      *
-     * @param Requests\CreateUserRequest $request
+     * @param Requests\UserRequest $request
      * @return Response
      */
-	public function store(Requests\CreateUserRequest $request)
+	public function store(Requests\UserRequest $request)
 	{
         $input = $request->all();
 
@@ -70,9 +70,10 @@ class UsersController extends Controller {
 	 * Update the specified resource in storage.
 	 *
 	 * @param  StoreUser $user
+     * @param  Requests\UserRequest $request)
 	 * @return Response
 	 */
-	public function update($user, Requests\EditUserRequest $request)
+	public function update($user, Requests\UserRequest $request)
 	{
 		$user->update($request->all());
         return redirect()->route('webpanel.users.index');
@@ -84,7 +85,7 @@ class UsersController extends Controller {
 	 * @param  StoreUser $user
 	 * @return Response
 	 */
-	public function destroy($user, Requests\DeleteUserRequest $request)
+	public function destroy($user)
 	{
 		$user->delete();
         return redirect()->route('webpanel.users.index');

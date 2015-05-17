@@ -6,18 +6,6 @@
             <li><a href="{{URL::route('temp')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li> <!-- TODO: Add named route -->
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-files-o"></i>
-                    <span>Items</span>
-                    <span class="label label-primary pull-right">{{$itemCount}}</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{URL::route('webpanel.items.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
-                    <li><a href="{{URL::route('webpanel.items.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
                     <i class="fa fa-folder-open"></i>
                     <span>Categories</span>
                     <span class="label label-primary pull-right">{{$categoryCount}}</span>
@@ -25,6 +13,18 @@
                 <ul class="treeview-menu">
                     <li><a href="{{URL::route('webpanel.categories.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
                     <li><a href="{{URL::route('webpanel.categories.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-files-o"></i>
+                    <span>Items</span>
+                    <span class="label label-primary pull-right">{{$itemCount}}</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{URL::route('webpanel.items.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
+                    <li><a href="{{URL::route('webpanel.items.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
                     <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
