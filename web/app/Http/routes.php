@@ -17,16 +17,13 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('webpanel/empty',['as' => 'empty', function()
-{
-    return View::make('templates.adminlte205.webpanel.empty');
-}]);
 
-//Resources
-Route::group(['middleware' => 'auth'],function(){
-    Route::resource('webpanel/items', 'ItemsController');
-    Route::resource('webpanel/categories', 'CategoriesController');
-    Route::resource('webpanel/users', 'UsersController');
+//WebPanel Routes
+Route::group(['middleware' => 'auth', 'prefix'=>'webpanel'],function(){
+    Route::get('',['as' => 'webpanel.dashboard', 'uses' => 'DashboardController@showDashboard']);
+    Route::resource('items', 'ItemsController');
+    Route::resource('categories', 'CategoriesController');
+    Route::resource('users', 'UsersController');
 });
 
 

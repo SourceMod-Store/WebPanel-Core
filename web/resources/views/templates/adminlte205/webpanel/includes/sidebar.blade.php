@@ -13,7 +13,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{URL::route('webpanel.items.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
                     <li><a href="{{URL::route('webpanel.items.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
             <li class="treeview">
@@ -25,7 +25,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{URL::route('webpanel.categories.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
                     <li><a href="{{URL::route('webpanel.categories.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
             <li class="treeview">
@@ -37,7 +37,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{URL::route('webpanel.users.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
                     <li><a href="{{URL::route('webpanel.users.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
             <li class="treeview">
@@ -46,9 +46,9 @@
                     <span>Loadouts</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> View </a></li> <!-- TODO: Add named route -->
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Create </a></li> <!-- TODO: Add named route -->
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> View </a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Create </a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
             <li class="treeview">
@@ -57,20 +57,20 @@
                     <span>Servers</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> View </a></li> <!-- TODO: Add named route -->
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Create </a></li> <!-- TODO: Add named route -->
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> View </a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Create </a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
-            <li><a href="{{URL::route('empty')}}"><i class="fa fa-desktop"></i> Versions</a></li> <!-- TODO: Add named route -->
+            <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-desktop"></i> Versions</a></li> <!-- TODO: Add named route -->
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-wrench"></i>
                     <span>Tools</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> JSON Checker </a></li> <!-- TODO: Add named route -->
-                    <li><a href="{{URL::route('empty')}}"><i class="fa fa-circle-o"></i> JSON Shrinker</a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> JSON Checker </a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> JSON Shrinker</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
         </ul>

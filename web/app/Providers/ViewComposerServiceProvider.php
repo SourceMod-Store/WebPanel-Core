@@ -27,6 +27,10 @@ class ViewComposerServiceProvider extends ServiceProvider {
 		//
 	}
 
+
+    /**
+     * Passes the required variables to the sidebar
+     */
     public function ComposeSidebar()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.includes.sidebar', function ($view) {

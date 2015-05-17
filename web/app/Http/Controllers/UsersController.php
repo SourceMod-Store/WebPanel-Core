@@ -52,8 +52,7 @@ class UsersController extends Controller {
 	 */
 	public function show($user)
 	{
-        return "shows specific user with all user items";
-        dd($user);
+        return redirect()->route(['webpanel.users.edit',$user->id]);
 	}
 
 	/**
