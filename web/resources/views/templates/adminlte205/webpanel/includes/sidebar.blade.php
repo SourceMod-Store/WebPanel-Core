@@ -57,8 +57,8 @@
                     <span>Servers</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> View </a></li> <!-- TODO: Add named route -->
-                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Create </a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.servers.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
+                    <li><a href="{{URL::route('webpanel.servers.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
                     <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>

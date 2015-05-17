@@ -26,8 +26,7 @@ class CategoriesController extends Controller {
 	 */
 	public function create()
 	{
-        $servers = StoreServer::lists('display_name', 'id');
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.create',compact('servers'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.create');
 	}
 
 	/**
@@ -66,8 +65,7 @@ class CategoriesController extends Controller {
 	 */
 	public function edit($category)
 	{
-        $servers = StoreServer::lists('display_name', 'id');
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.edit',compact('category','servers'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.edit',compact('category'));
 	}
 
 	/**

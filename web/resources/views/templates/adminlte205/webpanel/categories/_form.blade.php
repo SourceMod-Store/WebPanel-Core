@@ -48,14 +48,10 @@
                     {!! Form::label('web_color', 'Web Color') !!}
                     {!! Form::text('web_color', null, ['class' => 'form-control my-colorpicker1']) !!}
                 </div>
-                <div class="form-group">
-                    {!! Form::checkbox('enable_server_restriction') !!}
-                    {!! Form::label('enable_server_restriction', 'Enable Server Restriction') !!}
-                </div>
-                <div class="box-footer">
-                    {!! Form::submit($SubmitButtonText, ['class' => 'btn btn-primary']) !!}
-                </div>
             </div><!-- /.box-body -->
+            <div class="box-footer">
+                {!! Form::submit($SubmitButtonText, ['class' => 'btn btn-primary']) !!}
+            </div>
         </div><!-- /.box -->
     </div><!-- /.col -->
     <div class="col-md-6">
@@ -72,18 +68,22 @@
                             </a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne" class="panel-collapse collapse">
                         <div class="box-body">
-                            If you would like to restrict a category to a specific server, then you have to enable server restrictions for that category by checking the checkbox "Enable Server Restrictions" on the left.
+                            If you would like to restrict a category to a specific server, then you have to enable server restrictions for that category by checking the checkbox "Enable Server Restrictions"
                             <br>
                             Once you have done that, you have to enter your servers below.
-                            <br>
-                            Btw. you can collapse this info by clicking on the title
                         </div>
                     </div>
                 </div>
-                {!! Form::label('server_list', 'Servers') !!}
-                {!! Form::select('server_list[]', $servers, null,['id' => 'server_list','class' => 'form-control','multiple']) !!}
+                <div class="form-group">
+                    {!! Form::checkbox('enable_server_restriction') !!}
+                    {!! Form::label('enable_server_restriction', 'Enable Server Restriction') !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('server_list', 'Servers') !!}
+                    {!! Form::select('server_list[]', $servers, null,['id' => 'server_list','class' => 'form-control','multiple']) !!}
+                </div>
             </div>
         </div>
     </div>
