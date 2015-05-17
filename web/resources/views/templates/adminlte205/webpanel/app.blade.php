@@ -93,12 +93,6 @@
 <!-- ChartJS 1.0.1 -->
 <script src="{{asset('templates/adminlte205/plugins/chartjs/Chart.min.js')}}" type="text/javascript"></script>
 
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('templates/adminlte205/dist/js/pages/dashboard2.js')}}" type="text/javascript"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('templates/adminlte205/dist/js/demo.js')}}" type="text/javascript"></script>
-
 @yield('footer')
 
 </body>

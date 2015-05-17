@@ -4,6 +4,11 @@
 
     <!-- Select 2-->
     <link href="{{asset('templates/adminlte205/plugins/select2/select2.min.css')}}" rel="stylesheet" />
+
+    <!-- Ion Slider -->
+    <link href="{{asset('templates/adminlte205/plugins/ionslider/ion.rangeSlider.css')}}" rel="stylesheet" />
+    <!-- Ion Slider Nice -->
+    <link href="{{asset('templates/adminlte205/plugins/ionslider/ion.rangeSlider.skinNice.css')}}" rel="stylesheet" />
 @endsection
 
 <div class="row">
@@ -15,7 +20,13 @@
             <div class="box-body">
                 <div class="form-group">
                     {!! Form::label('priority', 'Priority') !!}
-                    {!! Form::text('priority', 0, ['class' => 'form-control']) !!}
+                    <div class="row margin">
+                        <div class="col-sm-12">
+                            {!! Form::text('priority') !!}
+                        </div>
+                    </div>
+                    <!--
+                    {!! Form::text('priority', 0, ['class' => 'form-control']) !!}-->
                 </div>
                 <div class="form-group">
                     {!! Form::label('display_name', 'Display Name') !!}
@@ -53,6 +64,24 @@
                 <h3 class="box-title">Server Restrictions</h3>
             </div>
             <div class="box-body">
+                <div class="panel box box-primary">
+                    <div class="box-header with-border">
+                        <h4 class="box-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Setting up Server Restrictions
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="box-body">
+                            If you would like to restrict a category to a specific server, then you have to enable server restrictions for that category by checking the checkbox "Enable Server Restrictions" on the left.
+                            <br>
+                            Once you have done that, you have to enter your servers below.
+                            <br>
+                            Btw. you can collapse this info by clicking on the title
+                        </div>
+                    </div>
+                </div>
                 {!! Form::label('server_list', 'Servers') !!}
                 {!! Form::select('server_list[]', $servers, null,['id' => 'server_list','class' => 'form-control','multiple']) !!}
             </div>
@@ -67,10 +96,23 @@
     <!-- Select 2-->
     <script src="{{asset('templates/adminlte205/plugins/select2/select2.min.js')}}"></script>
 
+    <!-- Ion Slider -->
+    <script src="{{asset('templates/adminlte205/plugins/ionslider/ion.rangeSlider.min.js')}}"></script>
+
     <script>
         $('#server_list').select2({
             placeholder: 'Select a Server'
         });
         $('#web_color').colorpicker();
+
+        $("#priority").ionRangeSlider({
+            min: 0,
+            max: 20,
+            type: 'single',
+            step: 1,
+            postfix: "",
+            prettify: false,
+            hasGrid: true
+        });
     </script>
 @endsection
