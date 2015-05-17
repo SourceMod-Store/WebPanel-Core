@@ -8,4 +8,9 @@ class StoreCategory extends Model
     protected $connection = 'store';
     protected $table = 'categories';
 
+    public function items()
+    {
+        return $this->hasMany('App\StoreItem','category_id','id');
+    }
+
 }

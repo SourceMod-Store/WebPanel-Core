@@ -3,7 +3,6 @@
 use App\StoreUser;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Request;
 
 class UsersController extends Controller {
 
@@ -29,18 +28,20 @@ class UsersController extends Controller {
         return view('templates.'.\Config::get('webpanel.template').'webpanel.users.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     *
+     * @param Requests\CreateUserRequest $request
+     * @return Response
+     */
+	public function store(Requests\CreateUserRequest $request)
 	{
-        $input = Request::all();
+        $input = $request->all();
 
         StoreUser::create($input);
 
-        return redirect()->route(webpanel.users.index);
+        return redirect()->route('webpanel.users.index');
 	}
 
 	/**
@@ -63,7 +64,7 @@ class UsersController extends Controller {
 	 */
 	public function edit($user)
 	{
-        return "shows edit user form for user ".$user;
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.users.edit',compact('user'));
 	}
 
 	/**
@@ -72,9 +73,10 @@ class UsersController extends Controller {
 	 * @param  StoreUser $user
 	 * @return Response
 	 */
-	public function update($user)
+	public function update($user, Requests\EditUserRequest $request)
 	{
-		//
+		$user->update($request->all());
+        return redirect()->route('webpanel.users.index');
 	}
 
 	/**
@@ -83,10 +85,10 @@ class UsersController extends Controller {
 	 * @param  StoreUser $user
 	 * @return Response
 	 */
-	public function destroy($user)
+	public function destroy($user, Requests\DeleteUserRequest $request)
 	{
 		$user->delete();
-        return redirect()->route(webpanel.users.index);
+        return redirect()->route('webpanel.users.index');
 	}
 
 }

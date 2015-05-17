@@ -8,7 +8,7 @@
                 <a href="#">
                     <i class="fa fa-files-o"></i>
                     <span>Items</span>
-                    <span class="label label-primary pull-right">150</span>
+                    <span class="label label-primary pull-right">{{$itemCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{URL::route('webpanel.items.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
@@ -20,7 +20,7 @@
                 <a href="#">
                     <i class="fa fa-folder-open"></i>
                     <span>Categories</span>
-                    <span class="label label-primary pull-right">5</span>
+                    <span class="label label-primary pull-right">{{$categoryCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{URL::route('webpanel.categories.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
@@ -32,7 +32,7 @@
                 <a href="#">
                     <i class="fa fa-users"></i>
                     <span>Users</span>
-                    <span class="label label-primary pull-right">1000</span>
+                    <span class="label label-primary pull-right">{{$userCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{URL::route('webpanel.users.index')}}"><i class="fa fa-circle-o"></i> View </a></li>

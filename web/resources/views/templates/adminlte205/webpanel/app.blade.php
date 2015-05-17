@@ -53,6 +53,8 @@
 
         <!-- Main content -->
         <section class="content">
+            @include('templates.adminlte205.webpanel.includes.errorcallout')
+
             @yield('content')
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
