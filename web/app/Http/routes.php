@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],functi
     Route::resource('categories', 'CategoriesController');
     Route::resource('users', 'UsersController');
     Route::resource('servers', 'ServersController');
+    Route::resource('versions', 'VersionsController');
 });
 
 

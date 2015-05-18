@@ -62,7 +62,7 @@
                     <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li> <!-- TODO: Add named route -->
                 </ul>
             </li>
-            <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-desktop"></i> Versions</a></li> <!-- TODO: Add named route -->
+            <li><a href="{{URL::route('webpanel.versions.index')}}"><i class="fa fa-desktop"></i> Versions</a></li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-wrench"></i>
