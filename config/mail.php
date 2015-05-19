@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => null, 'name' => null],
+	'from' => ['address' => env('MAIL_FROM_ADR'), 'name' => env('MAIL_FROM_NAME', 'Store WebPanel')],
 
 	/*
 	|--------------------------------------------------------------------------
