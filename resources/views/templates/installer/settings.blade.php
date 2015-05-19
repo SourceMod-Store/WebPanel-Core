@@ -16,6 +16,7 @@
             It will ask you for you database credentials, mail queue and session driver as well as your E-Mail Settings
         </p>
     </div>
+    {!! Form::open(['method'=>'get','route' => 'installer.users.show']) !!}
     <div class="middle-container">
         <div class="alert alert-info" role="alert">
             <strong>Generic Application Settings</strong> This are some General Settings for the Application
@@ -130,10 +131,8 @@
     <div class="bottom-container">
         <div class="floatCenter">Step 2 / 4</div>
         <div class="floatRight">
-            {!! Form::open(['method'=>'get','route' => 'installer.users.show']) !!}
             {!! Form::submit("Proceed to User Setup", ['class' => 'btn btn-primary']) !!}
-            {!! Form::close() !!}
         </div>
     </div>
-
+    {!! Form::close() !!}
 @endsection

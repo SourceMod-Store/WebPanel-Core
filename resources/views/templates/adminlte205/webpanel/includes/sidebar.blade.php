@@ -63,17 +63,7 @@
                 </ul>
             </li>
             <li><a href="{{URL::route('webpanel.versions.index')}}"><i class="fa fa-desktop"></i> Versions</a></li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-wrench"></i>
-                    <span>Tools</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{URL::route('webpanel.tools.json_checker')}}"><i class="fa fa-circle-o"></i> JSON Checker </a></li>
-                    <li><a href="{{URL::route('webpanel.tools.json_shrinker')}}"><i class="fa fa-circle-o"></i> JSON Shrinker</a></li>
-                    <li><a href="{{URL::route('webpanel.tools.impex')}}"><i class="fa fa-circle-o"></i> JSON Import / Export</a></li>
-                </ul>
-            </li>
+            <li><a href="{{URL::route('webpanel.tools.index')}}"><i class="fa fa-wrench"></i> Tools</a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

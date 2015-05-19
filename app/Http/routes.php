@@ -41,9 +41,11 @@ Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],functi
     });
 
     Route::group(['prefix' => 'tools'],function(){
-        Route::get('json_shrinker', ['as' => 'webpanel.tools.json_shrinker','uses' => 'WebPanel\ToolsController@getJsonShrinker']);
-        Route::get('json_checker',  ['as' => 'webpanel.tools.json_checker', 'uses' => 'WebPanel\ToolsController@getJsonChecker']);
-        Route::get('impex',         ['as' => 'webpanel.tools.impex', 'uses' => 'WebPanel\ToolsController@getImpex']);
+        Route::get('index',         ['as' => 'webpanel.tools.index', 'uses' => 'WebPanel\ToolsController@index']);
+        Route::post('json_shrinker', ['as' => 'webpanel.tools.json_shrinker','uses' => 'WebPanel\ToolsController@JsonShrinker']);
+        Route::post('json_checker',  ['as' => 'webpanel.tools.json_checker', 'uses' => 'WebPanel\ToolsController@JsonChecker']);
+        Route::post('import',       ['as' => 'webpanel.tools.import', 'uses' => 'WebPanel\ToolsController@Import']);
+        Route::post('export',       ['as' => 'webpanel.tools.export', 'uses' => 'WebPanel\ToolsController@Export']);
     });
 
 });

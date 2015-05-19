@@ -16,6 +16,7 @@
             Please Enter your Username, E-Mail Address and Password
         </p>
     </div>
+    {!! Form::open(['method'=>'get','route' => 'installer.finish.show']) !!}
     <div class="middle-container">
         <div class="form-group">
             {!! Form::label('username', 'Username') !!}
@@ -44,10 +45,9 @@
     <div class="bottom-container">
         <div class="floatCenter">Step 3 / 4</div>
         <div class="floatRight">
-            {!! Form::open(['method'=>'get','route' => 'installer.finish.show']) !!}
             {!! Form::submit("Proceed to Finish", ['class' => 'btn btn-primary']) !!}
-            {!! Form::close() !!}
         </div>
     </div>
+    {!! Form::close() !!}
 
 @endsection

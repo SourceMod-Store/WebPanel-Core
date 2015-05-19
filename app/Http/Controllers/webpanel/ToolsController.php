@@ -10,15 +10,15 @@ class ToolsController extends Controller {
     /**
      * Returns the Import / Export View
      */
-    public function getImpex()
+    public function index()
     {
-
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.tools.index');
     }
 
     /**
      * Returns the Check JSON View
      */
-    public function getJsonChecker()
+    public function JsonChecker()
     {
 
     }
@@ -26,7 +26,7 @@ class ToolsController extends Controller {
     /** Returns the Shrink JSON View
      *
      */
-    public function getJsonShrinker()
+    public function JsonShrinker()
     {
 
     }
