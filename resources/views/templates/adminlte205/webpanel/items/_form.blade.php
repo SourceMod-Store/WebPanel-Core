@@ -71,14 +71,17 @@
                         {!! Form::text('web_description', null, ['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group">
+                        {!! Form::hidden('is_buyable',0) !!}
                         {!! Form::checkbox('is_buyable') !!}
                         {!! Form::label('is_buyable', 'Is Buyable') !!}
                     </div>
                     <div class="form-group">
+                        {!! Form::hidden('is_tradeable',0) !!}
                         {!! Form::checkbox('is_tradeable') !!}
                         {!! Form::label('is_tradeable', 'is Tradeable') !!}
                     </div>
                     <div class="form-group">
+                        {!! Form::hidden('is_refundable',0) !!}
                         {!! Form::checkbox('is_refundable') !!}
                         {!! Form::label('is_refundable', 'Is Refundable') !!}
                     </div>
@@ -115,6 +118,7 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        {!! Form::hidden('enable_server_restriction',0) !!}
                         {!! Form::checkbox('enable_server_restriction') !!}
                         {!! Form::label('enable_server_restriction', 'Enable Server Restriction') !!}
                     </div>

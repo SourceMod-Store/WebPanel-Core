@@ -12,6 +12,6 @@
 
 @section('content')
     {!! Form::model($server,['method' => 'PATCH','route' => ['webpanel.servers.update',$server->id]]) !!}
-    @include('templates.adminlte205.webpanel.server._form',['LeftMenuTitle'=>'Edit Server '.$server->name,'SubmitButtonText' => 'Edit Server'])
+    @include('templates.adminlte205.webpanel.servers._form',['LeftMenuTitle'=>'Edit Server '.$server->name,'SubmitButtonText' => 'Edit Server'])
     {!! Form::close() !!}
 @stop

@@ -23,7 +23,7 @@ class ItemRequest extends Request {
 	{
 		return [
             'priority' => 'numeric',
-            'name' => 'required',
+            'name' => 'required', //TODO: Check for no whitespaces
             'display_name' => 'required',
             'description' => 'required',
             'web_description',
@@ -31,14 +31,13 @@ class ItemRequest extends Request {
             'loadout_slot' => 'required',
             'price' => 'required|numeric',
             'category_id' => 'required',
-            'attrs',
+            'attrs', //TODO: Perfom JSON Validation on the Attrs field
             'is_buyable',
             'is_tradeable',
             'is_refundable',
             'expiry_time',
             'flags',
 		];
-        //TODO: Perfom JSON Validation on the Attrs field
 	}
 
 }

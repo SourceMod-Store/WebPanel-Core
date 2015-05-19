@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Webpanel;
 
+use App\Models\StoreServer;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class ServersController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $servers = StoreServer::all();
+
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.servers.index', compact('servers'));
 	}
 
 	/**
@@ -24,61 +27,73 @@ class ServersController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.servers.create');
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+     * @param Requests\ServerRequest $request
+     *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\ServerRequest $request)
 	{
-		//
+        $input = $request->all();
+
+        StoreServer::create($input);
+
+        return redirect()->route('webpanel.servers.index');
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  App\Models\StoreServer  $server
+     *
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($server)
 	{
-		//
+        return redirect()->route(['webpanel.servers.edit',$server->id]);
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  App\Models\StoreServer $server
+     *
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($server)
 	{
-		//
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.servers.edit',compact('server'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  App\Models\StoreServer $server
+     * @param  Requests\ServerRequest $request
+     *
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($server, Requests\ServerRequest $request)
 	{
-		//
+        $server->update($request->all());
+        return redirect()->route('webpanel.servers.index');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  App\Models\StoreServer $server
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($server)
 	{
-		//
+        $server->delete();
+        return redirect()->route('webpanel.servers.index');
 	}
 
 }

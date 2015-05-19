@@ -77,6 +77,7 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    {!! Form::hidden('enable_server_restriction',0) !!}
                     {!! Form::checkbox('enable_server_restriction') !!}
                     {!! Form::label('enable_server_restriction', 'Enable Server Restriction') !!}
                 </div>

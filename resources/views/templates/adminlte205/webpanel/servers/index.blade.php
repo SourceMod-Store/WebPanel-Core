@@ -21,26 +21,28 @@
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 10px">#</th>
-                            <th>Auth</th>
                             <th>Name</th>
-                            <th>Credits</th>
+                            <th>Display Name</th>
+                            <th>IP</th>
+                            <th>Port</th>
                             <th>Actions</th>
                         </tr>
-                        @foreach($users as $user)
+                        @foreach($servers as $server)
                             <tr>
-                                <td><a href="{{ route('webpanel.users.edit', array($user->id)) }}">{{$user->id}}</a></td>
-                                <td>{{$user->auth}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->credits}}</td>
+                                <td><a href="{{ route('webpanel.servers.edit', array($server->id)) }}">{{$server->id}}</a></td>
+                                <td>{{$server->name}}</td>
+                                <td>{{$server->display_name}}</td>
+                                <td>{{$server->ip}}</td>
+                                <td>{{$server->port}}</td>
                                 <td>
                                     <div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.users.destroy',$user->id)]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.servers.destroy',$server->id)]) !!}
                                             {!! Form::submit('Remove',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.users.edit',$user->id)]) !!}
+                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.servers.edit',$server->id)]) !!}
                                             {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>
