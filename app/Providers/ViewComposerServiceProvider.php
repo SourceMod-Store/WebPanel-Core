@@ -1,10 +1,10 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\StoreUser;
-use App\StoreItem;
-use App\StoreCategory;
-use App\StoreServer;
+use App\Models\StoreUser;
+use App\Models\StoreItem;
+use App\Models\StoreCategory;
+use App\Models\StoreServer;
 
 class ViewComposerServiceProvider extends ServiceProvider {
 

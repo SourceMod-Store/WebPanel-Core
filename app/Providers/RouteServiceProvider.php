@@ -24,11 +24,11 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		parent::boot($router);
 
-		$router->model('items','App\StoreItem');
-        $router->model('categories','App\StoreCategory');
-        $router->model('users','App\StoreUser');
-        $router->model('servers','App\StoreServer');
-        $router->model('versions','App\StoreVersion');
+		$router->model('items','App\Models\StoreItem');
+        $router->model('categories','App\Models\StoreCategory');
+        $router->model('users','App\Models\StoreUser');
+        $router->model('servers','App\Models\StoreServer');
+        $router->model('versions','App\Models\StoreVersion');
 	}
 
 	/**

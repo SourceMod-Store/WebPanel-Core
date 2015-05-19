@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +11,7 @@ class StoreUser extends Model
 
     public function items()
     {
-        return $this->belongsToMany('App\StoreItem','users_items', 'user_id', 'item_id')->withTimestamps();
+        return $this->belongsToMany('App\Models\StoreItem','users_items', 'user_id', 'item_id')->withTimestamps();
     }
 
 }

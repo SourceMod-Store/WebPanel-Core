@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,12 +11,12 @@ class StoreCategory extends Model
 
     public function items()
     {
-        return $this->hasMany('App\StoreItem','category_id','id');
+        return $this->hasMany('App\Models\StoreItem','category_id','id');
     }
 
     public function servers()
     {
-        return $this->belongsToMany('App\StoreServer','servers_categories', 'category_id', 'server_id')->withTimestamps();
+        return $this->belongsToMany('App\Models\StoreServer','servers_categories', 'category_id', 'server_id')->withTimestamps();
     }
 
     public function getServerListAttribute()
