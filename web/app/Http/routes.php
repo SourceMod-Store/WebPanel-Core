@@ -25,7 +25,17 @@ Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],functi
     Route::resource('categories', 'CategoriesController');
     Route::resource('users', 'UsersController');
     Route::resource('servers', 'ServersController');
-    Route::resource('versions', 'VersionsController');
+
+    Route::group(['prefix' => 'versions'],function(){
+        Route::get('',['as' => 'webpanel.versions.index','uses' => 'VersionsController@getIndex']);
+    });
+
+    Route::group(['prefix' => 'tools'],function(){
+        Route::get('json_shrinker',['as' => 'webpanel.tools.json_shrinker','uses' => 'ToolsController@getJsonShrinker']);
+        Route::get('json_checker',['as' => 'webpanel.tools.json_checker', 'uses' => 'ToolsController@getJsonChecker']);
+        Route::get('impex',['as' => 'webpanel.tools.impex', 'uses' => 'ToolsController@getImpex']);
+    });
+
 });
 
 

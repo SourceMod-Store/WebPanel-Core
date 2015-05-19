@@ -69,8 +69,9 @@
                     <span>Tools</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> JSON Checker </a></li> <!-- TODO: Add named route -->
-                    <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> JSON Shrinker</a></li> <!-- TODO: Add named route -->
+                    <li><a href="{{URL::route('webpanel.tools.json_checker')}}"><i class="fa fa-circle-o"></i> JSON Checker </a></li>
+                    <li><a href="{{URL::route('webpanel.tools.json_shrinker')}}"><i class="fa fa-circle-o"></i> JSON Shrinker</a></li>
+                    <li><a href="{{URL::route('webpanel.tools.impex')}}"><i class="fa fa-circle-o"></i> JSON Import / Export</a></li>
                 </ul>
             </li>
         </ul>
