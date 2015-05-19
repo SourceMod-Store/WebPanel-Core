@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Webpanel;
 
 use App\Models\StoreVersion;
 use App\Http\Requests;

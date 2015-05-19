@@ -13,28 +13,27 @@
 
 //Generic Requests
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
+Route::get('/',     'WelcomeController@index');
+Route::get('home',  'HomeController@index');
 
 
 //WebPanel Routes
 Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],function(){
-    Route::get('',['as' => 'webpanel.dashboard', 'uses' => 'DashboardController@showDashboard']);
-    Route::resource('items', 'ItemsController');
-    Route::resource('categories', 'CategoriesController');
-    Route::resource('users', 'UsersController');
-    Route::resource('servers', 'ServersController');
+    Route::get('', ['as' => 'webpanel.dashboard', 'uses' => 'WebPanel\DashboardController@showDashboard']);
+    Route::resource('items',        'WebPanel\ItemsController');
+    Route::resource('categories',   'WebPanel\CategoriesController');
+    Route::resource('users',        'WebPanel\UsersController');
+    Route::resource('servers',      'WebPanel\ServersController');
 
     Route::group(['prefix' => 'versions'],function(){
-        Route::get('',['as' => 'webpanel.versions.index','uses' => 'VersionsController@index']);
-        Route::get('/{versions}',['as' => 'webpanel.versions.show', 'uses' => 'VersionsController@show']);
+        Route::get('', ['as' => 'webpanel.versions.index','uses' => 'WebPanel\VersionsController@index']);
+        Route::get('/{versions}',   ['as' => 'webpanel.versions.show', 'uses' => 'WebPanel\VersionsController@show']);
     });
 
     Route::group(['prefix' => 'tools'],function(){
-        Route::get('json_shrinker',['as' => 'webpanel.tools.json_shrinker','uses' => 'ToolsController@getJsonShrinker']);
-        Route::get('json_checker',['as' => 'webpanel.tools.json_checker', 'uses' => 'ToolsController@getJsonChecker']);
-        Route::get('impex',['as' => 'webpanel.tools.impex', 'uses' => 'ToolsController@getImpex']);
+        Route::get('json_shrinker', ['as' => 'webpanel.tools.json_shrinker','uses' => 'WebPanel\ToolsController@getJsonShrinker']);
+        Route::get('json_checker',  ['as' => 'webpanel.tools.json_checker', 'uses' => 'WebPanel\ToolsController@getJsonChecker']);
+        Route::get('impex',         ['as' => 'webpanel.tools.impex', 'uses' => 'WebPanel\ToolsController@getImpex']);
     });
 
 });
