@@ -21,31 +21,22 @@
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 10px">#</th>
-                            <th>Auth</th>
-                            <th>Name</th>
-                            <th>Credits</th>
-                            <th>Actions</th>
+                            <th>Module Name</th>
+                            <th>Module Description</th>
+                            <th>Installed Version</th>
+                            <th>Current Version</th>
+                            <th>Server ID</th>
+                            <th>Last Updated</th>
                         </tr>
-                        @foreach($users as $user)
+                        @foreach($versions as $version)
                             <tr>
-                                <td><a href="{{ route('webpanel.users.edit', array($user->id)) }}">{{$user->id}}</a></td>
-                                <td>{{$user->auth}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->credits}}</td>
-                                <td>
-                                    <div>
-                                        <div style="float: right">
-                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.users.destroy',$user->id)]) !!}
-                                            {!! Form::submit('Remove',['class' => 'btn btn-danger']) !!}
-                                            {!! Form::close() !!}
-                                        </div>
-                                        <div style="float: right">
-                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.users.edit',$user->id)]) !!}
-                                            {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
-                                            {!! Form::close() !!}
-                                        </div>
-                                    </div>
-                                </td>
+                                <td><a href="{{ route('webpanel.versions.show', array($version->id)) }}">{{$version->id}}</a></td>
+                                <td>{{$version->mod_name}}</td>
+                                <td>{{$version->mod_description}}</td>
+                                <td>{{$version->mod_ver_number}}</td>
+                                <td>n/a</td>
+                                <td>{{$version->server_id}}</td>
+                                <td>{{$version->last_updated}}</td>
                             </tr>
                         @endforeach
                     </table>

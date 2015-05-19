@@ -27,7 +27,8 @@ Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],functi
     Route::resource('servers', 'ServersController');
 
     Route::group(['prefix' => 'versions'],function(){
-        Route::get('',['as' => 'webpanel.versions.index','uses' => 'VersionsController@getIndex']);
+        Route::get('',['as' => 'webpanel.versions.index','uses' => 'VersionsController@index']);
+        Route::get('/{versions}',['as' => 'webpanel.versions.show', 'uses' => 'VersionsController@show']);
     });
 
     Route::group(['prefix' => 'tools'],function(){

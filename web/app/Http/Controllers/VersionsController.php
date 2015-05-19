@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\StoreVersion;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -8,13 +9,24 @@ use Illuminate\Http\Request;
 class VersionsController extends Controller {
 
 	/**
-	 * Display a listing of the resource.
+	 * Gives an Overview of the installed module Versions
 	 *
 	 * @return Response
 	 */
-	public function getIndex()
+	public function index()
 	{
-		//
+        $versions = StoreVersion::all();
+
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.versions.index', compact('versions'));
 	}
 
+    /**
+     * Shows details about the Selected Version
+     *
+     * @param StoreVersion $version
+     */
+    public function show($version)
+    {
+        dd($version);
+    }
 }
