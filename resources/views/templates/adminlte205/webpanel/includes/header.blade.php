@@ -17,7 +17,7 @@
                         <span class="label label-success">4</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 4 messages</li>
+                        <li class="header">You have 4 messages</li><!-- TODO: Implement a Info Message feature-->
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">
@@ -83,7 +83,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">See All Messages</a></li>
+                        <li class="footer"><a href="#">See All Messages</a></li><!-- TODO: Link to a proper messages Page-->
                     </ul>
                 </li>
                 <!-- Notifications: style can be found in dropdown.less -->
@@ -93,7 +93,7 @@
                         <span class="label label-warning">10</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">You have 10 notifications</li>
+                        <li class="header">You have 10 notifications</li><!-- TODO: Implement a Notifications feature-->
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu">
@@ -125,11 +125,11 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">View all</a></li>
+                        <li class="footer"><a href="#">View all</a></li><!-- TODO: Link to a Notifications Page (maybe the same as messages)-->
                     </ul>
                 </li>
                 <!-- Tasks: style can be found in dropdown.less -->
-                <li class="dropdown tasks-menu">
+                <li class="dropdown tasks-menu"><!-- TODO: Add some actual tasks, like create a category, item, server, ...-->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-flag-o"></i>
                         <span class="label label-danger">9</span>
@@ -194,7 +194,7 @@
                             </ul>
                         </li>
                         <li class="footer">
-                            <a href="#">View all tasks</a>
+                            <a href="#">View all tasks</a><!-- TODO: LInk to a tasks overview page (maybe the same as messages / notifications ?) -->
                         </li>
                     </ul>
                 </li>
@@ -202,19 +202,19 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{asset('templates/adminlte205/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs">{{$username}}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
                             <img src="{{asset('templates/adminlte205/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                {{$username}}
+                                <small>Member since quite some time</small><!-- FIXME: Add the actual date here-->
                             </p>
                         </li>
                         <!-- Menu Body -->
-                        <li class="user-body">
+                        <li class="user-body"><!-- TODO: Add some meaningfull links here-->
                             <div class="col-xs-4 text-center">
                                 <a href="#">Followers</a>
                             </div>
@@ -228,7 +228,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="#" class="btn btn-default btn-flat">Profile</a><!-- TODO: Add a actual profile page-->
                             </div>
                             <div class="pull-right">
                                 <a href="{{URL::route('logout')}}" class="btn btn-default btn-flat">Sign out</a>

@@ -1,6 +1,7 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use App\Models\StoreUser;
 use App\Models\StoreItem;
 use App\Models\StoreCategory;
@@ -17,6 +18,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
 	{
         $this->ComposeSidebar();
         $this->ComposeForms();
+        $this->ComposeHeader();
     }
 
 	/**
@@ -57,4 +59,14 @@ class ViewComposerServiceProvider extends ServiceProvider {
         });
     }
 
+
+    /**
+     * Passes the required variables to the header
+     */
+    public function ComposeHeader()
+    {
+        view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.includes.header', function ($view) {
+            $view->with('username', Auth::user()->name);
+        });
+    }
 }

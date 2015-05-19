@@ -9,7 +9,7 @@ class InstallerController extends Controller {
 
     public function showWelcome()
     {
-
+        return view('templates.installer.welcome');
     }
 
     public function postWelcome()
@@ -19,7 +19,7 @@ class InstallerController extends Controller {
 
     public function showSettings()
     {
-
+        return view('templates.installer.settings');
     }
 
     public function postSettings()
@@ -29,7 +29,7 @@ class InstallerController extends Controller {
 
     public function showUsers()
     {
-
+        return view('templates.installer.user');
     }
 
     public function postUsers()
@@ -39,7 +39,7 @@ class InstallerController extends Controller {
 
     public function showFinish()
     {
-
+        return view('templates.installer.finish');
     }
 
 }
