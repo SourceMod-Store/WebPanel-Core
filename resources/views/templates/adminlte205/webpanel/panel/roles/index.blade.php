@@ -1,12 +1,12 @@
 @extends('templates.adminlte205.webpanel.app')
 
-@section('title', 'Users')
+@section('title', 'Role')
 
 @section('subtitle', 'Overview')
 
 @section('breadcrumb')
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Users</li>
+    <li class="active">Role</li>
     <li class="active">Overview</li>
 @stop
 
@@ -21,26 +21,26 @@
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 10px">#</th>
-                            <th>Auth</th>
                             <th>Name</th>
-                            <th>Credits</th>
+                            <th>Display Name</th>
+                            <th>Description</th>
                             <th>Actions</th>
                         </tr>
-                        @foreach($users as $user)
+                        @foreach($roles as $role)
                             <tr>
-                                <td><a href="{{ route('webpanel.panel.roles.edit', array($user->id)) }}">{{$user->id}}</a></td>
-                                <td>{{$user->auth}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->credits}}</td>
+                                <td><a href="{{ route('webpanel.panel.roles.edit', array($role->id)) }}">{{$role->id}}</a></td>
+                                <td>{{$role->name}}</td>
+                                <td>{{$role->display_name}}</td>
+                                <td>{{$role->description}}</td>
                                 <td>
                                     <div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.panel.roles.destroy',$user->id)]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.panel.roles.destroy',$role->id)]) !!}
                                             {!! Form::submit('Remove',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.panel.roles.edit',$user->id)]) !!}
+                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.panel.roles.edit',$role->id)]) !!}
                                             {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>
@@ -50,17 +50,6 @@
                         @endforeach
                     </table>
                 </div><!-- /.box-body -->
-                <!--
-                <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-right">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-                -->
             </div><!-- /.box -->
 
         </div><!-- /.col -->

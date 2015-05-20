@@ -72,7 +72,7 @@ class UsersController extends Controller {
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int $id
-     * @param  Requests\StoreUserRequest $request)
+     * @param  Requests\StoreUserRequest $request
 	 * @return Response
 	 */
 	public function update($id, Requests\StoreUserRequest $request)

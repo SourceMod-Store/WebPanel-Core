@@ -29,6 +29,9 @@ class RouteServiceProvider extends ServiceProvider {
        // $router->model('users','App\Models\StoreUser'); // FIXME: Fix when parameter changing is supported in laravel
         $router->model('servers','App\Models\StoreServer');
         $router->model('versions','App\Models\StoreVersion');
+        $router->model('roles','App\Role');
+        $router->model('permissions','App\Permission');
+
 	}
 
 	/**

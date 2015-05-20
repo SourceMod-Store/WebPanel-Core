@@ -43,16 +43,6 @@ class UsersController extends Controller {
         $user->password = bcrypt($request->input('password'));
         $user->save();
 
-
-        if($request->input('role_list') == null)
-        {
-            $role_list = array();
-        }
-        else
-        {
-            $role_list = $request->input('role_list');
-        }
-
         $this->SyncRoles($user, $role_list);
 
         return redirect()->route('webpanel.panel.users.index');
@@ -87,7 +77,7 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Requests\PanelUserRequest $request)
 	{
         $user = User::find($id);
 	}

@@ -68,6 +68,14 @@ class ViewComposerServiceProvider extends ServiceProvider {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.users._form', function ($view) {
             $view->with('roles', Role::lists('display_name', 'id'));
         });
+
+        view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.roles._form', function ($view) {
+            $view->with('permissions', Permission::lists('display_name', 'id'));
+        });
+
+        view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.permissions._form', function ($view) {
+            $view->with('roles', Role::lists('display_name', 'id'));
+        });
     }
 
 

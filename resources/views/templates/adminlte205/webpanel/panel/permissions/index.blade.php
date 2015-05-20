@@ -6,7 +6,7 @@
 
 @section('breadcrumb')
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Users</li>
+    <li class="active">Permissions</li>
     <li class="active">Overview</li>
 @stop
 
@@ -15,32 +15,32 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All Users</h3>
+                    <h3 class="box-title">All Permissions</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 10px">#</th>
-                            <th>Auth</th>
                             <th>Name</th>
-                            <th>Credits</th>
+                            <th>Display Name</th>
+                            <th>Description</th>
                             <th>Actions</th>
                         </tr>
-                        @foreach($users as $user)
+                        @foreach($permissions as $permission)
                             <tr>
-                                <td><a href="{{ route('webpanel.panel.permissions.edit', array($user->id)) }}">{{$user->id}}</a></td>
-                                <td>{{$user->auth}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->credits}}</td>
+                                <td><a href="{{ route('webpanel.panel.permissions.edit', array($permission->id)) }}">{{$permission->id}}</a></td>
+                                <td>{{$permission->auth}}</td>
+                                <td>{{$permission->name}}</td>
+                                <td>{{$permission->credits}}</td>
                                 <td>
                                     <div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.panel.permissions.destroy',$user->id)]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.panel.permissions.destroy',$permission->id)]) !!}
                                             {!! Form::submit('Remove',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.panel.permissions.edit',$user->id)]) !!}
+                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.panel.permissions.edit',$permission->id)]) !!}
                                             {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>
@@ -50,19 +50,7 @@
                         @endforeach
                     </table>
                 </div><!-- /.box-body -->
-                <!--
-                <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-right">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-                -->
             </div><!-- /.box -->
-
         </div><!-- /.col -->
     </div><!-- /.row -->
 @stop

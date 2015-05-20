@@ -1,8 +1,8 @@
 <?php namespace App\Http\Controllers\WebPanel\Panel;
 
+use App\Role;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 
 class RolesController extends Controller {
@@ -14,7 +14,9 @@ class RolesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $roles = Role::all();
+
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.panel.roles.index', compact('roles'));
 	}
 
 	/**
@@ -24,61 +26,69 @@ class RolesController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.panel.roles.create');
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+     * @param Requests\PanelRoleRequest $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\PanelRoleRequest $request)
 	{
-		//
-	}
+        $input = $request->all();
+
+        Role::create($input);
+
+        return redirect()->route('webpanel.panel.roles.index');
+    }
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  App\Role $role
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($role)
 	{
-		//
+        return redirect()->route('webpanel.panel.roles.edit',$role->id);
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  App\Role  $role
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($role)
 	{
-		//
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.panel.roles.edit',compact('role'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+     * Requests\PanelRoleRequest $request
+	 * @param  App\Role  $role
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($role, Requests\PanelRoleRequest $request)
 	{
-		//
+        $role->update($request->all());
+        return redirect()->route('webpanel.store.roles.index');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  App\Role  $role
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($role)
 	{
-		//
+        $role->delete();
+        return redirect()->route('webpanel.store.roles.index');
 	}
 
 }
