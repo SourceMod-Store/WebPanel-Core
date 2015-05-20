@@ -30,26 +30,26 @@ Route::group(['prefix'=>'installer'],function(){
 //WebPanel Routes
 Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],function(){
 
-    Route::get('', ['as' => 'webpanel.dashboard', 'uses' => 'WebPanel\DashboardController@showDashboard']);
+    Route::get('', ['as' => 'webpanel.dashboard', 'uses' => 'WebPanel\Store\DashboardController@showDashboard']);
 
     // Store Routes --> Features Relating to the Store Plugin
     Route::group(['prefix' => 'store'],function(){
-        Route::resource('items',        'WebPanel\ItemsController');
-        Route::resource('categories',   'WebPanel\CategoriesController');
-        Route::resource('users',        'WebPanel\UsersController');
-        Route::resource('servers',      'WebPanel\ServersController');
+        Route::resource('items',        'WebPanel\Store\ItemsController');
+        Route::resource('categories',   'WebPanel\Store\CategoriesController');
+        Route::resource('users',        'WebPanel\Store\UsersController');
+        Route::resource('servers',      'WebPanel\Store\ServersController');
 
         Route::group(['prefix' => 'versions'],function(){
-            Route::get('', ['as' => 'webpanel.store.versions.index','uses' => 'WebPanel\VersionsController@index']);
-            Route::get('/{versions}', ['as' => 'webpanel.store.versions.show', 'uses' => 'WebPanel\VersionsController@show']);
+            Route::get('', ['as' => 'webpanel.store.versions.index','uses' => 'WebPanel\Store\VersionsController@index']);
+            Route::get('/{versions}', ['as' => 'webpanel.store.versions.show', 'uses' => 'WebPanel\Store\VersionsController@show']);
         });
 
         Route::group(['prefix' => 'tools'],function(){
-            Route::get('index',         ['as' => 'webpanel.store.tools.index', 'uses' => 'WebPanel\ToolsController@index']);
-            Route::post('json_shrinker', ['as' => 'webpanel.store.tools.json_shrinker','uses' => 'WebPanel\ToolsController@JsonShrinker']);
-            Route::post('json_checker',  ['as' => 'webpanel.store.tools.json_checker', 'uses' => 'WebPanel\ToolsController@JsonChecker']);
-            Route::post('import',       ['as' => 'webpanel.store.tools.import', 'uses' => 'WebPanel\ToolsController@Import']);
-            Route::post('export',       ['as' => 'webpanel.store.tools.export', 'uses' => 'WebPanel\ToolsController@Export']);
+            Route::get('index',         ['as' => 'webpanel.store.tools.index', 'uses' => 'WebPanel\Store\ToolsController@index']);
+            Route::post('json_shrinker', ['as' => 'webpanel.store.tools.json_shrinker','uses' => 'WebPanel\Store\ToolsController@JsonShrinker']);
+            Route::post('json_checker',  ['as' => 'webpanel.store.tools.json_checker', 'uses' => 'WebPanel\Store\ToolsController@JsonChecker']);
+            Route::post('import',       ['as' => 'webpanel.store.tools.import', 'uses' => 'WebPanel\Store\ToolsController@Import']);
+            Route::post('export',       ['as' => 'webpanel.store.tools.export', 'uses' => 'WebPanel\Store\ToolsController@Export']);
         });
     });
 
