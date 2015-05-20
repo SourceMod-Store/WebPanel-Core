@@ -24,4 +24,9 @@ class StoreItem extends Model
         return $this->belongsTo('App\Models\StoreCategory','category_id','id');
     }
 
+    public function getServerListAttribute()
+    {
+        return $this->servers->lists('id');
+    }
+
 }

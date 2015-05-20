@@ -43,7 +43,7 @@ class UsersController extends Controller {
         $user->password = bcrypt($request->input('password'));
         $user->save();
 
-        $this->SyncRoles($user, $role_list);
+        $this->SyncRoles($user, $request->input('role_list'));
 
         return redirect()->route('webpanel.panel.users.index');
 	}
@@ -80,6 +80,16 @@ class UsersController extends Controller {
 	public function update($id, Requests\PanelUserRequest $request)
 	{
         $user = User::find($id);
+        $user->update($request->all());
+
+        if($user->password != $request->input('password'))
+        {
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+        }
+
+        $this->SyncRoles($user, $request->input('role_list'));
+        return redirect()->route('webpanel.panel.users.index');
 	}
 
 	/**
@@ -105,6 +115,8 @@ class UsersController extends Controller {
      */
     private function SyncRoles(User $user, $roles = array())
     {
+        if($roles == null) $roles = array();
+
         $user->roles()->sync($roles);
     }
 

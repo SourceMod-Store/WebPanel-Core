@@ -105,6 +105,7 @@ class CategoriesController extends Controller {
      */
     private function SyncServers(StoreCategory $category, $servers = array())
     {
+        if($servers == null) $servers = array();
         $category->servers()->sync($servers);
     }
 

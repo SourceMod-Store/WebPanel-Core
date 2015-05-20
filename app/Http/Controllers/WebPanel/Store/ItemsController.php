@@ -38,7 +38,9 @@ class ItemsController extends Controller {
 	{
         $input = $request->all();
 
-        StoreItem::create($input);
+        $item = StoreItem::create($input);
+
+        $this->SyncServers($item, $request->input('server_list'));
 
         return redirect()->route('webpanel.store.items.index');
 	}
@@ -75,6 +77,9 @@ class ItemsController extends Controller {
 	public function update($item, Requests\StoreItemRequest $request)
 	{
         $item->update($request->all());
+
+        $this->SyncServers($item, $request->input('server_list'));
+
         return redirect()->route('webpanel.store.items.index');
 	}
 
@@ -89,5 +94,18 @@ class ItemsController extends Controller {
         $item->delete();
         return redirect()->route('webpanel.store.items.index');
 	}
+
+
+    /**
+     * Sync the Server List
+     *
+     * @param StoreItem $item
+     * @param array $servers
+     */
+    private function SyncServers(StoreItem $item, $servers = array())
+    {
+        if($servers == null) $servers = array();
+        $item->servers()->sync($servers);
+    }
 
 }
