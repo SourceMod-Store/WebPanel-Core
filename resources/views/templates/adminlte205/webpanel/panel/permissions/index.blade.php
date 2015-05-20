@@ -28,19 +28,19 @@
                         </tr>
                         @foreach($users as $user)
                             <tr>
-                                <td><a href="{{ route('webpanel.users.edit', array($user->id)) }}">{{$user->id}}</a></td>
+                                <td><a href="{{ route('webpanel.panel.permissions.edit', array($user->id)) }}">{{$user->id}}</a></td>
                                 <td>{{$user->auth}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->credits}}</td>
                                 <td>
                                     <div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.store.users.destroy',$user->id)]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.panel.permissions.destroy',$user->id)]) !!}
                                             {!! Form::submit('Remove',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.store.users.edit',$user->id)]) !!}
+                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.panel.permissions.edit',$user->id)]) !!}
                                             {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>

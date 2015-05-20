@@ -30,7 +30,7 @@ Route::group(['prefix'=>'installer'],function(){
 //WebPanel Routes
 Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],function(){
 
-    Route::get('', ['as' => 'webpanel.dashboard', 'uses' => 'WebPanel\Store\DashboardController@showDashboard']);
+    Route::get('', ['as' => 'webpanel.dashboard', 'uses' => 'WebPanel\DashboardController@showDashboard']);
 
     // Store Routes --> Features Relating to the Store Plugin
     Route::group(['prefix' => 'store'],function(){
@@ -55,7 +55,9 @@ Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],functi
 
     // Panel Routes --> Features Relating to the WebPanel itself
     Route::group(['prefix' => 'panel'],function(){
-
+        Route::resource('permissions',      'WebPanel\Panel\PermissionsController');
+        Route::resource('roles',            'WebPanel\Panel\RolesController');
+        Route::resource('users',            'WebPanel\Panel\UsersController');
     });
 });
 

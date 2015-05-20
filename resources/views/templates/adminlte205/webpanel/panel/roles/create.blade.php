@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => 'webpanel.store.users.store']) !!}
-        @include('templates.adminlte205.webpanel.store.users._form',['LeftMenuTitle'=>'Create a new User','SubmitButtonText' => 'Create User'])
+    {!! Form::open(['route' => 'webpanel.panel.roles.store']) !!}
+        @include('templates.adminlte205.webpanel.panel.roles._form',['LeftMenuTitle'=>'Create a new User','SubmitButtonText' => 'Create User'])
     {!! Form::close() !!}
 @stop
