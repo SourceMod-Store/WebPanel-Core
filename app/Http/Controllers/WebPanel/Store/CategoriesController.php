@@ -31,10 +31,10 @@ class CategoriesController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
-     * @param Requests\CategoryRequest $request
+     * @param Requests\StoreCategoryRequest $request
 	 * @return Response
 	 */
-	public function store(Requests\CategoryRequest $request)
+	public function store(Requests\StoreCategoryRequest $request)
 	{
         $input = $request->all();
 
@@ -71,10 +71,10 @@ class CategoriesController extends Controller {
 	 * Update the specified resource in storage.
 	 *
 	 * @param  StoreCategory  $category
-     * @param  Requests\CategoryRequest $request
+     * @param  Requests\StoreCategoryRequest $request
 	 * @return Response
 	 */
-	public function update($category, Requests\CategoryRequest $request)
+	public function update($category, Requests\StoreCategoryRequest $request)
 	{
         $category->update($request->all());
 
@@ -103,7 +103,7 @@ class CategoriesController extends Controller {
      * @param StoreCategory $category
      * @param array $servers
      */
-    private function SyncServers(StoreCategory $category, array $servers)
+    private function SyncServers(StoreCategory $category, $servers = array())
     {
         $category->servers()->sync($servers);
     }

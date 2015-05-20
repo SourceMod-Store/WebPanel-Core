@@ -32,10 +32,10 @@ class UsersController extends Controller {
      * Store a newly created resource in storage.
      *
      *
-     * @param Requests\UserRequest $request
+     * @param Requests\StoreUserRequest $request
      * @return Response
      */
-	public function store(Requests\UserRequest $request)
+	public function store(Requests\StoreUserRequest $request)
 	{
         $input = $request->all();
 
@@ -47,34 +47,37 @@ class UsersController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  StoreUser $user
+	 * @param  int $id
 	 * @return Response
 	 */
-	public function show($user)
+	public function show($id)
 	{
+        $user = StoreUser::find($id);
         return redirect()->route(['webpanel.store.users.edit',$user->id]);
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  StoreUser $user
+	 * @param  int $id
 	 * @return Response
 	 */
-	public function edit($user)
+	public function edit($id)
 	{
+        $user = StoreUser::find($id);
         return view('templates.'.\Config::get('webpanel.template').'webpanel.store.users.edit',compact('user'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  StoreUser $user
-     * @param  Requests\UserRequest $request)
+	 * @param  int $id
+     * @param  Requests\StoreUserRequest $request)
 	 * @return Response
 	 */
-	public function update($user, Requests\UserRequest $request)
+	public function update($id, Requests\StoreUserRequest $request)
 	{
+        $user = StoreUser::find($id);
 		$user->update($request->all());
         return redirect()->route('webpanel.store.users.index');
 	}
@@ -82,11 +85,12 @@ class UsersController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  StoreUser $user
+	 * @param  int $id
 	 * @return Response
 	 */
-	public function destroy($user)
+	public function destroy($id)
 	{
+        $user = StoreUser::find($id);
 		$user->delete();
         return redirect()->route('webpanel.store.users.index');
 	}

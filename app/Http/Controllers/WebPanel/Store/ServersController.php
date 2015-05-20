@@ -37,7 +37,7 @@ class ServersController extends Controller {
      *
 	 * @return Response
 	 */
-	public function store(Requests\ServerRequest $request)
+	public function store(Requests\StoreServerRequest $request)
 	{
         $input = $request->all();
 
@@ -78,7 +78,7 @@ class ServersController extends Controller {
      *
 	 * @return Response
 	 */
-	public function update($server, Requests\ServerRequest $request)
+	public function update($server, Requests\StoreServerRequest $request)
 	{
         $server->update($request->all());
         return redirect()->route('webpanel.store.servers.index');

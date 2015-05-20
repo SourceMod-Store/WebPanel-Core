@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider {
 
 		$router->model('items','App\Models\StoreItem');
         $router->model('categories','App\Models\StoreCategory');
-        $router->model('users','App\Models\StoreUser');
+       // $router->model('users','App\Models\StoreUser'); // FIXME: Fix when parameter changing is supported in laravel
         $router->model('servers','App\Models\StoreServer');
         $router->model('versions','App\Models\StoreVersion');
 	}

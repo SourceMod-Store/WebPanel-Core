@@ -28,7 +28,7 @@
                         </tr>
                         @foreach($users as $user)
                             <tr>
-                                <td><a href="{{ route('webpanel.users.edit', array($user->id)) }}">{{$user->id}}</a></td>
+                                <td><a href="{{ route('webpanel.store.users.edit', array($user->id)) }}">{{$user->id}}</a></td>
                                 <td>{{$user->auth}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->credits}}</td>

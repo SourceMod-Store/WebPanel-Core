@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\WebPanel\Panel;
 
+use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class UsersController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $users = User::all();
+
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.panel.users.index', compact('users'));
 	}
 
 	/**
@@ -24,7 +27,7 @@ class UsersController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.panel.users.create');
 	}
 
 	/**
@@ -32,9 +35,27 @@ class UsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\PanelUserRequest $request)
 	{
-		//
+        $input = $request->all();
+
+        $user = User::create($input);
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+
+
+        if($request->input('role_list') == null)
+        {
+            $role_list = array();
+        }
+        else
+        {
+            $role_list = $request->input('role_list');
+        }
+
+        $this->SyncRoles($user, $role_list);
+
+        return redirect()->route('webpanel.panel.users.index');
 	}
 
 	/**
@@ -45,7 +66,7 @@ class UsersController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        return redirect()->route('webpanel.panel.users.edit',$id);
 	}
 
 	/**
@@ -56,7 +77,8 @@ class UsersController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $user = User::find($id);
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.panel.users.edit',compact('user'));
 	}
 
 	/**
@@ -67,7 +89,7 @@ class UsersController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        $user = User::find($id);
 	}
 
 	/**
@@ -78,7 +100,22 @@ class UsersController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        $user = User::find($id);
+
+        $user->delete();
+        return redirect()->route('webpanel.panel.users.index');
 	}
+
+
+    /**
+     * Sync the Server List
+     *
+     * @param User $user
+     * @param array $roles
+     */
+    private function SyncRoles(User $user, $roles = array())
+    {
+        $user->roles()->sync($roles);
+    }
 
 }

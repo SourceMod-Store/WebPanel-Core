@@ -107,7 +107,5 @@ return [
                 'destroy'    => 'WebPanelPanelUsersDelete',
             ],
         ],
-
     ],
-
 ];

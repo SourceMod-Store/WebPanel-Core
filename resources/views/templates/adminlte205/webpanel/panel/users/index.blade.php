@@ -21,17 +21,15 @@
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 10px">#</th>
-                            <th>Auth</th>
                             <th>Name</th>
-                            <th>Credits</th>
+                            <th>E-Mail</th>
                             <th>Actions</th>
                         </tr>
                         @foreach($users as $user)
                             <tr>
                                 <td><a href="{{ route('webpanel.panel.users.edit', array($user->id)) }}">{{$user->id}}</a></td>
-                                <td>{{$user->auth}}</td>
                                 <td>{{$user->name}}</td>
-                                <td>{{$user->credits}}</td>
+                                <td>{{$user->email}}</td>
                                 <td>
                                     <div>
                                         <div style="float: right">

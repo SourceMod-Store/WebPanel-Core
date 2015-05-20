@@ -104,7 +104,7 @@
                         <a href="#">
                             <i class="fa fa-files-o"></i>
                             <span>Permissions</span>
-                            <span class="label label-primary pull-right">0</span>
+                            <span class="label label-primary pull-right">{{$panelPermissionCount}}</span>
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="{{URL::route('webpanel.panel.permissions.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
@@ -118,7 +118,7 @@
                         <a href="#">
                             <i class="fa fa-folder-open"></i>
                             <span>Roles</span>
-                            <span class="label label-primary pull-right">0</span>
+                            <span class="label label-primary pull-right">{{$panelRoleCount}}</span>
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="{{URL::route('webpanel.panel.roles.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
@@ -132,7 +132,7 @@
                         <a href="#">
                             <i class="fa fa-users"></i>
                             <span>Users</span>
-                            <span class="label label-primary pull-right">0</span>
+                            <span class="label label-primary pull-right">{{$panelUserCount}}</span>
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="{{URL::route('webpanel.panel.users.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
@@ -142,9 +142,6 @@
                     </li>
                 </ul>
             </li>
-
-
-
         </ul>
     </section>
     <!-- /.sidebar -->

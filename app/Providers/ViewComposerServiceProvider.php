@@ -7,6 +7,8 @@ use App\Models\StoreItem;
 use App\Models\StoreCategory;
 use App\Models\StoreServer;
 use App\User;
+use App\Role;
+use App\Permission;
 
 class ViewComposerServiceProvider extends ServiceProvider {
 
@@ -44,6 +46,8 @@ class ViewComposerServiceProvider extends ServiceProvider {
             $view->with('storeUserCount', StoreUser::all()->count());
             $view->with('storeServerCount', StoreServer::all()->count());
             $view->with('panelUserCount', User::all()->count());
+            $view->with('panelRoleCount', Role::all()->count());
+            $view->with('panelPermissionCount', Permission::all()->count());
         });
     }
 
@@ -59,6 +63,10 @@ class ViewComposerServiceProvider extends ServiceProvider {
 
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.store.categories._form', function ($view) {
             $view->with('servers', StoreServer::lists('display_name', 'id'));
+        });
+
+        view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.users._form', function ($view) {
+            $view->with('roles', Role::lists('display_name', 'id'));
         });
     }
 

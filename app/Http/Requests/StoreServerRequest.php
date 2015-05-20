@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class CategoryRequest extends Request {
+class StoreServerRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,9 +22,10 @@ class CategoryRequest extends Request {
 	public function rules()
 	{
 		return [
-			'priority' => 'numeric',
+			'name' => 'required', //TODO: Check for no spaces
             'display_name' => 'required',
-            'require_plugin' => 'required',
+            'ip' => 'required', //TODO: Check for valid ip
+            'port' => 'required|numeric'
 		];
 	}
 

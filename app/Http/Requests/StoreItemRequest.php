@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class ItemRequest extends Request {
+class StoreItemRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.

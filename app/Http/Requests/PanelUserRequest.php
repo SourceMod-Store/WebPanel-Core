@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class UserRequest extends Request {
+class PanelUserRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class UserRequest extends Request {
 	public function rules()
 	{
 		return [
-            'auth' => 'required|numeric',
-            'name' => 'required',
-            'credits' => 'required|numeric'
+			'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required'
 		];
 	}
 

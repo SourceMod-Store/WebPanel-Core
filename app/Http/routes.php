@@ -71,29 +71,3 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
-
-
-// Test Routes
-
-Route::get('testpromote',function()
-{
-	$owner = new App\Role();
-	$owner->name         = 'owner';
-	$owner->display_name = 'Project Owner'; // optional
-	$owner->description  = 'User is the owner of a given project'; // optional
-	$owner->save();
-
-	$admin = new App\Role();
-	$admin->name         = 'admin';
-	$admin->display_name = 'User Administrator'; // optional
-	$admin->description  = 'User is allowed to manage and edit other users'; // optional
-	$admin->save();
-
-	return "done";
-});
-
-Route::get('testadminlte',['as' => 'temp', function()
-{
-    return View::make('templates.adminlte205.webpanel.empty');
-}]);

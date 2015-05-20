@@ -34,7 +34,7 @@ class ItemsController extends Controller {
      * @param Requests\ItemRequest $request
 	 * @return Response
 	 */
-	public function store(Requests\ItemRequest $request)
+	public function store(Requests\StoreItemRequest $request)
 	{
         $input = $request->all();
 
@@ -72,7 +72,7 @@ class ItemsController extends Controller {
 	 * @param  StoreItem  $item
 	 * @return Response
 	 */
-	public function update($item, Requests\ItemRequest $request)
+	public function update($item, Requests\StoreItemRequest $request)
 	{
         $item->update($request->all());
         return redirect()->route('webpanel.store.items.index');
