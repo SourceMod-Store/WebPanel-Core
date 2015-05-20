@@ -31,6 +31,6 @@ return [
     | Default: fase
     */
 
-    'ignore_permissions' => true,
+    'ignore_permissions' => false,
 
 ];

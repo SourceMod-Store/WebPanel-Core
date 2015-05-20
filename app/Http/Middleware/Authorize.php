@@ -32,20 +32,23 @@ class Authorize {
 	 */
 	public function handle($request, Closure $next)
 	{
-        //
+        // Check if permissions should be ignored
         if(config('webpanel.ignore_permissions'))
         {
             return $next($request);
         }
 
+        //Get the name of the route and the permission required for the route
         $routeName = $request->route()->getName();
         $routePermission = config('route_perms.' . $routeName);
 
+        //Check if the permissions is set
         if($routePermission == "" || $routePermission == NULL)
         {
             return $next($request);
         }
 
+        //If the permission is set, check if the user has got the permission
         if(!$this->auth->user()->can($routePermission))
         {
             return redirect()->route('webpanel.dashboard')->withErrors(['You do not have the permission '.$routePermission.' that is required to perform this action']);
