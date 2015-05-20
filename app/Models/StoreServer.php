@@ -6,7 +6,7 @@ class StoreServer extends Model {
 
     protected $connection = 'store';
     protected $table = 'servers';
-    protected $fillable = [];
+    protected $fillable = ['name','display_name', 'ip', 'port'];
 
     public function items()
     {

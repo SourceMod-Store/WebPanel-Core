@@ -15,7 +15,7 @@ class CategoriesController extends Controller {
 	{
         $categories= StoreCategory::all();
 
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.index', compact('categories'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.categories.index', compact('categories'));
 	}
 
 	/**
@@ -25,7 +25,7 @@ class CategoriesController extends Controller {
 	 */
 	public function create()
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.create');
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.categories.create');
 	}
 
 	/**
@@ -42,7 +42,7 @@ class CategoriesController extends Controller {
 
         $this->SyncServers($category, $request->input('server_list'));
 
-        return redirect()->route('webpanel.categories.index');
+        return redirect()->route('webpanel.store.categories.index');
 	}
 
 	/**
@@ -53,7 +53,7 @@ class CategoriesController extends Controller {
 	 */
 	public function show($category)
 	{
-        return redirect()->route(['webpanel.categories.edit',$category->id]);
+        return redirect()->route(['webpanel.store.categories.edit',$category->id]);
 	}
 
 	/**
@@ -64,7 +64,7 @@ class CategoriesController extends Controller {
 	 */
 	public function edit($category)
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.categories.edit',compact('category'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.categories.edit',compact('category'));
 	}
 
 	/**
@@ -80,7 +80,7 @@ class CategoriesController extends Controller {
 
         $this->SyncServers($category, $request->input('server_list'));
 
-        return redirect()->route('webpanel.categories.index');
+        return redirect()->route('webpanel.store.categories.index');
 	}
 
 	/**
@@ -92,7 +92,7 @@ class CategoriesController extends Controller {
 	public function destroy($category)
 	{
         $category->delete();
-        return redirect()->route('webpanel.categories.index');
+        return redirect()->route('webpanel.store.categories.index');
 	}
 
 

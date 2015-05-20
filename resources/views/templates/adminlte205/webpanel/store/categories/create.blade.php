@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => 'webpanel.categories.store']) !!}
-        @include('templates.adminlte205.webpanel.categories._form',['LeftMenuTitle'=>'Create a new Category','SubmitButtonText' => 'Create Category'])
+    {!! Form::open(['route' => 'webpanel.store.categories.store']) !!}
+        @include('templates.adminlte205.webpanel.store.categories._form',['LeftMenuTitle'=>'Create a new Category','SubmitButtonText' => 'Create Category'])
     {!! Form::close() !!}
 @stop

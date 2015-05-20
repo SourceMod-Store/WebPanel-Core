@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => 'webpanel.items.store']) !!}
-        @include('templates.adminlte205.webpanel.items._form',['LeftMenuTitle'=>'Create a new Item','SubmitButtonText' => 'Create Item'])
+    {!! Form::open(['route' => 'webpanel.store.items.store']) !!}
+        @include('templates.adminlte205.webpanel.store.items._form',['LeftMenuTitle'=>'Create a new Item','SubmitButtonText' => 'Create Item'])
     {!! Form::close() !!}
 @stop

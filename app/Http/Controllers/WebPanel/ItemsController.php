@@ -15,7 +15,7 @@ class ItemsController extends Controller {
 	{
         $items = StoreItem::all();
 
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.items.index', compact('items'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.items.index', compact('items'));
 	}
 
 	/**
@@ -25,7 +25,7 @@ class ItemsController extends Controller {
 	 */
 	public function create()
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.items.create');
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.items.create');
 	}
 
 	/**
@@ -40,7 +40,7 @@ class ItemsController extends Controller {
 
         StoreItem::create($input);
 
-        return redirect()->route('webpanel.items.index');
+        return redirect()->route('webpanel.store.items.index');
 	}
 
 	/**
@@ -51,7 +51,7 @@ class ItemsController extends Controller {
 	 */
 	public function show($item)
 	{
-        return redirect()->route(['webpanel.items.edit',$item->id]);
+        return redirect()->route(['webpanel.store.items.edit',$item->id]);
 	}
 
 	/**
@@ -62,7 +62,7 @@ class ItemsController extends Controller {
 	 */
 	public function edit($item)
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.items.edit',compact('item'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.items.edit',compact('item'));
 	}
 
 	/**
@@ -75,7 +75,7 @@ class ItemsController extends Controller {
 	public function update($item, Requests\ItemRequest $request)
 	{
         $item->update($request->all());
-        return redirect()->route('webpanel.items.index');
+        return redirect()->route('webpanel.store.items.index');
 	}
 
 	/**
@@ -87,7 +87,7 @@ class ItemsController extends Controller {
 	public function destroy($item)
 	{
         $item->delete();
-        return redirect()->route('webpanel.items.index');
+        return redirect()->route('webpanel.store.items.index');
 	}
 
 }

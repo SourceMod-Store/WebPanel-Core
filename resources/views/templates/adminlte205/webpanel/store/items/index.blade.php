@@ -1,12 +1,12 @@
 @extends('templates.adminlte205.webpanel.app')
 
-@section('title', 'Categories')
+@section('title', 'Items')
 
 @section('subtitle', 'Overview')
 
 @section('breadcrumb')
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Categories</li>
+    <li class="active">Items</li>
     <li class="active">Overview</li>
 @stop
 
@@ -23,30 +23,46 @@
                             <th style="width: 10px">#</th>
                             <th>Priority</th>
                             <th>Name</th>
+                            <th>Display Name</th>
                             <th>Description</th>
-                            <th>Require Plugin</th>
                             <th>Web Description</th>
-                            <th>Web Color</th>
+                            <th>Type</th>
+                            <th>Loadout Slot</th>
+                            <th>Price</th>
+                            <th>Category ID</th>
+                            <th>Buyable</th>
+                            <th>Tradeable</th>
+                            <th>Refundable</th>
+                            <th>Expiry Time</th>
+                            <th>Flags</th>
                             <th>Actions</th>
                         </tr>
-                        @foreach($categories as $category)
+                        @foreach($items as $item)
                             <tr>
-                                <td><a href="{{ route('webpanel.categories.edit', array($category->id)) }}">{{$category->id}}</a></td>
-                                <td>{{$category->priority}}</td>
-                                <td>{{$category->display_name}}</td>
-                                <td>{{$category->description}}</td>
-                                <td>{{$category->require_plugin}}</td>
-                                <td>{{$category->web_description}}</td>
-                                <td>{{$category->web_color}}</td>
+                                <td><a href="{{ route('webpanel.store.items.edit', array($item->id)) }}">{{$item->id}}</a></td>
+                                <td>{{$item->priority}}</td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->display_name}}</td>
+                                <td>{{$item->description}}</td>
+                                <td>{{$item->web_description}}</td>
+                                <td>{{$item->type}}</td>
+                                <td>{{$item->loadout_slot}}</td>
+                                <td>{{$item->price}}</td>
+                                <td>{{$item->category_id}}</td>
+                                <td>{{$item->is_buyable}}</td>
+                                <td>{{$item->is_tradeable}}</td>
+                                <td>{{$item->is_refundable}}</td>
+                                <td>{{$item->expiry_time}}</td>
+                                <td>{{$item->flags}}</td>
                                 <td>
                                     <div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.categories.destroy',$category->id)]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.store.items.destroy',$item->id)]) !!}
                                             {!! Form::submit('Remove',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.categories.edit',$category->id)]) !!}
+                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.store.items.edit',$item->id)]) !!}
                                             {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>

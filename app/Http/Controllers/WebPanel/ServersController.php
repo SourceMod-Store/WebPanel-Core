@@ -17,7 +17,7 @@ class ServersController extends Controller {
 	{
         $servers = StoreServer::all();
 
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.servers.index', compact('servers'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.servers.index', compact('servers'));
 	}
 
 	/**
@@ -27,7 +27,7 @@ class ServersController extends Controller {
 	 */
 	public function create()
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.servers.create');
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.servers.create');
 	}
 
 	/**
@@ -43,7 +43,7 @@ class ServersController extends Controller {
 
         StoreServer::create($input);
 
-        return redirect()->route('webpanel.servers.index');
+        return redirect()->route('webpanel.store.servers.index');
 	}
 
 	/**
@@ -55,7 +55,7 @@ class ServersController extends Controller {
 	 */
 	public function show($server)
 	{
-        return redirect()->route(['webpanel.servers.edit',$server->id]);
+        return redirect()->route(['webpanel.store.servers.edit',$server->id]);
 	}
 
 	/**
@@ -67,7 +67,7 @@ class ServersController extends Controller {
 	 */
 	public function edit($server)
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.servers.edit',compact('server'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.servers.edit',compact('server'));
 	}
 
 	/**
@@ -81,7 +81,7 @@ class ServersController extends Controller {
 	public function update($server, Requests\ServerRequest $request)
 	{
         $server->update($request->all());
-        return redirect()->route('webpanel.servers.index');
+        return redirect()->route('webpanel.store.servers.index');
 	}
 
 	/**
@@ -93,7 +93,7 @@ class ServersController extends Controller {
 	public function destroy($server)
 	{
         $server->delete();
-        return redirect()->route('webpanel.servers.index');
+        return redirect()->route('webpanel.store.servers.index');
 	}
 
 }

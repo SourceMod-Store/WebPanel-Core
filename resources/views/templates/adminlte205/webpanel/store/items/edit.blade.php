@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    {!! Form::model($item,['method' => 'PATCH','route' => ['webpanel.items.update',$item->id]]) !!}
-        @include('templates.adminlte205.webpanel.items._form',['LeftMenuTitle'=>'Edit Item '.$item->name,'SubmitButtonText' => 'Edit Item'])
+    {!! Form::model($item,['method' => 'PATCH','route' => ['webpanel.store.items.update',$item->id]]) !!}
+        @include('templates.adminlte205.webpanel.store.items._form',['LeftMenuTitle'=>'Edit Item '.$item->name,'SubmitButtonText' => 'Edit Item'])
     {!! Form::close() !!}
 @stop

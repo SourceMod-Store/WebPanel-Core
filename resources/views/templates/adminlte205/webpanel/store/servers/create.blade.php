@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => 'webpanel.servers.store']) !!}
-        @include('templates.adminlte205.webpanel.servers._form',['LeftMenuTitle'=>'Create a new Server','SubmitButtonText' => 'Create Server'])
+    {!! Form::open(['route' => 'webpanel.store.servers.store']) !!}
+        @include('templates.adminlte205.webpanel.store.servers._form',['LeftMenuTitle'=>'Create a new Server','SubmitButtonText' => 'Create Server'])
     {!! Form::close() !!}
 @stop

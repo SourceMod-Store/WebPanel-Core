@@ -15,7 +15,7 @@ class UsersController extends Controller {
 	{
         $users = StoreUser::all();
 
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.users.index', compact('users'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.users.index', compact('users'));
 	}
 
 	/**
@@ -25,7 +25,7 @@ class UsersController extends Controller {
 	 */
 	public function create()
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.users.create');
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.users.create');
 	}
 
     /**
@@ -41,7 +41,7 @@ class UsersController extends Controller {
 
         StoreUser::create($input);
 
-        return redirect()->route('webpanel.users.index');
+        return redirect()->route('webpanel.store.users.index');
 	}
 
 	/**
@@ -52,7 +52,7 @@ class UsersController extends Controller {
 	 */
 	public function show($user)
 	{
-        return redirect()->route(['webpanel.users.edit',$user->id]);
+        return redirect()->route(['webpanel.store.users.edit',$user->id]);
 	}
 
 	/**
@@ -63,7 +63,7 @@ class UsersController extends Controller {
 	 */
 	public function edit($user)
 	{
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.users.edit',compact('user'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.users.edit',compact('user'));
 	}
 
 	/**
@@ -76,7 +76,7 @@ class UsersController extends Controller {
 	public function update($user, Requests\UserRequest $request)
 	{
 		$user->update($request->all());
-        return redirect()->route('webpanel.users.index');
+        return redirect()->route('webpanel.store.users.index');
 	}
 
 	/**
@@ -88,7 +88,7 @@ class UsersController extends Controller {
 	public function destroy($user)
 	{
 		$user->delete();
-        return redirect()->route('webpanel.users.index');
+        return redirect()->route('webpanel.store.users.index');
 	}
 
 }

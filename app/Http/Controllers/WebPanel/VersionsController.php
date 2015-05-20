@@ -17,7 +17,7 @@ class VersionsController extends Controller {
 	{
         $versions = StoreVersion::all();
 
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.versions.index', compact('versions'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.versions.index', compact('versions'));
 	}
 
     /**

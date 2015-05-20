@@ -13,7 +13,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            {!! Form::open(['route' => 'webpanel.tools.import']) !!}
+            {!! Form::open(['route' => 'webpanel.store.tools.import']) !!}
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Import</h3>
@@ -43,7 +43,7 @@
             {!! Form::close() !!}
         </div><!-- /.col -->
         <div class="col-md-6">
-            {!! Form::open(['route' => 'webpanel.tools.export']) !!}
+            {!! Form::open(['route' => 'webpanel.store.tools.export']) !!}
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Export</h3>
@@ -75,7 +75,7 @@
     </div><!-- /.row -->
     <div class="row">
         <div class="col-md-6">
-            {!! Form::open(['route' => 'webpanel.tools.json_shrinker']) !!}
+            {!! Form::open(['route' => 'webpanel.store.tools.json_shrinker']) !!}
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">JSON Shrinker</h3>
@@ -105,7 +105,7 @@
             {!! Form::close() !!}
         </div><!-- /.col -->
         <div class="col-md-6">
-            {!! Form::open(['route' => 'webpanel.tools.json_checker']) !!}
+            {!! Form::open(['route' => 'webpanel.store.tools.json_checker']) !!}
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">JSON Checker</h3>

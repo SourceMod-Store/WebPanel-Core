@@ -12,7 +12,7 @@ class ToolsController extends Controller {
      */
     public function index()
     {
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.tools.index');
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.tools.index');
     }
 
     /**

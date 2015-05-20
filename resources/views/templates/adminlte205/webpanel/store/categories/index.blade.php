@@ -1,12 +1,12 @@
 @extends('templates.adminlte205.webpanel.app')
 
-@section('title', 'Users')
+@section('title', 'Categories')
 
 @section('subtitle', 'Overview')
 
 @section('breadcrumb')
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Users</li>
+    <li class="active">Categories</li>
     <li class="active">Overview</li>
 @stop
 
@@ -15,34 +15,38 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All Users</h3>
+                    <h3 class="box-title">All Categories</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 10px">#</th>
+                            <th>Priority</th>
                             <th>Name</th>
-                            <th>Display Name</th>
-                            <th>IP</th>
-                            <th>Port</th>
+                            <th>Description</th>
+                            <th>Require Plugin</th>
+                            <th>Web Description</th>
+                            <th>Web Color</th>
                             <th>Actions</th>
                         </tr>
-                        @foreach($servers as $server)
+                        @foreach($categories as $category)
                             <tr>
-                                <td><a href="{{ route('webpanel.servers.edit', array($server->id)) }}">{{$server->id}}</a></td>
-                                <td>{{$server->name}}</td>
-                                <td>{{$server->display_name}}</td>
-                                <td>{{$server->ip}}</td>
-                                <td>{{$server->port}}</td>
+                                <td><a href="{{ route('webpanel.store.categories.edit', array($category->id)) }}">{{$category->id}}</a></td>
+                                <td>{{$category->priority}}</td>
+                                <td>{{$category->display_name}}</td>
+                                <td>{{$category->description}}</td>
+                                <td>{{$category->require_plugin}}</td>
+                                <td>{{$category->web_description}}</td>
+                                <td>{{$category->web_color}}</td>
                                 <td>
                                     <div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.servers.destroy',$server->id)]) !!}
+                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.store.categories.destroy',$category->id)]) !!}
                                             {!! Form::submit('Remove',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                         <div style="float: right">
-                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.servers.edit',$server->id)]) !!}
+                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.store.categories.edit',$category->id)]) !!}
                                             {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                         </div>

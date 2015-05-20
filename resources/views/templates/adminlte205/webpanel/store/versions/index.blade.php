@@ -30,7 +30,7 @@
                         </tr>
                         @foreach($versions as $version)
                             <tr>
-                                <td><a href="{{ route('webpanel.versions.show', array($version->id)) }}">{{$version->id}}</a></td>
+                                <td><a href="{{ route('webpanel.store.versions.show', array($version->id)) }}">{{$version->id}}</a></td>
                                 <td>{{$version->mod_name}}</td>
                                 <td>{{$version->mod_description}}</td>
                                 <td>{{$version->mod_ver_number}}</td>

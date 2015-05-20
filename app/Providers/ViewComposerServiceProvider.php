@@ -6,6 +6,7 @@ use App\Models\StoreUser;
 use App\Models\StoreItem;
 use App\Models\StoreCategory;
 use App\Models\StoreServer;
+use App\User;
 
 class ViewComposerServiceProvider extends ServiceProvider {
 
@@ -38,9 +39,11 @@ class ViewComposerServiceProvider extends ServiceProvider {
     public function ComposeSidebar()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.includes.sidebar', function ($view) {
-            $view->with('itemCount', StoreItem::all()->count());
-            $view->with('categoryCount', StoreCategory::all()->count());
-            $view->with('userCount', StoreUser::all()->count());
+            $view->with('storeItemCount', StoreItem::all()->count());
+            $view->with('storeCategoryCount', StoreCategory::all()->count());
+            $view->with('storeUserCount', StoreUser::all()->count());
+            $view->with('storeServerCount', StoreServer::all()->count());
+            $view->with('panelUserCount', User::all()->count());
         });
     }
 
@@ -49,12 +52,12 @@ class ViewComposerServiceProvider extends ServiceProvider {
      */
     public function ComposeForms()
     {
-        view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.items._form', function ($view) {
+        view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items._form', function ($view) {
             $view->with('categories', StoreCategory::lists('display_name', 'id'));
             $view->with('servers', StoreServer::lists('display_name', 'id'));
         });
 
-        view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.categories._form', function ($view) {
+        view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.store.categories._form', function ($view) {
             $view->with('servers', StoreServer::lists('display_name', 'id'));
         });
     }
