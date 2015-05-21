@@ -41,7 +41,7 @@ class RolesController extends Controller {
 
         $role = Role::create($input);
 
-        $this->SyncPermissions($role, $request->input('server_list'));
+        $this->SyncPermissions($role, $request->input('permission_list'));
 
         return redirect()->route('webpanel.panel.roles.index');
     }
@@ -78,7 +78,7 @@ class RolesController extends Controller {
 	public function update($role, Requests\PanelRoleRequest $request)
 	{
         $role->update($request->all());
-        $this->SyncPermissions($role, $request->input('server_list'));
+        $this->SyncPermissions($role, $request->input('permission_list'));
         return redirect()->route('webpanel.panel.roles.index');
 	}
 
