@@ -104,6 +104,6 @@ class RolesController extends Controller {
     private function SyncPermissions(Role $role, $permissions = array())
     {
         if($permissions == null) $permissions = array();
-        $role->servers()->sync($permissions);
+        $role->perms()->sync($permissions);
     }
 }
