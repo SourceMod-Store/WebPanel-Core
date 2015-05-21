@@ -13,7 +13,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            {!! Form::open(['route' => 'webpanel.store.tools.import']) !!}
+            {!! Form::open(['route' => 'webpanel.store.tools.perform_import', 'files' => true]) !!}
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Import</h3>
@@ -35,6 +35,8 @@
                             </div>
                         </div>
                     </div>
+                    {!! Form::label('import', 'Import') !!}
+                    {!! Form::file('import', null, ['class' => 'form-control']) !!}
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     {!! Form::submit("Import", ['class' => 'btn btn-primary']) !!}
