@@ -13,7 +13,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            {!! Form::open(['route' => 'webpanel.store.tools.perform_import', 'files' => true]) !!}
+            {!! Form::open(['route' => 'webpanel.store.tools.do_import', 'files' => true]) !!}
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Import</h3>
@@ -64,9 +64,13 @@
                                 This is the JSON Exporter
                                 <br>
                                 It allows you to export JSON Files that can be distributed with store modules
+                                <br>
+                                Enter the value of the require_plugin column of the categories you would like to export in the Requre Pluign textbox
                             </div>
                         </div>
                     </div>
+                    {!! Form::label('require_plugin', 'Require Plugin') !!}
+                    {!! Form::text('require_plugin', null, ['class' => 'form-control']) !!}
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     {!! Form::submit("Export", ['class' => 'btn btn-primary']) !!}
