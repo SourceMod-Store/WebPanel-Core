@@ -14,6 +14,7 @@
     <div class="row">
         <div class="col-md-6">
             {!! Form::open(['route' => 'webpanel.store.tools.do_import', 'files' => true]) !!}
+            {!! Form::hidden('fileName',$fileName)!!}
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Overview</h3>

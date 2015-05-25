@@ -13,7 +13,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            {!! Form::open(['route' => 'webpanel.store.tools.do_import', 'files' => true]) !!}
+            {!! Form::open(['route' => 'webpanel.store.tools.import', 'files' => true]) !!}
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Import</h3>

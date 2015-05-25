@@ -38,10 +38,10 @@ class StoreCreateTables extends Migration {
 			$table->integer('price');
 			$table->integer('category_id')->unsigned();
 			$table->string('attrs')->nullable();
-			$table->tinyInteger('is_buyable')->unsigned()->default(0);
-			$table->tinyInteger('is_tradeable')->unsigned()->default(0);
-			$table->tinyInteger('is_refundable')->unsigned()->default(0);
-			$table->integer('expiry_time');
+			$table->tinyInteger('is_buyable')->unsigned()->default(1);
+			$table->tinyInteger('is_tradeable')->unsigned()->default(1);
+			$table->tinyInteger('is_refundable')->unsigned()->default(1);
+			$table->integer('expiry_time')->nullable();
 			$table->string('flags',11);
             $table->integer('enable_server_restriction')->unsigned()->default(0);
 			$table->timestamps();
