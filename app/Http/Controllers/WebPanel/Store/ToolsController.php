@@ -145,6 +145,8 @@ class ToolsController extends Controller {
             }
         }
 
+        Storage::delete('uploads/'.$request->input('fileName'));
+
 
         return redirect()->route('webpanel.store.tools.index');
     }
