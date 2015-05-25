@@ -100,9 +100,7 @@ class UsersController extends Controller {
 	 */
 	public function destroy(User $panel_user)
 	{
-        $user = User::find($panel_user);
-
-        $user->delete();
+        $panel_user->delete();
         return redirect()->route('webpanel.panel.users.index');
 	}
 
