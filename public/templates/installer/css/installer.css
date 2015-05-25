@@ -1,0 +1,28 @@
+body {
+    padding-top: 50px;
+}
+
+.container {
+    text-align: center;
+}
+
+.top-container {
+    padding: 40px;
+    text-align: center;
+}
+
+.middle-container {
+    text-align: center;
+}
+
+.bottom-container .floatLeft{
+    float: left;
+}
+
+.bottom-container .floatCenter{
+    text-align: center;
+}
+
+.bottom-container .floatRight{
+    float: right;
+}
