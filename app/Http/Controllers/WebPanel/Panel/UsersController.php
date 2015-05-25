@@ -33,6 +33,7 @@ class UsersController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
+     * @param Requests\PanelUserRequest $request
 	 * @return Response
 	 */
 	public function store(Requests\PanelUserRequest $request)
@@ -51,56 +52,55 @@ class UsersController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+     * @param User $panel_user
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(User $panel_user)
 	{
-        return redirect()->route('webpanel.panel.users.edit',$id);
+        return redirect()->route('webpanel.panel.users.edit',$panel_user->id);
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  User $panel_user
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(User $panel_user)
 	{
-        $user = User::find($id);
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.panel.users.edit',compact('user'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.panel.users.edit',compact('panel_user'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  User  $panel_user
+     * @param  Requests\PanelUserRequest $request
 	 * @return Response
 	 */
-	public function update($id, Requests\PanelUserRequest $request)
+	public function update(User $panel_user, Requests\PanelUserRequest $request)
 	{
-        $user = User::find($id);
-        $user->update($request->all());
+        $panel_user->update($request->all());
 
-        if($user->password != $request->input('password'))
+        if($panel_user->password != $request->input('password'))
         {
-            $user->password = bcrypt($request->input('password'));
-            $user->save();
+            $panel_user->password = bcrypt($request->input('password'));
+            $panel_user->save();
         }
 
-        $this->SyncRoles($user, $request->input('role_list'));
+        $this->SyncRoles($panel_user, $request->input('role_list'));
         return redirect()->route('webpanel.panel.users.index');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  User $panel_user
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(User $panel_user)
 	{
-        $user = User::find($id);
+        $user = User::find($panel_user);
 
         $user->delete();
         return redirect()->route('webpanel.panel.users.index');
