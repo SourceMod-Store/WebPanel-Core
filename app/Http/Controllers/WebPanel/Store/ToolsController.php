@@ -113,8 +113,6 @@ class ToolsController extends Controller {
 
         $json_object = json_decode($json_string);
 
-        //TODO: Handle Import Depending on JSON Versions
-        //dd($json_object);
         foreach($json_object->categories as $category)
         {
             //Check if a category exists with the same name
@@ -127,6 +125,12 @@ class ToolsController extends Controller {
                 }
             }
 
+        }
+
+        //TODO: Handle Import Depending on JSON Versions
+        //dd($json_object);
+        foreach($json_object->categories as $category)
+        {
             //Delete the existing category
 
             // Save a new Category
