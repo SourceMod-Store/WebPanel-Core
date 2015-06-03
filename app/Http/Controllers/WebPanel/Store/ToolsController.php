@@ -32,14 +32,6 @@ class ToolsController extends Controller {
     }
 
     /**
-     * Returns the Shrink JSON View
-     */
-    public function JsonShrinker()
-    {
-
-    }
-
-    /**
      * Shows the changes that are going to happen to the user
      *
      * @param Requests\ImportRequest $request
@@ -68,7 +60,6 @@ class ToolsController extends Controller {
             $fileName = $this->getUploadString($extension);
 
             Storage::put('uploads/'.$fileName,$json_string);
-            // Input::file('import')->move($destinationPath,$fileName); TODO: Replace with Storage API
 
             //Check if the JSON is valid
             if($json_object !== null)
@@ -105,6 +96,14 @@ class ToolsController extends Controller {
         {
             return view('templates.'.\Config::get('webpanel.template').'webpanel.store.tools.index');
         }
+    }
+
+    /**
+     * Returns the Shrink JSON View
+     */
+    public function JsonShrinker()
+    {
+
     }
 
     public function PerformImport(Requests\ImportRequest $request)

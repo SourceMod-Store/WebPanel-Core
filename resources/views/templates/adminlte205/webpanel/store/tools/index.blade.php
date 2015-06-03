@@ -35,8 +35,10 @@
                             </div>
                         </div>
                     </div>
-                    {!! Form::label('import', 'Import') !!}
-                    {!! Form::file('import', null, ['class' => 'form-control']) !!}
+                    <div class="formgroup">
+                        {!! Form::label('import', 'Import') !!}
+                        {!! Form::file('import', ['class' => 'form-control', 'accept' => '.json,.zip']) !!}
+                    </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     {!! Form::submit("Import", ['class' => 'btn btn-primary']) !!}

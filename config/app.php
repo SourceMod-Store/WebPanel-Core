@@ -150,6 +150,12 @@ return [
         'App\Providers\ViewComposerServiceProvider',
 
 
+        /*
+         * Other Service Providers
+         */
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+
+
 	],
 
 	/*
