@@ -39,6 +39,10 @@ class ToolsController extends Controller {
      */
     public function verifyImport(Requests\ImportRequest $request)
     {
+        //TODO: Support the upload of zip files
+        //Check if the uploaded file is a zip file
+        // -> if yes then unpack and extract the json file
+
         // **Get the File**
         $file = $request->file('import');
 
