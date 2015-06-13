@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cadcf197462be3fdec9f0b90985c77f7",
+    "hash": "02a9797f40aaad661e98083d2cbdf0fb",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2344,16 +2344,16 @@
         },
         {
             "name": "laracasts/integrated",
-            "version": "0.15.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laracasts/Integrated.git",
-                "reference": "2ab96f0cee8d67a61e6b460a1ffd2b931aa71d77"
+                "reference": "9844671b274cec339a783049514b1d277b2e8a15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/Integrated/zipball/2ab96f0cee8d67a61e6b460a1ffd2b931aa71d77",
-                "reference": "2ab96f0cee8d67a61e6b460a1ffd2b931aa71d77",
+                "url": "https://api.github.com/repos/laracasts/Integrated/zipball/9844671b274cec339a783049514b1d277b2e8a15",
+                "reference": "9844671b274cec339a783049514b1d277b2e8a15",
                 "shasum": ""
             },
             "require": {
@@ -2387,7 +2387,7 @@
                 "laravel",
                 "testing"
             ],
-            "time": "2015-05-21 14:03:20"
+            "time": "2015-06-01 14:55:53"
         },
         {
             "name": "laracasts/testdummy",
@@ -3670,7 +3670,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "zizaco/entrust": 20
+        "zizaco/entrust": 20,
+        "laracasts/integrated": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
