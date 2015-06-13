@@ -2,8 +2,10 @@
 
 use App\User;
 use App\Models\StoreCategory;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class StoreCategoryTest extends TestCase {
+    use DatabaseMigrations;
 
     /** @test */
     public function check_if_overview_can_be_accessed()
