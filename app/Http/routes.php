@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],functi
         });
 
         Route::group(['prefix' => 'tools'],function(){
-            Route::get('index',          ['as' => 'webpanel.store.tools.index', 'uses' => 'WebPanel\Store\ToolsController@index']);
+            Route::get('',               ['as' => 'webpanel.store.tools.index', 'uses' => 'WebPanel\Store\ToolsController@index']);
             Route::post('json_shrinker', ['as' => 'webpanel.store.tools.json_shrinker','uses' => 'WebPanel\Store\ToolsController@JsonShrinker']);
             Route::post('json_checker',  ['as' => 'webpanel.store.tools.json_checker', 'uses' => 'WebPanel\Store\ToolsController@JsonChecker']);
             Route::post('import',        ['as' => 'webpanel.store.tools.import', 'uses' => 'WebPanel\Store\ToolsController@VerifyImport']);
