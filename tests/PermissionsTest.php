@@ -3,8 +3,10 @@
 use App\User;
 use App\Role;
 use App\Permission;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class PermissionsTest extends TestCase {
+    use DatabaseMigrations;
 
     /** @test */
     public function cant_access_if_unauthenticated()
