@@ -22,15 +22,18 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function boot(Router $router)
 	{
+        $this->app->bind('Illuminate\Routing\ResourceRegistrar', 'App\ResourceRegistrar');
+
 		parent::boot($router);
 
 		$router->model('items','App\Models\StoreItem');
         $router->model('categories','App\Models\StoreCategory');
-       // $router->model('users','App\Models\StoreUser'); // FIXME: Fix when parameter changing is supported in laravel
+        $router->model('store_user','App\Models\StoreUser');
         $router->model('servers','App\Models\StoreServer');
         $router->model('versions','App\Models\StoreVersion');
         $router->model('roles','App\Role');
         $router->model('permissions','App\Permission');
+        $router->model('panel_user','App\User');
 
 	}
 

@@ -32,14 +32,6 @@ class ToolsController extends Controller {
     }
 
     /**
-     * Returns the Shrink JSON View
-     */
-    public function JsonShrinker()
-    {
-
-    }
-
-    /**
      * Shows the changes that are going to happen to the user
      *
      * @param Requests\ImportRequest $request
@@ -47,6 +39,10 @@ class ToolsController extends Controller {
      */
     public function verifyImport(Requests\ImportRequest $request)
     {
+        //TODO: Support the upload of zip files
+        //Check if the uploaded file is a zip file
+        // -> if yes then unpack and extract the json file
+
         // **Get the File**
         $file = $request->file('import');
 
@@ -68,7 +64,6 @@ class ToolsController extends Controller {
             $fileName = $this->getUploadString($extension);
 
             Storage::put('uploads/'.$fileName,$json_string);
-            // Input::file('import')->move($destinationPath,$fileName); TODO: Replace with Storage API
 
             //Check if the JSON is valid
             if($json_object !== null)
@@ -107,14 +102,20 @@ class ToolsController extends Controller {
         }
     }
 
+    /**
+     * Returns the Shrink JSON View
+     */
+    public function JsonShrinker()
+    {
+
+    }
+
     public function PerformImport(Requests\ImportRequest $request)
     {
         $json_string = Storage::get('uploads/'.$request->input('fileName'));
 
         $json_object = json_decode($json_string);
 
-        //TODO: Handle Import Depending on JSON Versions
-        //dd($json_object);
         foreach($json_object->categories as $category)
         {
             //Check if a category exists with the same name
@@ -127,6 +128,12 @@ class ToolsController extends Controller {
                 }
             }
 
+        }
+
+        //TODO: Handle Import Depending on JSON Versions
+        //dd($json_object);
+        foreach($json_object->categories as $category)
+        {
             //Delete the existing category
 
             // Save a new Category
@@ -144,6 +151,8 @@ class ToolsController extends Controller {
                 $itm->save();
             }
         }
+
+        Storage::delete('uploads/'.$request->input('fileName'));
 
 
         return redirect()->route('webpanel.store.tools.index');

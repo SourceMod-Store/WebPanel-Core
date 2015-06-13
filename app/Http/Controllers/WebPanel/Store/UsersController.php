@@ -47,51 +47,47 @@ class UsersController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int $id
+	 * @param  StoreUser $store_user
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(StoreUser $store_user)
 	{
-        $user = StoreUser::find($id);
-        return redirect()->route(['webpanel.store.users.edit',$user->id]);
+        return redirect()->route(['webpanel.store.users.edit',$store_user->id]);
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int $id
+	 * @param  StoreUser $store_user
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(StoreUser $store_user)
 	{
-        $user = StoreUser::find($id);
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.users.edit',compact('user'));
+        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.users.edit',compact('store_user'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int $id
+	 * @param  StoreUser $store_user
      * @param  Requests\StoreUserRequest $request
 	 * @return Response
 	 */
-	public function update($id, Requests\StoreUserRequest $request)
+	public function update(StoreUser $store_user, Requests\StoreUserRequest $request)
 	{
-        $user = StoreUser::find($id);
-		$user->update($request->all());
+		$store_user->update($request->all());
         return redirect()->route('webpanel.store.users.index');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int $id
+	 * @param  StoreUser $store_user
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(StoreUser $store_user)
 	{
-        $user = StoreUser::find($id);
-		$user->delete();
+        $store_user->delete();
         return redirect()->route('webpanel.store.users.index');
 	}
 

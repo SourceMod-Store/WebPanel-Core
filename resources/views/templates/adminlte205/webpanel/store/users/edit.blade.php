@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    {!! Form::model($user,['method' => 'PATCH','route' => ['webpanel.store.users.update',$user->id]]) !!}
-    @include('templates.adminlte205.webpanel.store.users._form',['LeftMenuTitle'=>'Edit User '.$user->name,'SubmitButtonText' => 'Edit User'])
+    {!! Form::model($store_user,['method' => 'PATCH','route' => ['webpanel.store.users.update',$store_user->id]]) !!}
+    @include('templates.adminlte205.webpanel.store.users._form',['LeftMenuTitle'=>'Edit User '.$store_user->name,'SubmitButtonText' => 'Edit User'])
     {!! Form::close() !!}
 @stop

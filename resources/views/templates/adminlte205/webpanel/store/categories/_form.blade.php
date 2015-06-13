@@ -25,8 +25,6 @@
                             {!! Form::text('priority') !!}
                         </div>
                     </div>
-                    <!--
-                    {!! Form::text('priority', 0, ['class' => 'form-control']) !!}-->
                 </div>
                 <div class="form-group">
                     {!! Form::label('display_name', 'Display Name') !!}

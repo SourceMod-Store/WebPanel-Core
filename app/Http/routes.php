@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],functi
     Route::group(['prefix' => 'store'],function(){
         Route::resource('items',        'WebPanel\Store\ItemsController');
         Route::resource('categories',   'WebPanel\Store\CategoriesController');
-        Route::resource('users',        'WebPanel\Store\UsersController');
+        Route::resource('users',        'WebPanel\Store\UsersController', ['wildcards' => ['users' => 'store_user']]);
         Route::resource('servers',      'WebPanel\Store\ServersController');
 
         Route::group(['prefix' => 'versions'],function(){
@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],functi
         });
 
         Route::group(['prefix' => 'tools'],function(){
-            Route::get('index',          ['as' => 'webpanel.store.tools.index', 'uses' => 'WebPanel\Store\ToolsController@index']);
+            Route::get('',               ['as' => 'webpanel.store.tools.index', 'uses' => 'WebPanel\Store\ToolsController@index']);
             Route::post('json_shrinker', ['as' => 'webpanel.store.tools.json_shrinker','uses' => 'WebPanel\Store\ToolsController@JsonShrinker']);
             Route::post('json_checker',  ['as' => 'webpanel.store.tools.json_checker', 'uses' => 'WebPanel\Store\ToolsController@JsonChecker']);
             Route::post('import',        ['as' => 'webpanel.store.tools.import', 'uses' => 'WebPanel\Store\ToolsController@VerifyImport']);
@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth','authorize'], 'prefix'=>'webpanel'],functi
     Route::group(['prefix' => 'panel'],function(){
         Route::resource('permissions',      'WebPanel\Panel\PermissionsController');
         Route::resource('roles',            'WebPanel\Panel\RolesController');
-        Route::resource('users',            'WebPanel\Panel\UsersController');
+        Route::resource('users',            'WebPanel\Panel\UsersController', ['wildcards' => ['users' => 'panel_user']]);
     });
 });
 

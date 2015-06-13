@@ -33,7 +33,6 @@
             </div>
             -->
         </div><!-- /.box -->
-
     </div><!-- /.col -->
     <div class="col-md-6">
         <div class="box">
