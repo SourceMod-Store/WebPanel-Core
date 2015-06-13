@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+
 class PasswordController extends Controller
 {
     /*
@@ -33,23 +34,22 @@ class PasswordController extends Controller
      */
     public function getEmail()
     {
-        return view('templates.'.\Config::get('webpanel.template').'auth.password');
+        return view('templates.' . \Config::get('webpanel.template') . 'auth.password');
     }
 
     /**
      * Display the password reset view for the given token.
      *
-     * @param  string  $token
+     * @param  string $token
      * @return Response
      */
     public function getReset($token = null)
     {
-        if (is_null($token))
-        {
+        if (is_null($token)) {
             throw new NotFoundHttpException;
         }
 
-        return view('templates.'.\Config::get('webpanel.template').'auth.reset')->with('token', $token);
+        return view('templates.' . \Config::get('webpanel.template') . 'auth.reset')->with('token', $token);
     }
 
     /**
@@ -59,8 +59,7 @@ class PasswordController extends Controller
      */
     public function redirectPath()
     {
-        if (property_exists($this, 'redirectPath'))
-        {
+        if (property_exists($this, 'redirectPath')) {
             return $this->redirectPath;
         }
 

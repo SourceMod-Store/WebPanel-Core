@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers\Auth;
+
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
 class AuthController extends Controller
 {
     /*
@@ -17,6 +19,7 @@ class AuthController extends Controller
     |
     */
     use AuthenticatesAndRegistersUsers;
+
     /**
      * Create a new authentication controller instance.
      *
@@ -26,10 +29,11 @@ class AuthController extends Controller
     {
         $this->middleware('guest', ['except' => 'getLogout']);
     }
+
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -40,10 +44,11 @@ class AuthController extends Controller
             'password' => 'required|confirmed|min:6',
         ]);
     }
+
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -63,7 +68,7 @@ class AuthController extends Controller
      */
     public function getRegister()
     {
-        return view('templates.'.\Config::get('webpanel.template').'auth.register');
+        return view('templates.' . \Config::get('webpanel.template') . 'auth.register');
     }
 
     /**
@@ -73,7 +78,7 @@ class AuthController extends Controller
      */
     public function getLogin()
     {
-        return view('templates.'.\Config::get('webpanel.template').'auth.login');
+        return view('templates.' . \Config::get('webpanel.template') . 'auth.login');
     }
 
 }

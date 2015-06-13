@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 
-class ToolsController extends Controller {
+class ToolsController extends Controller
+{
 
     /**
      * Returns the Import / Export View
      */
     public function index()
     {
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.tools.index');
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.tools.index');
     }
 
     /**
@@ -55,36 +56,31 @@ class ToolsController extends Controller {
 
         // **Perform some validation**
         //Check if the file is valid
-        if(Input::file('import')->isValid())
-        {
+        if (Input::file('import')->isValid()) {
             $json_string = File::get($file);
             $json_object = json_decode($json_string);
 
             $extension = Input::file('import')->getClientOriginalExtension();
             $fileName = $this->getUploadString($extension);
 
-            Storage::put('uploads/'.$fileName,$json_string);
+            Storage::put('uploads/' . $fileName, $json_string);
 
             //Check if the JSON is valid
-            if($json_object !== null)
-            {
+            if ($json_object !== null) {
                 $json_valid = true;
             }
 
             //Check if JSON Version is set
-            if(isset($json_object->version))
-            {
+            if (isset($json_object->version)) {
                 $json_version = $json_object->version;
             }
 
             //Check if the Type is set
-            if(isset($json_object->type))
-            {
+            if (isset($json_object->type)) {
                 $json_type = $json_object->type;
             }
 
-            if(isset($json_object->categories))
-            {
+            if (isset($json_object->categories)) {
                 $categories_collection = Collection::make($json_object->categories);
             }
 
@@ -94,11 +90,9 @@ class ToolsController extends Controller {
 
 
             // **Send the output to the user**
-            return view('templates.'.\Config::get('webpanel.template').'webpanel.store.tools.verify_import',compact('json_valid', 'json_version', 'json_type', 'categories_collection','fileName'));
-        }
-        else
-        {
-            return view('templates.'.\Config::get('webpanel.template').'webpanel.store.tools.index');
+            return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.tools.verify_import', compact('json_valid', 'json_version', 'json_type', 'categories_collection', 'fileName'));
+        } else {
+            return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.tools.index');
         }
     }
 
@@ -112,18 +106,15 @@ class ToolsController extends Controller {
 
     public function PerformImport(Requests\ImportRequest $request)
     {
-        $json_string = Storage::get('uploads/'.$request->input('fileName'));
+        $json_string = Storage::get('uploads/' . $request->input('fileName'));
 
         $json_object = json_decode($json_string);
 
-        foreach($json_object->categories as $category)
-        {
+        foreach ($json_object->categories as $category) {
             //Check if a category exists with the same name
-            if(StoreCategory::where('require_plugin',$category->require_plugin)->count() > 0)
-            {
-                $ex_cats = StoreCategory::where('require_plugin',$category->require_plugin)->get();
-                foreach($ex_cats as $ex_cat)
-                {
+            if (StoreCategory::where('require_plugin', $category->require_plugin)->count() > 0) {
+                $ex_cats = StoreCategory::where('require_plugin', $category->require_plugin)->get();
+                foreach ($ex_cats as $ex_cat) {
                     $ex_cat->delete();
                 }
             }
@@ -132,27 +123,25 @@ class ToolsController extends Controller {
 
         //TODO: Handle Import Depending on JSON Versions
         //dd($json_object);
-        foreach($json_object->categories as $category)
-        {
+        foreach ($json_object->categories as $category) {
             //Delete the existing category
 
             // Save a new Category
-            $cat = new StoreCategory((array) $category);
+            $cat = new StoreCategory((array)$category);
             $cat->save();
 
             //Save the Items
-            foreach($category->items as $item)
-            {
+            foreach ($category->items as $item) {
                 //Convert the attrs into the json sting
                 $item->attrs = json_encode($item->attrs);
                 $item->category_id = $cat->id;
                 //Create the item
-                $itm = new StoreItem((array) $item);
+                $itm = new StoreItem((array)$item);
                 $itm->save();
             }
         }
 
-        Storage::delete('uploads/'.$request->input('fileName'));
+        Storage::delete('uploads/' . $request->input('fileName'));
 
 
         return redirect()->route('webpanel.store.tools.index');
@@ -171,12 +160,11 @@ class ToolsController extends Controller {
     {
         $unique = false;
         $fileName = "";
-        while($unique == false)
-        {
-            $fileName = rand(111111,999999);
-            if(!Storage::exists($fileName.".".$extension))
+        while ($unique == false) {
+            $fileName = rand(111111, 999999);
+            if (!Storage::exists($fileName . "." . $extension))
                 $unique = true;
         }
-        return $fileName.".".$extension;
+        return $fileName . "." . $extension;
     }
 }

@@ -3,9 +3,12 @@
 use App\User;
 use App\Role;
 use App\Permission;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class PermissionsTest extends TestCase {
+class PermissionsTest extends TestCase
+{
     use DatabaseMigrations;
 
     /** @test */
@@ -21,7 +24,7 @@ class PermissionsTest extends TestCase {
     /** @test */
     public function can_access_if_authenticated()
     {//Login with the default admin user
-        $user = User::where('name','admin')->first();
+        $user = User::where('name', 'admin')->first();
         $this->be($user);
 
         //Check if WebPanel can be accessed
@@ -63,18 +66,17 @@ class PermissionsTest extends TestCase {
         $this->visit('/webpanel/store/tools')->see('Tools');
 
         //Delete user and role
-        $this->delete_user_role($user,$role);
+        $this->delete_user_role($user, $role);
     }
 
     private function create_temp_user_and_role_if_not_exists()
     {
         //Check if the user and group exists
-        $user = User::where('name','temp')->first();
-        $role = Role::where('name','temp')->first();
+        $user = User::where('name', 'temp')->first();
+        $role = Role::where('name', 'temp')->first();
 
         // Check if user exists, if not create a user
-        if($user == null)
-        {
+        if ($user == null) {
             $user = new User;
             $user->name = "temp";
             $user->email = "temp@temp.com";
@@ -82,8 +84,7 @@ class PermissionsTest extends TestCase {
             $user->save();
         }
 
-        if($role == null)
-        {
+        if ($role == null) {
             $role = new Role;
             $role->name = "temp";
             $role->display_name = "temp";
@@ -94,7 +95,7 @@ class PermissionsTest extends TestCase {
         $user->roles()->sync(array($role->id));
 
         //Return the existing user and group if they exist
-        return array($user,$role);
+        return array($user, $role);
     }
 
     private function delete_user_role(User $user, Role $role)
@@ -108,11 +109,11 @@ class PermissionsTest extends TestCase {
     private function add_permissions_to_role(Role $role)
     {
         //Get the permissions and assign them to the Role
-        $perm_str_itm_view = Permission::where('name','WebPanelStoreItemsView')->first();
-        $perm_str_cat_view = Permission::where('name','WebPanelStoreCategoriesView')->first();
-        $perm_str_usr_view = Permission::where('name','WebPanelStoreUsersView')->first();
-        $perm_str_srv_view = Permission::where('name','WebPanelStoreServersView')->first();
-        $perm_str_tol_view = Permission::where('name','WebPanelStoreToolsView')->first();
+        $perm_str_itm_view = Permission::where('name', 'WebPanelStoreItemsView')->first();
+        $perm_str_cat_view = Permission::where('name', 'WebPanelStoreCategoriesView')->first();
+        $perm_str_usr_view = Permission::where('name', 'WebPanelStoreUsersView')->first();
+        $perm_str_srv_view = Permission::where('name', 'WebPanelStoreServersView')->first();
+        $perm_str_tol_view = Permission::where('name', 'WebPanelStoreToolsView')->first();
 
         $role->attachPermissions(array($perm_str_itm_view, $perm_str_cat_view, $perm_str_usr_view, $perm_str_srv_view, $perm_str_tol_view));
     }

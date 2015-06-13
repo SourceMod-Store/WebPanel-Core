@@ -10,29 +10,30 @@ use App\User;
 use App\Role;
 use App\Permission;
 
-class ViewComposerServiceProvider extends ServiceProvider {
+class ViewComposerServiceProvider extends ServiceProvider
+{
 
-	/**
-	 * Bootstrap the application services.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
         $this->ComposeSidebar();
         $this->ComposeForms();
         $this->ComposeHeader();
     }
 
-	/**
-	 * Register the application services.
-	 *
-	 * @return void
-	 */
-	public function register()
-	{
-		//
-	}
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
 
 
     /**

@@ -2,26 +2,27 @@
 
 use App\Http\Requests\Request;
 
-class StoreItemRequest extends Request {
+class StoreItemRequest extends Request
+{
 
-	/**
-	 * Determine if the user is authorized to make this request.
-	 *
-	 * @return bool
-	 */
-	public function authorize()
-	{
-		return true;
-	}
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
 
-	/**
-	 * Get the validation rules that apply to the request.
-	 *
-	 * @return array
-	 */
-	public function rules()
-	{
-		return [
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
             'priority' => 'numeric',
             'name' => 'required', //TODO: Check for no whitespaces
             'display_name' => 'required',
@@ -37,7 +38,7 @@ class StoreItemRequest extends Request {
             'is_refundable',
             'expiry_time',
             'flags',
-		];
-	}
+        ];
+    }
 
 }
