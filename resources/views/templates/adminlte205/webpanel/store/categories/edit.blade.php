@@ -12,6 +12,6 @@
 
 @section('content')
     {!! Form::model($category,['method' => 'PATCH','route' => ['webpanel.store.categories.update',$category->id]]) !!}
-    @include('templates.adminlte205.webpanel.store.categories._form',['LeftMenuTitle'=>'Edit Category '.$category->name,'SubmitButtonText' => 'Edit Category'])
+    @include('templates.adminlte205.webpanel.store.categories._form',['LeftMenuTitle'=>'Edit Category: '.$category->display_name,'SubmitButtonText' => 'Edit Category'])
     {!! Form::close() !!}
 @stop

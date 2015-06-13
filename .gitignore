@@ -2,3 +2,5 @@
 /vendor
 /node_modules
 .env
+tests/logs/output.html
+tests/tests/logs/output.html

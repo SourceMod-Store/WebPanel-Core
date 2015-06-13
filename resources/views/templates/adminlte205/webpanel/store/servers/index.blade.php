@@ -1,12 +1,12 @@
 @extends('templates.adminlte205.webpanel.app')
 
-@section('title', 'Users')
+@section('title', 'Servers')
 
 @section('subtitle', 'Overview')
 
 @section('breadcrumb')
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Users</li>
+    <li class="active">Servers</li>
     <li class="active">Overview</li>
 @stop
 
@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All Users</h3>
+                    <h3 class="box-title">All Servers</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered">
