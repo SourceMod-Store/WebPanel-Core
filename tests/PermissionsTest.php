@@ -25,7 +25,7 @@ class PermissionsTest extends TestCase
     public function can_access_if_authenticated()
     {//Login with the default admin user
         $user = User::where('name', 'admin')->first();
-        //$this->be($user);
+        $this->actingAs($user);
 
         //Check if WebPanel can be accessed
         $this->visit('/webpanel')->see('Dashboard');
