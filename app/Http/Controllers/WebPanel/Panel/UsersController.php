@@ -83,8 +83,11 @@ class UsersController extends Controller
     {
         $panel_user->update($request->all());
 
-        $panel_user->password = bcrypt($request->input('password'));
-        $panel_user->save();
+        if($panel_user->password != bcrypt($request->input('password')))
+        {
+            $panel_user->password = bcrypt($request->input('password'));
+            $panel_user->save();
+        }
 
         $this->SyncRoles($panel_user, $request->input('role_list'));
         return redirect()->route('webpanel.panel.users.index');
