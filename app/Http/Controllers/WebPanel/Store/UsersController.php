@@ -3,6 +3,7 @@
 use App\Models\StoreUser;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use yajra\Datatables\Datatables;
 
 class UsersController extends Controller
 {
@@ -90,6 +91,19 @@ class UsersController extends Controller
     {
         $store_user->delete();
         return redirect()->route('webpanel.store.users.index');
+    }
+
+    public function getData()
+    {
+        //TODO: Verify that user is authorized to access this store users
+
+        $users = StoreUser::select(['id','auth','name','credits']);
+
+        return Datatables::of($users)
+            ->addColumn('action', function ($user) {
+                return 'test'; //TODO: Return view that contains the create and edit button
+            })
+            ->make();
     }
 
 }

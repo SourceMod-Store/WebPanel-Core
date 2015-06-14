@@ -28,30 +28,6 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($users as $user)
-                                <tr>
-                                    <td><a href="{{ route('webpanel.store.users.edit', array($user->id)) }}">{{$user->id}}</a></td>
-                                    <td>{{$user->auth}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->credits}}</td>
-                                    <td>
-                                        <div>
-                                            <div style="float: right">
-                                                {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.store.users.destroy',$user->id)]) !!}
-                                                {!! Form::submit('Remove',['class' => 'btn btn-danger']) !!}
-                                                {!! Form::close() !!}
-                                            </div>
-                                            <div style="float: right">
-                                                {!! Form::open(['method' => 'GET', 'url' => route('webpanel.store.users.edit',$user->id)]) !!}
-                                                {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
-                                                {!! Form::close() !!}
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
@@ -67,7 +43,11 @@
 
     <script>
         $(document).ready( function () {
-            $('#table').DataTable();
+            $('#table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ url("webpanel/store/users/data") }}'
+            });
         } );
     </script>
 @stop

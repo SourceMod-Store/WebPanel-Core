@@ -36,7 +36,10 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], fu
     Route::group(['prefix' => 'store'], function () {
         Route::resource('items', 'WebPanel\Store\ItemsController');
         Route::resource('categories', 'WebPanel\Store\CategoriesController');
+
+        Route::get('users/data', ['as' => 'users.data', 'uses' => 'WebPanel\Store\UsersController@getData']);
         Route::resource('users', 'WebPanel\Store\UsersController', ['wildcards' => ['users' => 'store_user']]);
+
         Route::resource('servers', 'WebPanel\Store\ServersController');
 
         Route::group(['prefix' => 'versions'], function () {
