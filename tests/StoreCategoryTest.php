@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class StoreCategoryTest extends TestCase
 {
-    use DatabaseMigrations;
+    //use DatabaseMigrations;
 
     /** @test */
     public function check_if_overview_can_be_accessed()
@@ -81,7 +81,7 @@ class StoreCategoryTest extends TestCase
     private function login_with_admin_user()
     {
         $admin = User::where('name', 'admin')->first();
-        $this->be($admin);
+        $this->actingAs($admin);
     }
 
 }

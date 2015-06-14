@@ -9,13 +9,13 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PermissionsTest extends TestCase
 {
-    use DatabaseMigrations;
+    //use DatabaseMigrations;
 
     /** @test */
     public function cant_access_if_unauthenticated()
     {
         //Check if the Dashboard is Shown
-        $this->visit('/');
+        $this->visit('/')->see('A glimpse to the future of the Store Plugin');
 
         //Check if WebPanel cant be accessed if unauthorized
         $this->visit('/webpanel')->see('Sign in');
@@ -25,7 +25,7 @@ class PermissionsTest extends TestCase
     public function can_access_if_authenticated()
     {//Login with the default admin user
         $user = User::where('name', 'admin')->first();
-        $this->be($user);
+        //$this->be($user);
 
         //Check if WebPanel can be accessed
         $this->visit('/webpanel')->see('Dashboard');
@@ -43,7 +43,7 @@ class PermissionsTest extends TestCase
         $this->remove_permissions_from_role($role);
 
         //Login with the user
-        $this->be($user);
+        $this->actingAs($user);
 
         //Check if Dashboard can be accessed
         $this->visit('/webpanel')->see('Dashboard');
