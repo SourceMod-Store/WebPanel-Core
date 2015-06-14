@@ -53,7 +53,7 @@ return [
 		],
 
 		'webpanel' => [
-			'driver'    => 'mysql',
+			'driver'    => env('DB_DRIVER_PANEL', 'mysql'),
 			'host'      => env('DB_HOST_PANEL', 'localhost'),
 			'database'  => env('DB_DATABASE_PANEL', 'forge'),
 			'username'  => env('DB_USERNAME_PANEL', 'forge'),
@@ -64,7 +64,7 @@ return [
 			'strict'    => false,
 		],
 		'store' => [
-			'driver'    => 'mysql',
+            'driver'    => env('DB_DRIVER_STORE', 'mysql'),
 			'host'      => env('DB_HOST_STORE', 'localhost'),
 			'database'  => env('DB_DATABASE_STORE', 'forge'),
 			'username'  => env('DB_USERNAME_STORE', 'forge'),
