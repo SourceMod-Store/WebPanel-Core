@@ -13,5 +13,6 @@ The Aim of this Project is to change the Framework from the quite dated Codeigni
 Bug Reports and Feature requests are always welcome.
 This is a early development version, so please reference the commit / version you are using in the bug report / feature request.
 
-Code Contributions are also welcome. By creating a merge request, you grant all rights to the original Author.
-(A proper Contributor License Agreement will follow at a later date)
+If you would like to make pull requests, please read the cla.md
+
+Once you have read it please sign it at [CLAHub](https://www.clahub.com/agreements/SourceMod-Store/WebPanel-Core">sign the Contributor License Agreement) and send a E-Mail stating that you have read and agree to the cla to cla[AT]sourcedonates.com

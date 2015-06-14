@@ -5,7 +5,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class InstallerController extends Controller {
+class InstallerController extends Controller
+{
 
     public function showWelcome()
     {

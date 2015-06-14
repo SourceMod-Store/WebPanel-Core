@@ -90,7 +90,7 @@ class WebpanelAddPermissionsRoles extends Migration {
         $rootadmin->save();
 
         //Get all permissions
-        $ids = Permission::lists('id');
+        $ids = Permission::lists('id')->all();
 
         //Sync them to the rootadmin
         $rootadmin->perms()->sync($ids);

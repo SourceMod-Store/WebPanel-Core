@@ -6,19 +6,20 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class VersionsController extends Controller {
+class VersionsController extends Controller
+{
 
-	/**
-	 * Gives an Overview of the installed module Versions
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+    /**
+     * Gives an Overview of the installed module Versions
+     *
+     * @return Response
+     */
+    public function index()
+    {
         $versions = StoreVersion::all();
 
-        return view('templates.'.\Config::get('webpanel.template').'webpanel.store.versions.index', compact('versions'));
-	}
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.versions.index', compact('versions'));
+    }
 
     /**
      * Shows details about the Selected Version
