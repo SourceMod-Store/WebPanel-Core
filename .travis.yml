@@ -20,7 +20,7 @@ mysql:
 
 before_install:
   - sudo apt-get update > /dev/null
-  - mysql -e "create database IF NOT EXISTS webpanel-core;" -uroot
+  - mysql -e "create database IF NOT EXISTS testing;" -uroot
 
 install:
   - sudo apt-get install -y --force-yes php5-cgi php5-mysql
