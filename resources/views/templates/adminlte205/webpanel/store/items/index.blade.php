@@ -23,18 +23,18 @@
                             <th style="width: 10px">#</th>
                             <th>Priority</th>
                             <th>Name</th>
-                            <th>Display Name</th>
+                            <!--<th>Display Name</th>
                             <th>Description</th>
                             <th>Web Description</th>
                             <th>Type</th>
-                            <th>Loadout Slot</th>
+                            <th>Loadout Slot</th>-->
                             <th>Price</th>
                             <th>Category ID</th>
-                            <th>Buyable</th>
+                            <!--<th>Buyable</th>
                             <th>Tradeable</th>
                             <th>Refundable</th>
                             <th>Expiry Time</th>
-                            <th>Flags</th>
+                            <th>Flags</th>-->
                             <th>Actions</th>
                         </tr>
                         @foreach($items as $item)
@@ -42,18 +42,18 @@
                                 <td><a href="{{ route('webpanel.store.items.edit', array($item->id)) }}">{{$item->id}}</a></td>
                                 <td>{{$item->priority}}</td>
                                 <td>{{$item->name}}</td>
-                                <td>{{$item->display_name}}</td>
+                                <!--<td>{{$item->display_name}}</td>
                                 <td>{{$item->description}}</td>
                                 <td>{{$item->web_description}}</td>
                                 <td>{{$item->type}}</td>
-                                <td>{{$item->loadout_slot}}</td>
+                                <td>{{$item->loadout_slot}}</td>-->
                                 <td>{{$item->price}}</td>
                                 <td>{{$item->category_id}}</td>
-                                <td>{{$item->is_buyable}}</td>
+                                <!--<td>{{$item->is_buyable}}</td>
                                 <td>{{$item->is_tradeable}}</td>
                                 <td>{{$item->is_refundable}}</td>
                                 <td>{{$item->expiry_time}}</td>
-                                <td>{{$item->flags}}</td>
+                                <td>{{$item->flags}}</td>-->
                                 <td>
                                     <div>
                                         <div style="float: right">

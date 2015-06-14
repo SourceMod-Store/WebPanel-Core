@@ -23,10 +23,10 @@
                             <th style="width: 10px">#</th>
                             <th>Priority</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <!--<th>Description</th>
                             <th>Require Plugin</th>
                             <th>Web Description</th>
-                            <th>Web Color</th>
+                            <th>Web Color</th>-->
                             <th>Actions</th>
                         </tr>
                         @foreach($categories as $category)
@@ -34,10 +34,10 @@
                                 <td><a href="{{ route('webpanel.store.categories.edit', array($category->id)) }}">{{$category->id}}</a></td>
                                 <td>{{$category->priority}}</td>
                                 <td>{{$category->display_name}}</td>
-                                <td>{{$category->description}}</td>
+                                <!--<td>{{$category->description}}</td>
                                 <td>{{$category->require_plugin}}</td>
                                 <td>{{$category->web_description}}</td>
-                                <td>{{$category->web_color}}</td>
+                                <td>{{$category->web_color}}</td>-->
                                 <td>
                                     <div>
                                         <div style="float: right">
