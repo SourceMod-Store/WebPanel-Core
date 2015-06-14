@@ -7,26 +7,6 @@ php:
   - 7.0
   - hhvm
 
-env:
-  - APP_ENV: testing
-  - APP_DEBUG: true
-  - APP_KEY: MEeFQ9DP1FIGW845ff6iYTghntKh91yE
-  - DB_HOST_PANEL: localhost
-  - DB_DATABASE_PANEL: webpanel-core
-  - DB_USERNAME_PANEL: root
-  - DB_PASSWORD_PANEL:
-  - DB_PREFIX_PANEL: webpanel_
-  - DB_HOST_STORE: localhost
-  - DB_DATABASE_STORE: webpanel-core
-  - DB_USERNAME_STORE: root
-  - DB_PASSWORD_STORE:
-  - DB_PREFIX_STORE: store_
-  - CACHE_DRIVER: file
-  - SESSION_DRIVER: file
-  - QUEUE_DRIVER: sync
-  - MAIL_FROM_ADR: travis-test@webpanel.example
-  - MAIL_FROM_NAME: Store WebPanel
-
 matrix:
   #fast_finish: true
   allow_failures:
