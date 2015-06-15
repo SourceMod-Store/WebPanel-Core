@@ -36,19 +36,21 @@ class StoreCategoryTest extends TestCase
         $this->type('Int Test Cat', 'display_name');
         $this->type('Integration Test Category', 'description');
         $this->type('Integration_test', 'require_plugin');
-        $this->type('Integration Test Category', 'web_description');
+        $this->type('Integration Test Web Category', 'web_description');
         $this->type('#3751d5', 'web_color');
         $this->press('Create Category');
 
-        $this->see("Integration Test Category");
+        $this->see("Int Test Cat"); //Check for the display name
+        $this->see('integration_test'); // Check for the Requrie-Plugin
 
         //Get the ID of the Category
         $category_id = $this->get_category_id();
 
         //Visit the Edit page
         $this->press('Edit ' . $category_id);
-        $this->see('Int Test Cat'); //Check for the display name
+        $this->see("Int Test Cat"); //Check for the display name
         $this->see('integration_test'); // Check for the Requrie-Plugin
+        $this->see('Integration Test Category'); //Check for the description
 
         //Make a Edit and Save
         $this->type('integration_test_2', 'require_plugin');
