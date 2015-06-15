@@ -93,15 +93,20 @@ class UsersController extends Controller
         return redirect()->route('webpanel.store.users.index');
     }
 
+
+    /**
+     * Returns the Datatables data
+     *
+     * @return mixed
+     */
     public function getData()
     {
-        //TODO: Verify that user is authorized to access this store users
-
         $users = StoreUser::select(['id','auth','name','credits']);
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                return 'test'; //TODO: Return view that contains the create and edit button
+                $actions = view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.users._actions', compact('user'))->render();
+                return $actions;
             })
             ->make();
     }

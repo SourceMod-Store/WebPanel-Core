@@ -21,6 +21,7 @@ return [
                 'edit'       => 'WebPanelStoreItemsEdit',
                 'update'     => 'WebPanelStoreItemsEdit',
                 'destroy'    => 'WebPanelStoreItemsDelete',
+                'data'       => 'WebPanelStoreItemsView',
             ],
 
             //Permissions for the WebPanel Store Categories
@@ -32,6 +33,7 @@ return [
                 'edit'       => 'WebPanelStoreCategoriesEdit',
                 'update'     => 'WebPanelStoreCategoriesEdit',
                 'destroy'    => 'WebPanelStoreCategoriesDelete',
+                'data'       => 'WebPanelStoreCategoriesView',
             ],
 
             //Permissions for the WebPanel Store Users
@@ -43,6 +45,7 @@ return [
                 'edit'       => 'WebPanelStoreUsersEdit',
                 'update'     => 'WebPanelStoreUsersEdit',
                 'destroy'    => 'WebPanelStoreUsersDelete',
+                'data'       => 'WebPanelStoreUsersView',
             ],
 
             //Permissions for the WebPanel Store Servers

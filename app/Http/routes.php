@@ -34,10 +34,13 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], fu
 
     // Store Routes --> Features Relating to the Store Plugin
     Route::group(['prefix' => 'store'], function () {
+        Route::get('items/data', ['as' => 'webpanel.store.items.data', 'uses' => 'WebPanel\Store\ItemsController@getData']);
         Route::resource('items', 'WebPanel\Store\ItemsController');
+
+        Route::get('categories/data', ['as' => 'webpanel.store.categories.data', 'uses' => 'WebPanel\Store\CategoriesController@getData']);
         Route::resource('categories', 'WebPanel\Store\CategoriesController');
 
-        Route::get('users/data', ['as' => 'users.data', 'uses' => 'WebPanel\Store\UsersController@getData']);
+        Route::get('users/data', ['as' => 'webpanel.store.users.data', 'uses' => 'WebPanel\Store\UsersController@getData']);
         Route::resource('users', 'WebPanel\Store\UsersController', ['wildcards' => ['users' => 'store_user']]);
 
         Route::resource('servers', 'WebPanel\Store\ServersController');

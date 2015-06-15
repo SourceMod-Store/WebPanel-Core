@@ -3,6 +3,7 @@
 use App\Models\StoreItem;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use yajra\Datatables\Datatables;
 
 class ItemsController extends Controller
 {
@@ -107,6 +108,24 @@ class ItemsController extends Controller
     {
         if ($servers == null) $servers = array();
         $item->servers()->sync($servers);
+    }
+
+
+    /**
+     * Returns the Datatables data
+     *
+     * @return mixed
+     */
+    public function getData()
+    {
+        $items = StoreItem::select(['id','priority','name','type','price']);
+
+        return Datatables::of($items)
+            ->addColumn('action', function ($item) {
+                $actions = view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items._actions', compact('item'))->render();
+                return $actions;
+            })
+            ->make();
     }
 
 }
