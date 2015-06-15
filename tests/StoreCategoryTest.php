@@ -33,7 +33,7 @@ class StoreCategoryTest extends TestCase
         $this->visit('/webpanel/store/categories/create')->see('Create a new Category');
 
         //Fill out the form
-        $this->type('test', 'display_name');
+        $this->type('Int Test Cat', 'display_name');
         $this->type('Integration Test Category', 'description');
         $this->type('Integration_test', 'require_plugin');
         $this->type('Integration Test Category', 'web_description');
@@ -47,7 +47,8 @@ class StoreCategoryTest extends TestCase
 
         //Visit the Edit page
         $this->press('Edit ' . $category_id);
-        $this->see('Integration Test Category');
+        $this->see('Int Test Cat'); //Check for the display name
+        $this->see('integration_test'); // Check for the Requrie-Plugin
 
         //Make a Edit and Save
         $this->type('integration_test_2', 'require_plugin');
