@@ -30,5 +30,6 @@ install:
 
 before_script:
   - composer install
+  - php artisan migrate
 
 script: phpunit
