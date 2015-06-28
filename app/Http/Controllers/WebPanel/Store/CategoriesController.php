@@ -3,6 +3,7 @@
 use App\Models\StoreCategory;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use yajra\Datatables\Datatables;
 
 class CategoriesController extends Controller
 {
@@ -107,6 +108,24 @@ class CategoriesController extends Controller
     {
         if ($servers == null) $servers = array();
         $category->servers()->sync($servers);
+    }
+
+
+    /**
+     * Returns the Datatables data
+     *
+     * @return mixed
+     */
+    public function getData()
+    {
+        $categories = StoreCategory::select(['id','priority','display_name','require_plugin']);
+
+        return Datatables::of($categories)
+            ->addColumn('action', function ($category) {
+                $actions = view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.categories._actions', compact('category'))->render();
+                return $actions;
+            })
+            ->make();
     }
 
 }

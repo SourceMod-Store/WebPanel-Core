@@ -147,12 +147,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
+        yajra\Datatables\DatatablesServiceProvider::class,
 
 
         /*
          * Other Service Providers
          */
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
 
 	],
@@ -205,6 +206,7 @@ return [
 		'Entrust'   => 'Zizaco\Entrust\EntrustFacade',
         'Form'      => 'Illuminate\Html\FormFacade',
         'Html'      => 'Illuminate\Html\HtmlFacade',
+        'Datatables' => 'yajra\Datatables\Datatables',
 	],
 
 ];

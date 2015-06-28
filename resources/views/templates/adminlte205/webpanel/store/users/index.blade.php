@@ -18,51 +18,36 @@
                     <h3 class="box-title">All Users</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Auth</th>
-                            <th>Name</th>
-                            <th>Credits</th>
-                            <th>Actions</th>
-                        </tr>
-                        @foreach($users as $user)
+                    <table class="table table-bordered table-striped" id="table">
+                        <thead>
                             <tr>
-                                <td><a href="{{ route('webpanel.store.users.edit', array($user->id)) }}">{{$user->id}}</a></td>
-                                <td>{{$user->auth}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->credits}}</td>
-                                <td>
-                                    <div>
-                                        <div style="float: right">
-                                            {!! Form::open(['method' => 'DELETE', 'url' => route('webpanel.store.users.destroy',$user->id)]) !!}
-                                            {!! Form::submit('Remove',['class' => 'btn btn-danger']) !!}
-                                            {!! Form::close() !!}
-                                        </div>
-                                        <div style="float: right">
-                                            {!! Form::open(['method' => 'GET', 'url' => route('webpanel.store.users.edit',$user->id)]) !!}
-                                            {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
-                                            {!! Form::close() !!}
-                                        </div>
-                                    </div>
-                                </td>
+                                <th style="width: 10px">#</th>
+                                <th>Auth</th>
+                                <th>Name</th>
+                                <th>Credits</th>
+                                <th>Actions</th>
                             </tr>
-                        @endforeach
+                        </thead>
                     </table>
                 </div><!-- /.box-body -->
-                <!--
-                <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-right">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-                -->
             </div><!-- /.box -->
-
         </div><!-- /.col -->
     </div><!-- /.row -->
+@stop
+
+@section('footer')
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="{{asset('templates/adminlte205/dist/css/jquery.dataTables.min.css')}}">
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="{{asset('templates/adminlte205/dist/js/jquery.dataTables.min.js')}}"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ url("webpanel/store/users/data") }}'
+            });
+        } );
+    </script>
 @stop
