@@ -18,7 +18,7 @@ class StoreItemTest extends TestCase
         $this->login_with_admin_user();
 
         //Check if overview can be accessed
-        $this->visit('/webpanel/store/categories')->see('All Categories');
+        $this->visit('/webpanel/store/items')->see('All Items');
     }
 
     /** @test */
@@ -43,12 +43,13 @@ class StoreItemTest extends TestCase
         $this->type('integration_test', 'type');
         $this->type('integration_slot', 'loadout_slot');
         $this->type('7669035', 'price');
-        $this->type('test-cat', 'category_id');
+        $this->type($this->get_category_id(), 'category_id');
 
         $this->press('Create Item');
 
-        $this->see('test-itm'); //Check for the name
-        $this->see('integration_test'); // Check for the type
+
+        //TODO: Check if the item exists in the db
+
 
 
         //Get the ID of the Item
@@ -56,22 +57,26 @@ class StoreItemTest extends TestCase
 
 
         //Visit the Edit page
-        $this->press('Edit ' . $item_id);
+        $this->visit('/webpanel/store/items/'.$item_id.'/edit')->see('Edit Item test-itm');
         $this->see("test-itm"); //Check for the name
         $this->see("integration_slot"); //Check for the loadout slot
 
         //Make a Edit and Save
         $this->type('integration_test_2', 'type'); //Change the type
-        $this->press('Edit Category');
+        $this->press('Edit Item');
+
+        $this->visit('/webpanel/store/items/'.$item_id.'/edit')->see('Edit Item test-itm');
 
         //Confirm the edit
         $this->see('integration_test_2'); //Verify the changed type
 
+
+        //TODO: Add a remove and a remove+refund button so the item can be deleted from the edit menu
         //Delete the category
-        $this->press('Remove ' . $item_id);
+        //$this->press('Remove ' . $item_id);
 
         //Confirm that its deleted
-        $this->assertNull(StoreItem::where('name', 'test-itm')->first());
+        //$this->assertNull(StoreItem::where('name', 'test-itm')->first());
     }
 
 
@@ -95,7 +100,7 @@ class StoreItemTest extends TestCase
 
     private function create_category()
     {
-        $category = StoreCategory::where('name', 'test-cat')->first();
+        $category = StoreCategory::where('display_name', 'test-cat')->first();
 
         if($category != null)
         {
@@ -111,6 +116,12 @@ class StoreItemTest extends TestCase
         $category->web_color = "#000000";
         $category->enable_server_restriction = 0;
         $category->save();
+    }
+
+    private function get_category_id()
+    {
+        $category = StoreCategory::where('display_name','test-cat')->first();
+        return $category->id;
     }
 
     private function login_with_admin_user()

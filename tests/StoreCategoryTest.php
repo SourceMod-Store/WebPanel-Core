@@ -20,7 +20,7 @@ class StoreCategoryTest extends TestCase
         $this->visit('/webpanel/store/categories')->see('All Categories');
     }
 
-    /** @test TODO: Fix the test to support the jquery datatables
+
     public function create_category_and_check_if_exists()
     {
         //Delete category if already exists
@@ -40,16 +40,12 @@ class StoreCategoryTest extends TestCase
         $this->type('#3751d5', 'web_color');
         $this->press('Create Category');
 
-        $this->see("Int Test Cat"); //Check for the display name
-        $this->see('integration_test'); // Check for the Requrie-Plugin
-
         //Get the ID of the Category
         $category_id = $this->get_category_id();
 
-        //Visit the Edit page
-        $this->press('Edit ' . $category_id);
+        $this->visit('/webpanel/store/categories/'.$category_id.'/edit');
         $this->see("Int Test Cat"); //Check for the display name
-        $this->see('integration_test'); // Check for the Requrie-Plugin
+        $this->see('integration_test'); // Check for the Require-Plugin
         $this->see('Integration Test Category'); //Check for the description
 
         //Make a Edit and Save
@@ -57,14 +53,16 @@ class StoreCategoryTest extends TestCase
         $this->press('Edit Category');
 
         //Confirm the edit
+        $this->visit('/webpanel/store/categories/'.$category_id.'/edit');
         $this->see('integration_test_2');
 
         //Delete the category
-        $this->press('Remove ' . $category_id);
+        //TODO: Add Remove and Remove + Refund button to the edit page so removing a category can be testet
+        //$this->press('Remove ' . $category_id);
 
         //Confirm that its deleted
-        $this->assertNull(StoreCategory::where('display_name', 'test')->first());
-    }*/
+        //$this->assertNull(StoreCategory::where('display_name', 'test')->first());
+    }
 
     private function get_category_id()
     {
