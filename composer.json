@@ -1,8 +1,14 @@
 {
-	"name": "SourceMod-Store/WebPanel-Core",
+	"name": "sourcemod-store/wp-core",
 	"description": "The Core for the New WebPanel",
-	"keywords": ["sourcemod", "store", "WebPanel", "laravel"],
-	"license": "AGPL",
+	"keywords": ["sourcemod", "store", "sourcemod-store-webpanel", "laravel"],
+	"license": "AGPL-3.0",
+    "authors": [
+      {
+        "name": "Werner Maisl",
+        "email": "dev@myhomenet.at"
+      }
+    ],
 	"type": "project",
 	"require": {
         "php": ">=5.5.9",
