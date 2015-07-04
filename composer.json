@@ -29,7 +29,8 @@
 			"database"
 		],
 		"psr-4": {
-			"App\\": "app/"
+			"App\\": "app/",
+            "Arrow768\\WPStoreUserPanel\\": "packages/Arrow768/WP-StoreUserPanel/src"
 		}
 	},
 	"autoload-dev": {
