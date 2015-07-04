@@ -43,7 +43,7 @@ class StoreItemTest extends TestCase
         $this->type('integration_test', 'type');
         $this->type('integration_slot', 'loadout_slot');
         $this->type('7669035', 'price');
-        $this->type('test-cat', 'category_id');
+        $this->type($this->get_category_id(), 'category_id');
 
         $this->press('Create Item');
 
@@ -111,6 +111,12 @@ class StoreItemTest extends TestCase
         $category->web_color = "#000000";
         $category->enable_server_restriction = 0;
         $category->save();
+    }
+
+    private function get_category_id()
+    {
+        $category = StoreCategory::where('display_name','test-cat')->first();
+        return $category->id;
     }
 
     private function login_with_admin_user()
