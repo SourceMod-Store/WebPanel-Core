@@ -18,7 +18,7 @@ class StoreItemTest extends TestCase
         $this->login_with_admin_user();
 
         //Check if overview can be accessed
-        $this->visit('/webpanel/store/categories')->see('All Categories');
+        $this->visit('/webpanel/store/items')->see('All Items');
     }
 
     /** @test */
@@ -62,7 +62,7 @@ class StoreItemTest extends TestCase
 
         //Make a Edit and Save
         $this->type('integration_test_2', 'type'); //Change the type
-        $this->press('Edit Category');
+        $this->press('Edit Item');
 
         //Confirm the edit
         $this->see('integration_test_2'); //Verify the changed type
@@ -95,7 +95,7 @@ class StoreItemTest extends TestCase
 
     private function create_category()
     {
-        $category = StoreCategory::where('name', 'test-cat')->first();
+        $category = StoreCategory::where('display_name', 'test-cat')->first();
 
         if($category != null)
         {
