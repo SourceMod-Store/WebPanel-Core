@@ -48,6 +48,12 @@ class StoreSetupLoadoutTable extends Migration
             $table->foreign('loadout_id')->references('id')->on('loadouts')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
+
+        // Add the token and ip column to the store users table
+        Schema::connection('store')->table('users',function (Blueprint $table) {
+            $table->string('token',50)->after('credits')->nullable();
+            $table->string('ip',20)->after('token')->nullable();
+        });
     }
 
     /**
@@ -84,6 +90,10 @@ class StoreSetupLoadoutTable extends Migration
         //Delete the store_items_loadouts table
         Schema::connection('store')->drop('items_loadouts');
 
-
+        //Delete the privacy and owner_id column from the loadouts table
+        Schema::connection('store')->table('users',function (Blueprint $table) {
+            $table->dropColumn('token');
+            $table->dropColumn('ip');
+        });
     }
 }
