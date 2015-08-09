@@ -17,15 +17,15 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 //Installer Routes
-Route::group(['prefix' => 'installer'], function () {
-    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome']);
-    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome']);
-    Route::get('settings', ['as' => 'installer.settings.show', 'uses' => 'InstallerController@showSettings']);
-    Route::post('settings', ['as' => 'installer.settings.post', 'uses' => 'InstallerController@postSettings']);
-    Route::get('users', ['as' => 'installer.users.show', 'uses' => 'InstallerController@showUsers']);
-    Route::post('users', ['as' => 'installer.users.post', 'uses' => 'InstallerController@postUsers']);
-    Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
-});
+//Route::group(['prefix' => 'installer'], function () {
+//    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome']);
+//    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome']);
+//    Route::get('settings', ['as' => 'installer.settings.show', 'uses' => 'InstallerController@showSettings']);
+//    Route::post('settings', ['as' => 'installer.settings.post', 'uses' => 'InstallerController@postSettings']);
+//    Route::get('users', ['as' => 'installer.users.show', 'uses' => 'InstallerController@showUsers']);
+//    Route::post('users', ['as' => 'installer.users.post', 'uses' => 'InstallerController@postUsers']);
+//    Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
+//});
 
 //WebPanel Routes
 Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], function () {
@@ -69,8 +69,39 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], fu
 });
 
 
-//Auth Routes
+//Store UserPanel Routes
+Route::group(['prefix' => 'userpanel'], function () {
 
+    Route::get('test',function(){
+        return "test";
+    });
+
+    //Auth
+    //Authenticates the User if not authenticated
+
+    //Dashboard
+    // Will show an overview of the users items, his credits, recent transactions, ...
+    Route::get('dashboard', 'UserPanel\DashboardController@getIndex');
+
+    //User Items - Controller ?
+    //Shows the items the user owns (inventory) and allows him to buy / sell new items
+    Route::resource('useritems', 'UserPanel\UserItemsController');
+
+    //Loadouts - Controller
+    // Allows to user to Create View Edit and Delete Loadouts (Only the Creator of a Loadout can Edit and Delete it)
+    // Also Links to the loadout items controller
+    // Also shows the items that belong to a specific loadout
+    Route::resource('loadouts', 'UserPanel\LoadoutController');
+
+    //Loadout Items - Controller ?
+    // Allows the owner of a loadout to edit the items that are assigned to that loadout
+    // (Allows the owner to assign any item in the whole shop to the loadout because the store plugin checks if the user owns the item before its equipped
+    Route::resource('loadoutitems', 'UserPanel\LoadoutItemsController');
+
+});
+
+
+//WebPanel Auth Routes
 Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 Route::get('/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
 
