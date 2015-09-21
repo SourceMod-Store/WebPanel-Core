@@ -148,9 +148,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
         yajra\Datatables\DatatablesServiceProvider::class,
-        App\Providers\PackageServiceProvider::class,
-        Arrow768\WPStoreUserPanel\StoreUserPanelProvider::class,
-
 
         /*
          * Other Service Providers
