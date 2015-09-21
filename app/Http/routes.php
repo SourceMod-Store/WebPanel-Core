@@ -68,6 +68,15 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], fu
     });
 });
 
+//WebPanel Auth Routes
+Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
+Route::get('/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
+
 
 //Store UserPanel Routes
 Route::group(['prefix' => 'userpanel'], function () {
@@ -81,7 +90,7 @@ Route::group(['prefix' => 'userpanel'], function () {
 
     //Dashboard
     // Will show an overview of the users items, his credits, recent transactions, ...
-    Route::get('dashboard', 'UserPanel\DashboardController@getIndex');
+    Route::get('dashboard', ['as' => 'userpanel.dashboard', 'uses' => 'UserPanel\DashboardController@getIndex']);
 
     //User Items - Controller ?
     //Shows the items the user owns (inventory) and allows him to buy / sell new items
@@ -99,13 +108,3 @@ Route::group(['prefix' => 'userpanel'], function () {
     Route::resource('loadoutitems', 'UserPanel\LoadoutItemsController');
 
 });
-
-
-//WebPanel Auth Routes
-Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
-Route::get('/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
-
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
