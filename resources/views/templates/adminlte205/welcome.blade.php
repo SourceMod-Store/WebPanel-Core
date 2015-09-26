@@ -62,7 +62,7 @@
         <div class="link"><a href="{{URL::route("webpanel.dashboard")}}">Proceed to the Admin Interface</a></div>
         <div class="link"><a href="{{URL::route("userpanel.dashboard")}}">Proceed to the User Interface</a></div>
         <div class="footer-first">Store Webpanel 2 - &copy; 2015 by Werner Maisl</div>
-        <div class="footer">Store Plugin - &copy; 2013-2015 Alon Gubkin, Keith Warren</div>
+        <div class="footer">Store Plugin - &copy; 2013-2015 Alon Gubkin, Keith Warren (Drixevel)</div>
     </div>
 </div>
 </body>
