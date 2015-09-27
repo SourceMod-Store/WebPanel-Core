@@ -53,6 +53,13 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
     }
 
+    public function ComposeUserPanelSidebar()
+    {
+        view()->composer('templates.' . \Config::get('webpanel.template') . 'userpanel.includes.sidebar', function ($view) {
+            $view->with('storeItemCount', StoreItem::all()->count()); //Not used
+        });
+    }
+
     /**
      * Passes the required variables to the sidebar
      */
@@ -94,7 +101,15 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function ComposeUserPanelHeader()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'userpanel.includes.header', function ($view) {
+            $store_user = StoreUser::find(Session("store_user_id"));
+            $credits = $store_user->credits;
+            $owned_item_count = $store_user->items()->count();
+            $latest_items = $store_user->items()->orderBy('acquire_date','desc')->take(5)->get();
+
+            $view->with('latest_items',$latest_items);
             $view->with('username', Session("store_user_name"));
+            $view->with('credits',$credits);
+            $view->with('owned_item_count',$owned_item_count);
         });
     }
 }

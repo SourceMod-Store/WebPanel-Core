@@ -21,8 +21,6 @@
                     <table class="table table-bordered table-striped" id="table">
                         <thead>
                             <tr>
-                                <th style="width: 10px">ID</th>
-                                <th style="width: 10px">Prio</th>
                                 <th>Display Name</th>
                                 <th>Description</th>
                                 <th>Type</th>
@@ -51,8 +49,6 @@
                 serverSide: true,
                 ajax: '{{ url("userpanel/useritems/userdata") }}',
                 columns: [
-                    {data: 'id', name: 'id'},
-                    {data: 'priority', name: 'priority'},
                     {data: 'display_name', name: 'display_name'},
                     {data: 'description', name: 'description'},
                     {data: 'type', name: 'type'},

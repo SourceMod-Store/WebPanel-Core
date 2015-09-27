@@ -17,6 +17,8 @@ class DashboardController extends Controller
     public function getIndex(Request $request)
     {
         return view('templates.' . \Config::get('webpanel.template') . 'userpanel.empty');
+        //TODO: ADD Oviewview of the userprofile (owned credits, number of owned items, ...)
+        //TODO: ADD Option to refresh steam picture
     }
 
 }
