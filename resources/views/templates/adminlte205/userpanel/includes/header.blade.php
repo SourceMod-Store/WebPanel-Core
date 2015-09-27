@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
+    <a href="index2.html" class="logo"><b>User</b>Panel</a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
@@ -231,7 +231,7 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a><!-- TODO: Add a actual profile page-->
                             </div>
                             <div class="pull-right">
-                                <a href="{{URL::route('logout')}}" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="{{URL::route('userpanel.auth.logout')}}" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                         </li>
                     </ul>

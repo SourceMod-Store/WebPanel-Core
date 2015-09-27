@@ -3,145 +3,48 @@
     <section class="sidebar">
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="{{URL::route('userpanel.dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 
-            <!-- Store -->
+            <!-- UserItems -->
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-briefcase"></i> <span>Store</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-folder-open"></i>
+                    <span>Items</span>
+                    <span class="label label-primary pull-right">123</span>
                 </a>
                 <ul class="treeview-menu">
-
-                    <!-- Categories-->
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-folder-open"></i>
-                            <span>Categories</span>
-                            <span class="label label-primary pull-right">{{$storeCategoryCount}}</span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{URL::route('webpanel.store.categories.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
-                            <li><a href="{{URL::route('webpanel.store.categories.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                            <!--<li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li>  TODO: Add named route -->
-                        </ul>
-                    </li>
-
-                    <!-- Items -->
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-files-o"></i>
-                            <span>Items</span>
-                            <span class="label label-primary pull-right">{{$storeItemCount}}</span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{URL::route('webpanel.store.items.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
-                            <li><a href="{{URL::route('webpanel.store.items.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                            <!--<li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li>  TODO: Add named route -->
-                        </ul>
-                    </li>
-
-                    <!-- Users -->
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-users"></i>
-                            <span>Users</span>
-                            <span class="label label-primary pull-right">{{$storeUserCount}}</span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{URL::route('webpanel.store.users.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
-                            <li><a href="{{URL::route('webpanel.store.users.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                            <!--<li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li>  TODO: Add named route -->
-                        </ul>
-                    </li>
-
-                    <!-- Loadouts -->
-                    <!--<li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Loadouts</span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> View </a></li>  TODO: Add named route
-                                <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Create </a></li>  TODO: Add named route
-                                <li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li>  TODO: Add named route
-                            </ul>
-                        </li>-->
-
-                    <!-- Servers -->
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-sitemap"></i>
-                            <span>Servers</span>
-                            <span class="label label-primary pull-right">{{$storeServerCount}}</span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{URL::route('webpanel.store.servers.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
-                            <li><a href="{{URL::route('webpanel.store.servers.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                            <!--<li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li>  TODO: Add named route -->
-                        </ul>
-                    </li>
-
-                    <!-- Versions-->
-                    <li><a href="{{URL::route('webpanel.store.versions.index')}}"><i class="fa fa-desktop"></i> Versions</a></li>
-
-                    <!-- Tools -->
-                    <li><a href="{{URL::route('webpanel.store.tools.index')}}"><i class="fa fa-wrench"></i> Tools</a></li>
-
+                    <li><a href="{{URL::route('userpanel.useritems.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
+                    <li><a href="{{URL::route('userpanel.useritems.create')}}"><i class="fa fa-circle-o"></i> Buy </a></li>
+                    <!--<li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li>  TODO: Add named route -->
                 </ul>
             </li>
 
-            <!-- WebPanel -->
+            <!-- Loadouts -->
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-cogs"></i> <span>WebPanel</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-files-o"></i>
+                    <span>Loadouts</span>
+                    <span class="label label-primary pull-right">123</span>
                 </a>
                 <ul class="treeview-menu">
-
-                    <!-- Permissions -->
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-files-o"></i>
-                            <span>Permissions</span>
-                            <span class="label label-primary pull-right">{{$panelPermissionCount}}</span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{URL::route('webpanel.panel.permissions.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
-                            <li><a href="{{URL::route('webpanel.panel.permissions.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                            <!--<li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li>  TODO: Add named route -->
-                        </ul>
-                    </li>
-
-                    <!-- Roles -->
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-folder-open"></i>
-                            <span>Roles</span>
-                            <span class="label label-primary pull-right">{{$panelRoleCount}}</span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{URL::route('webpanel.panel.roles.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
-                            <li><a href="{{URL::route('webpanel.panel.roles.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                            <!--<li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li>  TODO: Add named route -->
-                        </ul>
-                    </li>
-
-                    <!-- Users -->
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-users"></i>
-                            <span>Users</span>
-                            <span class="label label-primary pull-right">{{$panelUserCount}}</span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{URL::route('webpanel.panel.users.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
-                            <li><a href="{{URL::route('webpanel.panel.users.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
-                            <!--<li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li>  TODO: Add named route -->
-                        </ul>
-                    </li>
+                    <li><a href="{{URL::route('userpanel.loadouts.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
+                    <li><a href="{{URL::route('userpanel.loadouts.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
                 </ul>
             </li>
+
+            <!-- LoadOut Items -->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Loadout Items</span>
+                    <span class="label label-primary pull-right">123</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{URL::route('userpanel.loadoutitems.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
+                    <li><a href="{{URL::route('userpanel.loadoutitems.create')}}"><i class="fa fa-circle-o"></i> Create </a></li>
+                </ul>
+            </li>
+
         </ul>
     </section>
     <!-- /.sidebar -->

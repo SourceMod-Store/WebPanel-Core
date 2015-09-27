@@ -54,17 +54,16 @@
 
         <!-- Main content -->
         <section class="content">
-            @include('templates.adminlte205.webpanel.includes.errorcallout')
+            @include('templates.adminlte205.includes.errorcallout')
 
             @yield('content')
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
     <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.0.0-beta.5
-        </div>
-        Copyright &copy; 2013-2015  Store Plugin: <strong>Alon Gubkin</strong>, <strong>Keith Warren (Drixevel)</strong> - &copy; 2015 WebPanel: <strong>Werner Maisl</strong>. All rights reserved.
+        @yield('cont-footer')
+
+        @include('templates.adminlte205.includes.cont-footer')
     </footer>
 
 </div><!-- ./wrapper -->

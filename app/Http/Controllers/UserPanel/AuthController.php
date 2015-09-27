@@ -68,7 +68,10 @@ class AuthController extends Controller
         }
 
         //Set the session variable
+        $request->session()->put('store_user_authmethod','server_token');
         $request->session()->put('store_user_id',$user->id);
+        $request->session()->put('store_user_name',$user->name);
+        $request->session()->put('store_user_auth',$user->auth);
 
 
         //Redirect the user to the User Dashboard

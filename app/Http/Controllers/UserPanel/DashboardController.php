@@ -16,9 +16,7 @@ class DashboardController extends Controller
      */
     public function getIndex(Request $request)
     {
-        var_dump($request->session()->all());
-
-        echo "dashboard Test";
+        return view('templates.adminlte205.userpanel.empty');
     }
 
 }

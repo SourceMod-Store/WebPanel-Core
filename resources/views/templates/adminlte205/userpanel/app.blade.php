@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>WP2 | @yield('title')</title>
+    <title>WP2 User | @yield('title')</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="{{asset('templates/adminlte205/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -54,17 +54,16 @@
 
         <!-- Main content -->
         <section class="content">
-            @include('templates.adminlte205.userpanel.includes.errorcallout')
+            @include('templates.adminlte205.includes.errorcallout')
 
             @yield('content')
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
     <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.0.0-beta.5
-        </div>
-        Copyright &copy; 2013-2015  Store Plugin: <strong>Alon Gubkin</strong>, <strong>Keith Warren (Drixevel)</strong> - &copy; 2015 WebPanel: <strong>Werner Maisl</strong>. All rights reserved.
+        @yield('cont-footer')
+
+        @include('templates.adminlte205.includes.cont-footer')
     </footer>
 
 </div><!-- ./wrapper -->

@@ -1,6 +1,6 @@
-@extends('templates.adminlte205.webpanel.app')
+@extends('templates.adminlte205.userpanel.app')
 
-@section('title', 'Dashboard')
+@section('title', 'UserPanel Dashboard')
 
 @section('subtitle', 'Version 2.0')
 
