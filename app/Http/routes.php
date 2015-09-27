@@ -102,17 +102,27 @@ Route::group(['prefix' => 'userpanel'], function () {
 
         //User Items - Controller ?
         //Shows the items the user owns (inventory) and allows him to buy / sell new items
-        Route::resource('useritems', 'UserPanel\UserItemsController');
+        Route::group(['prefix' => 'useritems'],function(){
+            Route::get('', ['as' => 'userpanel.useritems.index', 'uses' => 'UserPanel\UserItemsController@getIndex']);
+            Route::get('buy', ['as' => 'userpanel.useritems.buy', 'uses' => 'UserPanel\UserItemsController@getBuy']);
+            Route::post('buy', ['uses' => 'UserPanel\UserItemsController@postBuy']);
+            Route::post('sell',['as' => 'userpanel.useritems.sell', 'uses' => 'UserPanel\UserItemsController@postSell']);
+            Route::post('trash',['as' => 'userpanel.useritems.trash', 'uses' => 'UserPanel\UserItemsController@postTrash']);
+            Route::get('userdata', ['as' => 'userpanel.useritems.userdata', 'uses' => 'UserPanel\UserItemsController@getUserData']);
+            Route::get('itemdata', ['as' => 'userpanel.useritems.itemdata', 'uses' => 'UserPanel\UserItemsController@getItemData']);
+        });
 
         //Loadouts - Controller
         // Allows to user to Create View Edit and Delete Loadouts (Only the Creator of a Loadout can Edit and Delete it)
         // Also Links to the loadout items controller
         // Also shows the items that belong to a specific loadout
+        Route::get('loadouts/data', ['as' => 'userpanel.loadouts.data', 'uses' => 'UserPanel\LoadoutController@getData']);
         Route::resource('loadouts', 'UserPanel\LoadoutController');
 
         //Loadout Items - Controller ?
         // Allows the owner of a loadout to edit the items that are assigned to that loadout
         // (Allows the owner to assign any item in the whole shop to the loadout because the store plugin checks if the user owns the item before its equipped
+        Route::get('loadoutitems/data', ['as' => 'userpanel.loadoutitems.data', 'uses' => 'UserPanel\LoadoutItemsController@getData']);
         Route::resource('loadoutitems', 'UserPanel\LoadoutItemsController');
     });
 });

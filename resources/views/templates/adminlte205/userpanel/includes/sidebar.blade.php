@@ -14,7 +14,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{URL::route('userpanel.useritems.index')}}"><i class="fa fa-circle-o"></i> View </a></li>
-                    <li><a href="{{URL::route('userpanel.useritems.create')}}"><i class="fa fa-circle-o"></i> Buy </a></li>
+                    <li><a href="{{URL::route('userpanel.useritems.buy')}}"><i class="fa fa-circle-o"></i> Buy </a></li>
                     <!--<li><a href="{{URL::route('webpanel.dashboard')}}"><i class="fa fa-circle-o"></i> Stats</a></li>  TODO: Add named route -->
                 </ul>
             </li>

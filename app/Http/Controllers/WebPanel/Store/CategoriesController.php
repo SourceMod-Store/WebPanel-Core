@@ -15,9 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = StoreCategory::all();
-
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.categories.index', compact('categories'));
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.categories.index');
     }
 
     /**
