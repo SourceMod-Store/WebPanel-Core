@@ -15,9 +15,7 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = StoreItem::all();
-
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items.index', compact('items'));
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items.index');
     }
 
     /**

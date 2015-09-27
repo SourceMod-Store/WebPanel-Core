@@ -1,7 +1,7 @@
 {
 	"name": "sourcemod-store/wp-core",
 	"description": "The Core for the New WebPanel",
-	"keywords": ["sourcemod", "store", "sourcemod-store-webpanel", "laravel"],
+	"keywords": ["sourcemod", "store", "sourcemod-store", "sourcemod-store-webpanel", "laravel"],
 	"license": "AGPL-3.0",
     "authors": [
       {
@@ -15,7 +15,8 @@
 		"laravel/framework": "5.1.*",
 		"zizaco/entrust": "dev-laravel-5",
 		"illuminate/html": "^5.0",
-        "yajra/laravel-datatables-oracle": "~5.0"
+        "yajra/laravel-datatables-oracle": "~5.0",
+	  	"ehesp/steam-login": "1.0.*"
 	},
 	"require-dev": {
         "fzaninotto/faker": "~1.4",

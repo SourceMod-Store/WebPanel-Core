@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>WP2 | @yield('title')</title>
+    <title>WP2 User | @yield('title')</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="{{asset('templates/adminlte205/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -35,9 +35,9 @@
 <div class="wrapper">
 
     <!-- Header. Contains the Username, Notifications, ...-->
-    @include('templates.adminlte205.webpanel.includes.header')
+    @include('templates.adminlte205.userpanel.includes.header')
     <!-- Left side column. contains the logo and sidebar -->
-    @include('templates.adminlte205.webpanel.includes.sidebar')
+    @include('templates.adminlte205.userpanel.includes.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

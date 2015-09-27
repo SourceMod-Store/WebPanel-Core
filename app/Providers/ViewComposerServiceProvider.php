@@ -20,9 +20,10 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->ComposeSidebar();
-        $this->ComposeForms();
-        $this->ComposeHeader();
+        $this->ComposeWebPanelSidebar();
+        $this->ComposeWebPanelForms();
+        $this->ComposeWebPanelHeader();
+        $this->ComposeUserPanelHeader();
     }
 
     /**
@@ -39,7 +40,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     /**
      * Passes the required variables to the sidebar
      */
-    public function ComposeSidebar()
+    public function ComposeWebPanelSidebar()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.includes.sidebar', function ($view) {
             $view->with('storeItemCount', StoreItem::all()->count());
@@ -55,7 +56,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     /**
      * Passes the required variables to the sidebar
      */
-    public function ComposeForms()
+    public function ComposeWebPanelForms()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items._form', function ($view) {
             $view->with('categories', StoreCategory::lists('display_name', 'id'));
@@ -83,10 +84,17 @@ class ViewComposerServiceProvider extends ServiceProvider
     /**
      * Passes the required variables to the header
      */
-    public function ComposeHeader()
+    public function ComposeWebPanelHeader()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.includes.header', function ($view) {
             $view->with('username', Auth::user()->name);
+        });
+    }
+
+    public function ComposeUserPanelHeader()
+    {
+        view()->composer('templates.' . \Config::get('webpanel.template') . 'userpanel.includes.header', function ($view) {
+            $view->with('username', Session("store_user_name"));
         });
     }
 }

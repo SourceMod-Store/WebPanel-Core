@@ -17,15 +17,15 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 //Installer Routes
-Route::group(['prefix' => 'installer'], function () {
-    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome']);
-    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome']);
-    Route::get('settings', ['as' => 'installer.settings.show', 'uses' => 'InstallerController@showSettings']);
-    Route::post('settings', ['as' => 'installer.settings.post', 'uses' => 'InstallerController@postSettings']);
-    Route::get('users', ['as' => 'installer.users.show', 'uses' => 'InstallerController@showUsers']);
-    Route::post('users', ['as' => 'installer.users.post', 'uses' => 'InstallerController@postUsers']);
-    Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
-});
+//Route::group(['prefix' => 'installer'], function () {
+//    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome']);
+//    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome']);
+//    Route::get('settings', ['as' => 'installer.settings.show', 'uses' => 'InstallerController@showSettings']);
+//    Route::post('settings', ['as' => 'installer.settings.post', 'uses' => 'InstallerController@postSettings']);
+//    Route::get('users', ['as' => 'installer.users.show', 'uses' => 'InstallerController@showUsers']);
+//    Route::post('users', ['as' => 'installer.users.post', 'uses' => 'InstallerController@postUsers']);
+//    Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
+//});
 
 //WebPanel Routes
 Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], function () {
@@ -68,9 +68,7 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], fu
     });
 });
 
-
-//Auth Routes
-
+//WebPanel Auth Routes
 Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 Route::get('/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
 
@@ -78,3 +76,53 @@ Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
+
+
+//Store UserPanel Routes
+Route::group(['prefix' => 'userpanel'], function () {
+
+    Route::get('',function(){
+        return redirect()->route('userpanel.dashboard');
+    });
+
+    //Auth
+    //Authenticates the User if not authenticated
+    Route::group(['prefix' => 'auth'],function(){
+        Route::get('', ['as' => 'userpanel.auth.index', 'uses' => 'UserPanel\AuthController@getIndex']);
+        Route::any('serverlogin',['as' => 'userpanel.auth.serverlogin', 'uses' => 'UserPanel\AuthController@serverlogin']);
+        Route::get('steamlogin',['as' => 'userpanel.auth.steamlogin', 'uses' => 'UserPanel\AuthController@steamlogin']);
+        Route::get('logout', ['as' => 'userpanel.auth.logout', 'uses' => 'UserPanel\AuthController@logout']);
+    });
+
+
+    Route::group(['middleware' => 'storeuserauth'],function(){
+        //Dashboard
+        // Will show an overview of the users items, his credits, recent transactions, ...
+        Route::get('dashboard', ['as' => 'userpanel.dashboard', 'uses' => 'UserPanel\DashboardController@getIndex']);
+
+        //User Items - Controller ?
+        //Shows the items the user owns (inventory) and allows him to buy / sell new items
+        Route::group(['prefix' => 'useritems'],function(){
+            Route::get('', ['as' => 'userpanel.useritems.index', 'uses' => 'UserPanel\UserItemsController@getIndex']);
+            Route::get('buy', ['as' => 'userpanel.useritems.buy', 'uses' => 'UserPanel\UserItemsController@getBuy']);
+            Route::post('buy', ['uses' => 'UserPanel\UserItemsController@postBuy']);
+            Route::post('sell',['as' => 'userpanel.useritems.sell', 'uses' => 'UserPanel\UserItemsController@postSell']);
+            Route::post('trash',['as' => 'userpanel.useritems.trash', 'uses' => 'UserPanel\UserItemsController@postTrash']);
+            Route::get('userdata', ['as' => 'userpanel.useritems.userdata', 'uses' => 'UserPanel\UserItemsController@getUserData']);
+            Route::get('itemdata', ['as' => 'userpanel.useritems.itemdata', 'uses' => 'UserPanel\UserItemsController@getItemData']);
+        });
+
+        //Loadouts - Controller
+        // Allows to user to Create View Edit and Delete Loadouts (Only the Creator of a Loadout can Edit and Delete it)
+        // Also Links to the loadout items controller
+        // Also shows the items that belong to a specific loadout
+        Route::get('loadouts/data', ['as' => 'userpanel.loadouts.data', 'uses' => 'UserPanel\LoadoutController@getData']);
+        Route::resource('loadouts', 'UserPanel\LoadoutController');
+
+        //Loadout Items - Controller ?
+        // Allows the owner of a loadout to edit the items that are assigned to that loadout
+        // (Allows the owner to assign any item in the whole shop to the loadout because the store plugin checks if the user owns the item before its equipped
+        Route::get('loadoutitems/data', ['as' => 'userpanel.loadoutitems.data', 'uses' => 'UserPanel\LoadoutItemsController@getData']);
+        Route::resource('loadoutitems', 'UserPanel\LoadoutItemsController');
+    });
+});

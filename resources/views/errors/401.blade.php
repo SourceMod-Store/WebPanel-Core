@@ -34,8 +34,8 @@
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Be right back.</div>
-				<div class="subtitle">HTTP Error 503</div>
+				<div class="title">You are not authorized to be here.</div>
+				<div class="subtitle">HTTP Error 401</div>
 			</div>
 		</div>
 	</body>

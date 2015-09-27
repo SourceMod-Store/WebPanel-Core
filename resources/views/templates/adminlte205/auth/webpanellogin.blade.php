@@ -1,6 +1,6 @@
 @extends('templates.adminlte205.auth.app')
 
-@section('title', 'Login')
+@section('title', 'Admin Login')
 
 @section('body-class', 'login-page')
 

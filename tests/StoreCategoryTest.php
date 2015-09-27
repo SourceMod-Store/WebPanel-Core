@@ -42,6 +42,9 @@ class StoreCategoryTest extends TestCase
 
         //Get the ID of the Category
         $category_id = $this->get_category_id();
+        $this->assertNotNull($category_id); //Check if the category exists
+
+        //TODO: Check that the category is shown at the gui
 
         $this->visit('/webpanel/store/categories/'.$category_id.'/edit');
         $this->see("Int Test Cat"); //Check for the display name
@@ -67,7 +70,15 @@ class StoreCategoryTest extends TestCase
     private function get_category_id()
     {
         $category = StoreCategory::where('display_name', 'test')->first();
-        return $category->id;
+
+        if ($category != NULL)
+        {
+            return $category->id;
+        }
+        else
+        {
+            return NULL;
+        }
     }
 
     private function delete_category_if_exists()
