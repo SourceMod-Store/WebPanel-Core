@@ -81,6 +81,10 @@ Route::controllers([
 //Store UserPanel Routes
 Route::group(['prefix' => 'userpanel'], function () {
 
+    Route::get('',function(){
+        return redirect()->route('userpanel.dashboard');
+    });
+
     //Auth
     //Authenticates the User if not authenticated
     Route::group(['prefix' => 'auth'],function(){

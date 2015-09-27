@@ -16,7 +16,7 @@ class DashboardController extends Controller
      */
     public function getIndex(Request $request)
     {
-        return view('templates.adminlte205.userpanel.empty');
+        return view('templates.' . \Config::get('webpanel.template') . 'userpanel.empty');
     }
 
 }

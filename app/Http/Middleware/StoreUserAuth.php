@@ -52,7 +52,7 @@ class StoreUserAuth
             //Check if the store_user_id is valid
             if($user == null)
             {
-                return redirect()->route('userpanel.auth.index')->withErrors(['You do not have the permission that is required to perform this action']);
+                return redirect()->route('userpanel.auth.index')->withErrors(['You need to login to be able to use this application']);
             }
 
             return $next($request);
@@ -77,6 +77,6 @@ class StoreUserAuth
 //            }
 //        }
 
-        return redirect()->route('userpanel.auth.index')->withErrors(['You do not have the permission that is required to perform this action']);
+        return redirect()->route('userpanel.auth.index')->withErrors(['You need to login to be able to use this application']);
     }
 }

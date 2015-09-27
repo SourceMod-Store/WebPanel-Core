@@ -20,7 +20,7 @@ class AuthController extends Controller
      */
     public function getIndex(Request $request)
     {
-
+        return view('templates.' . \Config::get('webpanel.template') . 'auth.userpanellogin');
     }
 
 
@@ -76,13 +76,6 @@ class AuthController extends Controller
 
         //Redirect the user to the User Dashboard
         return redirect()->route('userpanel.dashboard');
-
-        //TODO: Remove that
-//        echo "<p>auth Test</p>";
-//        echo "<p>token:".$request->input("token")."</p>";
-//        echo "<p>userid:".$request->input("userid")."</p>";
-//        echo "<p>ip:".$request->getClientIp()."</p>";
-//        echo "<p>username:".$user->name."</p>";
 
     }
 
