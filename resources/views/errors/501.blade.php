@@ -26,7 +26,7 @@
 			}
 
 			.title {
-				font-size: 72px;
+				font-size: 50px;
 				margin-bottom: 40px;
 			}
 		</style>
@@ -34,8 +34,8 @@
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Be right back.</div>
-				<div class="subtitle">HTTP Error 503</div>
+				<div class="title">Oh no, you discovered a feature thats not implemented.</div>
+				<div class="subtitle">HTTP Error 501</div>
 			</div>
 		</div>
 	</body>

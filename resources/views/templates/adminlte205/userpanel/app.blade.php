@@ -35,9 +35,9 @@
 <div class="wrapper">
 
     <!-- Header. Contains the Username, Notifications, ...-->
-    @include('templates.adminlte205.webpanel.includes.header')
+    @include('templates.adminlte205.userpanel.includes.header')
     <!-- Left side column. contains the logo and sidebar -->
-    @include('templates.adminlte205.webpanel.includes.sidebar')
+    @include('templates.adminlte205.userpanel.includes.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -54,7 +54,7 @@
 
         <!-- Main content -->
         <section class="content">
-            @include('templates.adminlte205.webpanel.includes.errorcallout')
+            @include('templates.adminlte205.userpanel.includes.errorcallout')
 
             @yield('content')
         </section><!-- /.content -->

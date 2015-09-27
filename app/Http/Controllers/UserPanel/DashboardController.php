@@ -14,8 +14,10 @@ class DashboardController extends Controller
      *
      * @return Response
      */
-    public function getIndex()
+    public function getIndex(Request $request)
     {
+        var_dump($request->session()->all());
+
         echo "dashboard Test";
     }
 

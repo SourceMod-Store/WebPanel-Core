@@ -81,30 +81,34 @@ Route::controllers([
 //Store UserPanel Routes
 Route::group(['prefix' => 'userpanel'], function () {
 
-    Route::get('test',function(){
-        return "test";
-    });
-
     //Auth
     //Authenticates the User if not authenticated
+    Route::group(['prefix' => 'auth'],function(){
+        Route::get('', ['as' => 'userpanel.auth.index', 'uses' => 'UserPanel\AuthController@getIndex']);
+        Route::any('serverlogin',['as' => 'userpanel.auth.serverlogin', 'uses' => 'UserPanel\AuthController@serverlogin']);
+        Route::get('steamlogin',['as' => 'userpanel.auth.steamlogin', 'uses' => 'UserPanel\AuthController@steamlogin']);
+        Route::get('logout', ['as' => 'userpanel.auth.logout', 'uses' => 'UserPanel\AuthController@logout']);
+    });
 
-    //Dashboard
-    // Will show an overview of the users items, his credits, recent transactions, ...
-    Route::get('dashboard', ['as' => 'userpanel.dashboard', 'uses' => 'UserPanel\DashboardController@getIndex']);
 
-    //User Items - Controller ?
-    //Shows the items the user owns (inventory) and allows him to buy / sell new items
-    Route::resource('useritems', 'UserPanel\UserItemsController');
+    Route::group(['middleware' => 'storeuserauth'],function(){
+        //Dashboard
+        // Will show an overview of the users items, his credits, recent transactions, ...
+        Route::get('dashboard', ['as' => 'userpanel.dashboard', 'uses' => 'UserPanel\DashboardController@getIndex']);
 
-    //Loadouts - Controller
-    // Allows to user to Create View Edit and Delete Loadouts (Only the Creator of a Loadout can Edit and Delete it)
-    // Also Links to the loadout items controller
-    // Also shows the items that belong to a specific loadout
-    Route::resource('loadouts', 'UserPanel\LoadoutController');
+        //User Items - Controller ?
+        //Shows the items the user owns (inventory) and allows him to buy / sell new items
+        Route::resource('useritems', 'UserPanel\UserItemsController');
 
-    //Loadout Items - Controller ?
-    // Allows the owner of a loadout to edit the items that are assigned to that loadout
-    // (Allows the owner to assign any item in the whole shop to the loadout because the store plugin checks if the user owns the item before its equipped
-    Route::resource('loadoutitems', 'UserPanel\LoadoutItemsController');
+        //Loadouts - Controller
+        // Allows to user to Create View Edit and Delete Loadouts (Only the Creator of a Loadout can Edit and Delete it)
+        // Also Links to the loadout items controller
+        // Also shows the items that belong to a specific loadout
+        Route::resource('loadouts', 'UserPanel\LoadoutController');
 
+        //Loadout Items - Controller ?
+        // Allows the owner of a loadout to edit the items that are assigned to that loadout
+        // (Allows the owner to assign any item in the whole shop to the loadout because the store plugin checks if the user owns the item before its equipped
+        Route::resource('loadoutitems', 'UserPanel\LoadoutItemsController');
+    });
 });
