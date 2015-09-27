@@ -110,19 +110,16 @@ class AuthController extends Controller
         echo "<p> Auth:".$auth."</p>";
 
         //Get the userid for the auth string
-        $user = StoreUser::where("auth",$auth)->first();
-        var_dump($user);
-
-        //Check if the user exists / FirstOrFail the query
+        $user = StoreUser::where("auth",$auth)->firstOrFail();
 
         //Set the session vars
-//        $request->session()->put('store_user_authmethod','steam_openid');
-//        $request->session()->put('store_user_id',$user->id);
-//        $request->session()->put('store_user_name',$user->name);
-//        $request->session()->put('store_user_auth',$user->auth);
+        $request->session()->put('store_user_authmethod','steam_openid');
+        $request->session()->put('store_user_id',$user->id);
+        $request->session()->put('store_user_name',$user->name);
+        $request->session()->put('store_user_auth',$user->auth);
 
         //Redirect the user to the User Dashboard
-        //return redirect()->route('userpanel.dashboard');
+        return redirect()->route('userpanel.dashboard');
     }
 
     /**
