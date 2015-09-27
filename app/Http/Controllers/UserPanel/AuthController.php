@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\StoreUser;
+use Ehesp\SteamLogin\Laravel\Facades\SteamLogin;
 
 class AuthController extends Controller
 {
@@ -89,7 +90,7 @@ class AuthController extends Controller
      */
     public function steamlogin(Request $request)
     {
-        abort(501);
+        return SteamLogin::validate();
     }
 
     /**
