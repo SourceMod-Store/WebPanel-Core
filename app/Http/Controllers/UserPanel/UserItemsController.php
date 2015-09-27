@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\StoreUser;
 use App\Models\StoreItem;
 use yajra\Datatables\Datatables;
+use Carbon\Carbon;
 
 class UserItemsController extends Controller
 {
@@ -35,9 +36,31 @@ class UserItemsController extends Controller
     /**
      * Perform the actual Purchase
      */
-    public function postBuy()
+    public function postBuy(Request $request)
     {
+        //TODO: Add a detail page with some more info about the item
 
+        $item_id = $request->input("item_id");
+
+        $user = StoreUser::find($request->session()->get('store_user_id'));
+        $item = StoreItem::find($item_id);
+
+
+        //Check if item can be bought
+        if ($item->is_buyable == 0) abort(400);
+
+        //Check if the user has got enough credits
+        if($user->credits >= $item->price)
+        {
+            $user->credits = $user->credits - $item->price;
+            $user->save();
+            $user->items()->attach($item->id, ['acquire_method' => 'web','acquire_date'=> Carbon::now()->toDateTimeString()]);
+            return redirect()->route('userpanel.useritems.index');
+        }
+        else
+        {
+            abort(402);
+        }
     }
 
     /**
@@ -93,13 +116,13 @@ class UserItemsController extends Controller
                     $user->items()->attach($item->id);
                 }
 
-                $user->credits = $user->credits + $item->price; //Award Credits
+                $user->credits = $user->credits + $item->price; //Award Credits TODO: Add "refund-fee"
                 $user->save(); //Save Credts
             }
             else //All items should be removed
             {
                 $user->items()->detach($item->id);
-                $user->credits = $user->credits + $item->price * $owned_items;
+                $user->credits = $user->credits + $item->price * $owned_items; //TODO: Add "refund-fee"
                 $user->save();
             }
 
@@ -120,15 +143,13 @@ class UserItemsController extends Controller
      */
     public function getUserData(Request $request)
     {
-        //$items = StoreItem::select(['id','priority','name','type','price']);
         $user = StoreUser::find($request->session()->get('store_user_id'));
 
-        //$useritems = $user->items()->select(['priority','name','type','price'])->get();
         $useritems = $user->items()->get();
 
         return Datatables::of($useritems)
-            ->addColumn('action', function ($useritem) {
-                $actions = view('templates.' . \Config::get('webpanel.template') . 'userpanel.useritems._actions', compact('useritem'))->render();
+            ->addColumn('action', function ($item) {
+                $actions = view('templates.' . \Config::get('webpanel.template') . 'userpanel.useritems._actions', compact('item'))->render();
                 return $actions;
             })
             ->make(true);

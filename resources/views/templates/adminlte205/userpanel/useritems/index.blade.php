@@ -58,7 +58,7 @@
                     {data: 'type', name: 'type'},
                     {data: 'loadout_slot', name: 'loadout_slot'},
                     {data: 'price', name: 'price'},
-                    {data: 'action', name: 'Action'},
+                    {data: 'action', name: 'Action', orderable: false, searchable: false},
                 ]
             });
         } );
