@@ -106,8 +106,7 @@ Route::group(['prefix' => 'userpanel'], function () {
             Route::get('', ['as' => 'userpanel.useritems.index', 'uses' => 'UserPanel\UserItemsController@getIndex']);
             Route::get('buy', ['as' => 'userpanel.useritems.buy', 'uses' => 'UserPanel\UserItemsController@getBuy']);
             Route::post('buy', ['uses' => 'UserPanel\UserItemsController@postBuy']);
-            Route::post('sell',['as' => 'userpanel.useritems.sell', 'uses' => 'UserPanel\UserItemsController@postSell']);
-            Route::post('trash',['as' => 'userpanel.useritems.trash', 'uses' => 'UserPanel\UserItemsController@postTrash']);
+            Route::post('remove',['as' => 'userpanel.useritems.remove', 'uses' => 'UserPanel\UserItemsController@postRemove']);
             Route::get('userdata', ['as' => 'userpanel.useritems.userdata', 'uses' => 'UserPanel\UserItemsController@getUserData']);
             Route::get('itemdata', ['as' => 'userpanel.useritems.itemdata', 'uses' => 'UserPanel\UserItemsController@getItemData']);
         });

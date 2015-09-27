@@ -41,24 +41,74 @@ class UserItemsController extends Controller
     }
 
     /**
-     * Sell the item and refund credits
+     * Remove the item and refund credits if item is refundable
      *
      * @param  int  $id
      * @return Response
      */
-    public function postSell($id)
+    public function postRemove(Request $request)
     {
-        //Check if it can be sold
-        //If not, then trash
-    }
+        //TODO: Add Logging
+        //TODO: Add Tests
 
-    /**
-     * Remove the Item without refunding credits
-     *
-     * @param $id
-     */
-    public function postTrash($id)
-    {
+        $item_id = $request->input("item_id");
+        $single_item = $request->input("single_item");
+
+
+        $user = StoreUser::find($request->session()->get('store_user_id'));
+        $item = StoreItem::find($item_id);
+
+        //Check if the user ownes the item before removing it
+        $owned_items = $user->items()->where('item_id',$item->id)->count();
+
+        if($owned_items <= 0)
+        {
+            //TODO: Log this
+            abort(400);
+        }
+
+        //Check if item is refundable or not
+        if ($item->is_refundable == 0)
+        {
+            $user->items()->detach($item->id); //Remove item
+            if($single_item == true)
+            {
+                //TODO: Find a way to replace the for loop
+                for ($i = 1 ; $i <= $owned_items - 1; $i++) //Reattach items again
+                {
+                    $user->items()->attach($item->id);
+                }
+            }
+
+            return redirect()->route('userpanel.useritems.index');
+        }
+        elseif ($item->is_refundable == 1) //Check if credits should be awarded
+        {
+            if($single_item == true) //Check if only a single item should be removed
+            {
+                //TODO: Find a way to replace the for loop
+                $user->items()->detach($item->id); //Remove items
+                for ($i = 1 ; $i <= $owned_items - 1; $i++) //Reattach all but one item again
+                {
+                    $user->items()->attach($item->id);
+                }
+
+                $user->credits = $user->credits + $item->price; //Award Credits
+                $user->save(); //Save Credts
+            }
+            else //All items should be removed
+            {
+                $user->items()->detach($item->id);
+                $user->credits = $user->credits + $item->price * $owned_items;
+                $user->save();
+            }
+
+            return redirect()->route('userpanel.useritems.index');
+        }
+        else
+        {
+            abort(500, "Invalid refundable string");
+        }
 
     }
 
