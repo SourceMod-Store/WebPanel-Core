@@ -100,7 +100,7 @@ Route::group(['prefix' => 'userpanel'], function () {
         // Will show an overview of the users items, his credits, recent transactions, ...
         Route::get('dashboard', ['as' => 'userpanel.dashboard', 'uses' => 'UserPanel\DashboardController@getIndex']);
 
-        //User Items - Controller ?
+        //User Items
         //Shows the items the user owns (inventory) and allows him to buy / sell new items
         Route::group(['prefix' => 'useritems'],function(){
             Route::get('', ['as' => 'userpanel.useritems.index', 'uses' => 'UserPanel\UserItemsController@getIndex']);
@@ -124,4 +124,9 @@ Route::group(['prefix' => 'userpanel'], function () {
         Route::get('loadoutitems/data', ['as' => 'userpanel.loadoutitems.data', 'uses' => 'UserPanel\LoadoutItemsController@getData']);
         Route::resource('loadoutitems', 'UserPanel\LoadoutItemsController');
     });
+
+    //Helper Functions
+    Route::get('steamimage', ['as' => 'userpanel.steamimage.current', 'uses' => 'Userpanel\SteamImageController@getUserImageForCurrent']);
+    Route::get('steamimage/refresh', ['as' => 'userpanel.steamimage.auth', 'uses' => 'Userpanel\SteamImageController@refreshUserImage']);
+    Route::get('steamimage/{auth}', ['as' => 'userpanel.steamimage.auth', 'uses' => 'Userpanel\SteamImageController@getUserImageForAuth']);
 });

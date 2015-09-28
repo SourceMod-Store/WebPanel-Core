@@ -154,6 +154,7 @@ return [
 		yajra\Datatables\DatatablesServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 		Ehesp\SteamLogin\Laravel\SteamLoginServiceProvider::class,
+		Intervention\Image\ImageServiceProvider::class,
 
 
 	],
@@ -208,6 +209,7 @@ return [
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Datatables' => 'yajra\Datatables\Datatables',
 		'SteamLogin' => 'Ehesp\SteamLogin\Laravel\Facades\SteamLogin',
+		'Image' => 'Intervention\Image\Facades\Image'
 	],
 
 ];
