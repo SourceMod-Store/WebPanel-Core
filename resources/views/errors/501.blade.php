@@ -36,6 +36,9 @@
 			<div class="content">
 				<div class="title">Oh no, you discovered a feature thats not implemented.</div>
 				<div class="subtitle">HTTP Error 501</div>
+				@if(isset($message))
+					<div class="info">{{ $message }}</div>
+				@endif
 			</div>
 		</div>
 	</body>

@@ -98,6 +98,7 @@ class AuthController extends Controller
         }
         catch(\Exception $e)
         { //If not possible show 401 error
+            view()->share('message',$e->getMessage());
             abort(401);
         }
 
@@ -117,7 +118,8 @@ class AuthController extends Controller
         }
         catch(\Exception $e)
         {
-            abort(601);
+            view()->share('message','You have to play on the server before you can use the UserPanel');
+            abort(401);
         }
 
         //Set the session vars

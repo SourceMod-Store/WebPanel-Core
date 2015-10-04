@@ -36,6 +36,9 @@
 			<div class="content">
 				<div class="title">I dont like shitty input.</div>
 				<div class="subtitle">HTTP Error 400</div>
+				@if(isset($message))
+					<div class="info">{{ $message }}</div>
+				@endif
 			</div>
 		</div>
 	</body>

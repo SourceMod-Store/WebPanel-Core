@@ -36,6 +36,9 @@
 			<div class="content">
 				<div class="title">You are not authorized to be here.</div>
 				<div class="subtitle">HTTP Error 401</div>
+				@if(isset($message))
+					<div class="info">{{ $message }}</div>
+				@endif
 			</div>
 		</div>
 	</body>

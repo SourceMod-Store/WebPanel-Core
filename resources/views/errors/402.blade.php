@@ -36,6 +36,9 @@
 			<div class="content">
 				<div class="title">You do not have enough credits to perform this action.</div>
 				<div class="subtitle">HTTP Error 402</div>
+				@if(isset($message))
+					<div class="info">{{ $message }}</div>
+				@endif
 			</div>
 		</div>
 	</body>
