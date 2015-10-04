@@ -96,7 +96,7 @@ class AuthController extends Controller
         {
             $community = SteamLogin::validate();
         }
-        catch(Exception $e)
+        catch(\Exception $e)
         { //If not possible show 401 error
             abort(401);
         }
@@ -115,7 +115,7 @@ class AuthController extends Controller
         {
             $user = StoreUser::where("auth",$auth)->firstOrFail();
         }
-        catch(Exception $e)
+        catch(\Exception $e)
         {
             abort(601);
         }
