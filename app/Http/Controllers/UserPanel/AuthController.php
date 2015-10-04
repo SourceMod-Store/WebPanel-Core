@@ -10,6 +10,7 @@ use App\Models\StoreUser;
 use Ehesp\SteamLogin\Laravel\Facades\SteamLogin;
 use App\Http\Controllers\UserPanel\SteamConvertController;
 use Mockery\CountValidator\Exception;
+use Log;
 
 class AuthController extends Controller
 {
@@ -33,7 +34,6 @@ class AuthController extends Controller
      * @param Request $request
      * @return Response
      */
-    //TODO: Add logging
     public function serverlogin(Request $request)
     {
         $token = $request->input("token");
@@ -43,23 +43,30 @@ class AuthController extends Controller
         //Validate input
         if (!isset($token) || !isset($userid))
         {
-            echo "<p> Invalid input </p>";
-            die();
+            Log::debug("No token or userid has been provided");
+            abort(400);
         }
 
         //GET the user from the db
-        $user = StoreUser::findOrFail($userid);
+        try {
+            $user = StoreUser::findOrFail($userid);
+        }
+        catch(\Exception $e)
+        {
+            Log::notice("User does not exist in db",["userid" => $userid]);
+            abort(401);
+        }
 
         //Check if the token matches
         if ($user->token != $token || $user->token == NULL || $user->token == "")
         {
-            //TODO: Log the error
+            Log::notice("Invalid Token",["token" => $user->token , "provided_token" => $token]);
             abort(401);
         }
         //Check if the ip matches
         if ($user->ip !=$clientip || $user->ip == NULL || $user->ip == "")
         {
-            //TODO: Log the error
+            Log::notice("Invalid User IP",["ip" => $user->ip , "provided_ip" => $clientip]);
             abort(401);
         }
 
@@ -67,6 +74,7 @@ class AuthController extends Controller
         //Check if the session variable already exists
         if($request->session()->has("store_user_id"))
         {
+            Log::debug("Session with store_user_id already exists");
             //TODO: Handle the case that the store_user_id already exists
         }
 
@@ -76,9 +84,10 @@ class AuthController extends Controller
         $request->session()->put('store_user_name',$user->name);
         $request->session()->put('store_user_auth',$user->auth);
 
+        Log::info("User logged in",["user_id" => $user->id , "user_name" => $user->name]);
+
         //Redirect the user to the User Dashboard
         return redirect()->route('userpanel.dashboard');
-
     }
 
 
@@ -98,18 +107,15 @@ class AuthController extends Controller
         }
         catch(\Exception $e)
         { //If not possible show 401 error
+            Log::notice("Invalid Steam Auth Attempt");
             view()->share('message',$e->getMessage());
             abort(401);
         }
-
-        echo "<p> Community:".$community."</p>";
-
         //Get the auth string for the steamid64
         $steam = SteamConvertController::communityid_to_steam($community);
         $auth = SteamConvertController::steamid_to_auth($steam);
 
-        echo "<p> Steam:".$steam."</p>";
-        echo "<p> Auth:".$auth."</p>";
+        Log::debug("Successful Stem Auth",["CommunityID" => $community,"SteamID"=>$steam,"auth" => $auth]);
 
         //Get the userid for the auth string
         try
@@ -118,6 +124,7 @@ class AuthController extends Controller
         }
         catch(\Exception $e)
         {
+            Log::notice("User does not exist in db",["auth" => $auth]);
             view()->share('message','You have to play on the server before you can use the UserPanel');
             abort(401);
         }
