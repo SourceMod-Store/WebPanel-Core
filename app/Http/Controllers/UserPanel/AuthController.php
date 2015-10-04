@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\StoreUser;
 use Ehesp\SteamLogin\Laravel\Facades\SteamLogin;
 use App\Http\Controllers\UserPanel\SteamConvertController;
+use Mockery\CountValidator\Exception;
 
 class AuthController extends Controller
 {
@@ -110,7 +111,14 @@ class AuthController extends Controller
         echo "<p> Auth:".$auth."</p>";
 
         //Get the userid for the auth string
-        $user = StoreUser::where("auth",$auth)->firstOrFail();
+        try
+        {
+            $user = StoreUser::where("auth",$auth)->firstOrFail();
+        }
+        catch(Exception $e)
+        {
+            abort(601);
+        }
 
         //Set the session vars
         $request->session()->put('store_user_authmethod','steam_openid');
