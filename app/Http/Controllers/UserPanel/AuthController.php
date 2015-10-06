@@ -64,7 +64,7 @@ class AuthController extends Controller
             abort(401);
         }
         //Check if the ip matches
-        if ($user->ip !=$clientip || $user->ip == NULL || $user->ip == "")
+        if (!\Config::get('userpanel.serverlogin_ignore_ipmismatch') && ($user->ip !=$clientip || $user->ip == NULL || $user->ip == ""))
         {
             Log::notice("Invalid User IP",["ip" => $user->ip , "provided_ip" => $clientip]);
             abort(401);
