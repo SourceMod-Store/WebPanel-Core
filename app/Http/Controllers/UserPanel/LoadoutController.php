@@ -82,4 +82,9 @@ class LoadoutController extends Controller
     {
         //
     }
+
+    public function getData()
+    {
+
+    }
 }

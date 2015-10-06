@@ -38,7 +38,7 @@ class UserItemsController extends Controller
      */
     public function postBuy(Request $request)
     {
-        //TODO: Add a detail page with some more info about the item
+        //TODO: Add a detail page with some more info about the item and let the user confirm the purchase
 
         $item_id = $request->input("item_id");
 

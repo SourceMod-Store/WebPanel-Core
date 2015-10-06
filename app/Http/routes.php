@@ -117,12 +117,6 @@ Route::group(['prefix' => 'userpanel'], function () {
         // Also shows the items that belong to a specific loadout
         Route::get('loadouts/data', ['as' => 'userpanel.loadouts.data', 'uses' => 'UserPanel\LoadoutController@getData']);
         Route::resource('loadouts', 'UserPanel\LoadoutController');
-
-        //Loadout Items - Controller ?
-        // Allows the owner of a loadout to edit the items that are assigned to that loadout
-        // (Allows the owner to assign any item in the whole shop to the loadout because the store plugin checks if the user owns the item before its equipped
-        Route::get('loadoutitems/data', ['as' => 'userpanel.loadoutitems.data', 'uses' => 'UserPanel\LoadoutItemsController@getData']);
-        Route::resource('loadoutitems', 'UserPanel\LoadoutItemsController');
     });
 
     //Helper Functions
