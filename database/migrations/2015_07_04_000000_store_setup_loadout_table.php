@@ -75,6 +75,7 @@ class StoreSetupLoadoutTable extends Migration
 
         // Create the store_users_items_loadouts table
         Schema::connection('store')->create('users_items_loadouts', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('useritem_id')->unsigned();
             $table->integer('loadout_id')->unsigned();
