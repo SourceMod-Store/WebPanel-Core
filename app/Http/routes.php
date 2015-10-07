@@ -120,7 +120,7 @@ Route::group(['prefix' => 'userpanel'], function () {
     });
 
     //Helper Functions
-    Route::get('steamimage', ['as' => 'userpanel.steamimage.current', 'uses' => 'Userpanel\SteamImageController@getUserImageForCurrent']);
-    Route::get('steamimage/refresh', ['as' => 'userpanel.steamimage.auth', 'uses' => 'Userpanel\SteamImageController@refreshUserImage']);
-    Route::get('steamimage/{auth}', ['as' => 'userpanel.steamimage.auth', 'uses' => 'Userpanel\SteamImageController@getUserImageForAuth']);
+    Route::get('steamimage', ['as' => 'userpanel.steamimage.current', 'uses' => 'UserPanel\SteamImageController@getUserImageForCurrent']);
+    Route::get('steamimage/refresh', ['as' => 'userpanel.steamimage.auth', 'uses' => 'UserPanel\SteamImageController@refreshUserImage']);
+    Route::get('steamimage/{auth}', ['as' => 'userpanel.steamimage.auth', 'uses' => 'UserPanel\SteamImageController@getUserImageForAuth']);
 });
