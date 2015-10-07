@@ -20,7 +20,7 @@ class UserItemsController extends Controller
      */
     public function getIndex()
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'userpanel.useritems.index');
+        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.useritems.index');
     }
 
     /**
@@ -30,7 +30,7 @@ class UserItemsController extends Controller
      */
     public function getBuy()
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'userpanel.useritems.buy');
+        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.useritems.buy');
     }
 
     /**
@@ -149,7 +149,7 @@ class UserItemsController extends Controller
 
         return Datatables::of($useritems)
             ->addColumn('action', function ($item) {
-                $actions = view('templates.' . \Config::get('webpanel.template') . 'userpanel.useritems._actions', compact('item'))->render();
+                $actions = view('templates.' . \Config::get('userpanel.template') . 'userpanel.useritems._actions', compact('item'))->render();
                 return $actions;
             })
             ->make(true);
@@ -167,7 +167,7 @@ class UserItemsController extends Controller
 
         return Datatables::of($items)
             ->addColumn('action', function ($item) {
-                $actions = view('templates.' . \Config::get('webpanel.template') . 'userpanel.useritems._buyactions', compact('item'))->render();
+                $actions = view('templates.' . \Config::get('userpanel.template') . 'userpanel.useritems._buyactions', compact('item'))->render();
                 return $actions;
             })
             ->make(true);

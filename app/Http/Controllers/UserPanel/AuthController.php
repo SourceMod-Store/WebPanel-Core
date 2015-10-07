@@ -38,6 +38,7 @@ class AuthController extends Controller
     {
         $token = $request->input("token");
         $userid = intval($request->input("userid"));
+        $page = $request->input("page");
         $clientip = $request->getClientIp();
 
         //Validate input
@@ -86,8 +87,23 @@ class AuthController extends Controller
 
         Log::info("User logged in",["user_id" => $user->id , "user_name" => $user->name]);
 
-        //Redirect the user to the User Dashboard
-        return redirect()->route('userpanel.dashboard');
+
+        if (!isset($page) || !isset($page))
+        {
+            switch ($page)
+            {
+                case "item_buy":
+                    return redirect()->route('userpanel.useritems.buy');
+                case "inventory":
+                    return redirect()->route('userpanel.useritems.index');
+                case "loadouts":
+                    return redirect()->route('userpanel.loadouts.index');
+                case "dashboard":
+                    return redirect()->route('userpanel.dashboard');
+                default:
+                    return redirect()->route('userpanel.dashboard');
+            }
+        }
     }
 
 

@@ -10,80 +10,74 @@ use App\Http\Controllers\Controller;
 class LoadoutController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * Overview of all the loadouts
+     * Display tags for the loadouts (owned, subscribed)
+     * Display a subscribe button (and maybe a clone button)
      */
-    public function index()
+    public function getIndex()
     {
-        //
+        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.index');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Details for the Loadout
+     * Displays the associted items
+     * Displays a owned tag if a item is owned
      *
-     * @return Response
+     * @param $loadoutid
      */
-    public function create()
+    public function getLoadout($loadoutid)
     {
-        //
+
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Shows a Add item page for the loadout
+     * Displays all available items
+     * Add a way to display only the owned items
      *
-     * @return Response
+     * @param $loadoutid
      */
-    public function store()
+    public function getAddItemToLoadout($loadoutid)
     {
-        //
+
     }
 
     /**
-     * Display the specified resource.
+     * Shows everyone who subscribed to the loadout
      *
-     * @param  int  $id
-     * @return Response
+     * @param $loadoutid
      */
-    public function show($id)
+    public function getLoadoutSubscribers($loadoutid)
     {
-        //
+
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Datatable data for all Loadouts
      *
-     * @param  int  $id
-     * @return Response
      */
-    public function edit($id)
+    public function getLoadoutData()
     {
-        //
+
     }
 
     /**
-     * Update the specified resource in storage.
+     * Datatable data for items for a specific Loadout
      *
-     * @param  int  $id
-     * @return Response
+     * @param $loadoutid
      */
-    public function update($id)
+    public function getItemDataForLoadout($loadoutid)
     {
-        //
+
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Datatable data for subscribers for a specific loadout
      *
-     * @param  int  $id
-     * @return Response
+     * @param $loadoutid
      */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function getData()
+    public function getSubscriberDataForLoadout($loadoutid)
     {
 
     }
