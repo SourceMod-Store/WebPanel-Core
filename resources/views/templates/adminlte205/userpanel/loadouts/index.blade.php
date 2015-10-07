@@ -48,7 +48,7 @@
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ url("userpanel/useritems/userdata") }}',
+                {{--ajax: '{{ url("userpanel/useritems/userdata") }}', TEMP REMOVED--}}
                 columns: [
                     {data: 'display_name', name: 'display_name'},
                     {data: 'game', name: 'game'},

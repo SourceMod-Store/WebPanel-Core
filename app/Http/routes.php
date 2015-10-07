@@ -117,6 +117,7 @@ Route::group(['prefix' => 'userpanel'], function () {
         // Also shows the items that belong to a specific loadout
         Route::group(['prefix' => 'loadouts'],function(){
             Route::get('', ['as' => 'userpanel.loadouts.index', 'uses' => 'UserPanel\LoadoutController@getIndex']); //Get the overview of all available loadouts. Display tags for the loadouts (owned, subscribe) and display a subscribe and maybe a clone button on
+            Route::get('create',['as' => 'userpanel.loadouts.create', 'uses' => 'UserPanel\LoadoutController@getCreate']);
             Route::get('{loadoutid}', ['as' => 'userpanel.useritems.userdata', 'uses' => 'UserPanel\LoadoutController@getLoadout']); //Shows a overview of the loadout with the associated items
             Route::get('{loadoutid}/additem', ['uses' => 'UserPanel\LoadoutController@getAddItemToLoadout']); //Shows the menu to add an item to the loadout
             Route::get('{loadoutid}/subsribers', ['uses' => 'UserPanel\LoadoutController@getLoadoutSubscribers']); //Shows who subscribed to the loadout
@@ -124,9 +125,6 @@ Route::group(['prefix' => 'userpanel'], function () {
             Route::get('{loadoutid}/itemdata', ['uses' => 'UserPanel\LoadoutController@getItemDataForLoadout']);
             Route::get('{loadoutid}/subsriberdata', ['uses' => 'UserPanel\LoadoutController@getSubscriberDataForLoadout']);
         });
-
-        Route::get('loadouts/data', ['as' => 'userpanel.loadouts.data', 'uses' => 'UserPanel\LoadoutController@getData']);
-        Route::resource('loadouts', 'UserPanel\LoadoutController');
     });
 
     //Helper Functions
