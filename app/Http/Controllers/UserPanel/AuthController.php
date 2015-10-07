@@ -92,6 +92,7 @@ class AuthController extends Controller
         //GAME: CSGO
         if($game == "csgo")
         {
+            Log::debug("User is on CSGO",["user_id" => $user->id , "user_name" => $user->name, "page" => $page]);
             $data = array();
 
             switch ($page)
@@ -120,6 +121,7 @@ class AuthController extends Controller
         }
         else // Game is not CSGO
         {
+            Log::debug("User is not on CSGO",["user_id" => $user->id , "user_name" => $user->name, "page" => $page]);
             if (!isset($page) || !isset($page))
             {
                 return redirect()->route('userpanel.dashboard');
