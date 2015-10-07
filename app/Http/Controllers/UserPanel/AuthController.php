@@ -90,19 +90,21 @@ class AuthController extends Controller
 
         if (!isset($page) || !isset($page))
         {
-            switch ($page)
-            {
-                case "item_buy":
-                    return redirect()->route('userpanel.useritems.buy');
-                case "inventory":
-                    return redirect()->route('userpanel.useritems.index');
-                case "loadouts":
-                    return redirect()->route('userpanel.loadouts.index');
-                case "dashboard":
-                    return redirect()->route('userpanel.dashboard');
-                default:
-                    return redirect()->route('userpanel.dashboard');
-            }
+            return redirect()->route('userpanel.dashboard');
+        }
+
+        switch ($page)
+        {
+            case "item_buy":
+                return redirect()->route('userpanel.useritems.buy');
+            case "inventory":
+                return redirect()->route('userpanel.useritems.index');
+            case "loadouts":
+                return redirect()->route('userpanel.loadouts.index');
+            case "dashboard":
+                return redirect()->route('userpanel.dashboard');
+            default:
+                return redirect()->route('userpanel.dashboard');
         }
     }
 
