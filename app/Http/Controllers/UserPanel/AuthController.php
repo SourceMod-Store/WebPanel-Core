@@ -39,6 +39,7 @@ class AuthController extends Controller
         $token = $request->input("token");
         $userid = intval($request->input("userid"));
         $page = $request->input("page");
+        $game = $request->input("game");
         $clientip = $request->getClientIp();
 
         //Validate input
@@ -88,23 +89,60 @@ class AuthController extends Controller
         Log::info("User logged in",["user_id" => $user->id , "user_name" => $user->name]);
 
 
-        if (!isset($page) || !isset($page))
+        //GAME: CSGO
+        if($game == "csgo")
         {
-            return redirect()->route('userpanel.dashboard');
-        }
+            $data = array();
 
-        switch ($page)
+            switch ($page)
+            {
+                case "item_buy":
+                    $data["namedroute"] = "userpanel.useritems.buy";
+                    $data["title"] = "Store UserPanel";
+                    break;
+                case "inventory":
+                    $data["namedroute"] = "userpanel.useritems.index";
+                    $data["title"] = "Store UserPanel";
+                    break;
+                case "loadouts":
+                    $data["namedroute"] = "userpanel.loadouts.index";
+                    $data["title"] = "Store UserPanel";
+                    break;
+                case "dashboard":
+                    $data["namedroute"] = "userpanel.dashboard";
+                    $data["title"] = "Store UserPanel";
+                    break;
+                default:
+                    $data["namedroute"] = "userpanel.dashboard";
+                    $data["title"] = "Store UserPanel";
+            }
+            return view('templates.' . \Config::get('userpanel.template') . 'userpanel.csgoredirector',$data);
+        }
+        else // Game is not CSGO
         {
-            case "item_buy":
-                return redirect()->route('userpanel.useritems.buy');
-            case "inventory":
-                return redirect()->route('userpanel.useritems.index');
-            case "loadouts":
-                return redirect()->route('userpanel.loadouts.index');
-            case "dashboard":
+            if (!isset($page) || !isset($page))
+            {
                 return redirect()->route('userpanel.dashboard');
-            default:
-                return redirect()->route('userpanel.dashboard');
+            }
+
+            switch ($page)
+            {
+                case "item_buy":
+                    return redirect()->route('userpanel.useritems.buy');
+                    break;
+                case "inventory":
+                    return redirect()->route('userpanel.useritems.index');
+                    break;
+                case "loadouts":
+                    return redirect()->route('userpanel.loadouts.index');
+                    break;
+                case "dashboard":
+                    return redirect()->route('userpanel.dashboard');
+                    break;
+                default:
+                    return redirect()->route('userpanel.dashboard');
+                    break;
+            }
         }
     }
 
