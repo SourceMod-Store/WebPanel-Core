@@ -12,6 +12,6 @@
 
 @section('content')
     {!! Form::model($loadout,['method' => 'POST','route' => ['userpanel.loadouts.edit',$loadout->id]]) !!}
-        @include('templates.adminlte205.userpanel.loadouts._form',['LeftMenuTitle'=>'Edit Loadout '.$loadout->name,'SubmitButtonText' => 'Edit Loadout'])
+        @include('templates.adminlte205.userpanel.loadouts._form',['LeftMenuTitle'=>'Edit Loadout '.$loadout->name,'SubmitButtonText' => 'Edit Loadout','disabled' => false])
     {!! Form::close() !!}
 @stop

@@ -95,6 +95,9 @@ class ViewComposerServiceProvider extends ServiceProvider
         view()->composer('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts._overviewactions', function ($view) {
             $view->with('user_id', Session::get('store_user_id',0));
         });
+        view()->composer('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts._form', function ($view) {
+            $view->with('user_id', Session::get('store_user_id',0));
+        });
     }
 
 

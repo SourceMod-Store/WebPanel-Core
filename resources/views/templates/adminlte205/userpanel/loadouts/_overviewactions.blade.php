@@ -5,8 +5,7 @@
         {!! Form::submit('Delete',['class' => 'btn btn-danger']) !!}
         {!! Form::close() !!}
     </div>
-    @endif
-    @if($loadout->owner_id != $user_id)
+    @else
     <div style="float: right">
         {!! Form::open(['method' => 'get', 'url' => route('userpanel.loadouts.clone',['loadoutid'=>$loadout->id])]) !!}
         {!! Form::submit('Clone',['class' => 'btn btn-success']) !!}
@@ -30,6 +29,12 @@
             {!! Form::submit('Edit',['class' => 'btn btn-info']) !!}
             {!! Form::close() !!}
         </div>
+    @else
+            <div style="float: right">
+                {!! Form::open(['method' => 'get', 'url' => route('userpanel.loadouts.view',['loadoutid'=>$loadout->id])]) !!}
+                {!! Form::submit('View',['class' => 'btn btn-info']) !!}
+                {!! Form::close() !!}
+            </div>
     @endif
 
 </div>

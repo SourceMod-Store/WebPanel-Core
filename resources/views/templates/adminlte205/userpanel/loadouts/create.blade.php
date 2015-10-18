@@ -12,6 +12,6 @@
 
 @section('content')
     {!! Form::open(['route' => 'userpanel.loadouts.create']) !!}
-        @include('templates.adminlte205.userpanel.loadouts._form',['LeftMenuTitle'=>'Create a new Loadout','SubmitButtonText' => 'Create Loadout'])
+        @include('templates.adminlte205.userpanel.loadouts._form',['LeftMenuTitle'=>'Create a new Loadout','SubmitButtonText' => 'Create Loadout','disabled' => false])
     {!! Form::close() !!}
 @stop

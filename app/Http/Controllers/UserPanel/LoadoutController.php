@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Models\StoreLoadout;
 use yajra\Datatables\Datatables;
 use Carbon\Carbon;
+use Session;
+
+//TODO: Add Logging
 
 class LoadoutController extends Controller
 {
@@ -29,7 +32,7 @@ class LoadoutController extends Controller
      */
     public function getCreate()
     {
-        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.create');
+        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.create',compact('user_id'));
     }
 
     /**
@@ -38,9 +41,12 @@ class LoadoutController extends Controller
      * This page allows the user to create a new loadout
      * Once the loadout is created the user is redirected to the new loadout
      */
-    public function postCreate()
+    public function postCreate(Request $request)
     {
+        $input = $request->all();
+        $loadout = StoreLoadout::create($input);
 
+        return redirect()->route('userpanel.loadouts.view',$loadout->id);
     }
 
     /**
@@ -52,13 +58,49 @@ class LoadoutController extends Controller
      */
     public function getLoadout($loadoutid)
     {
-
+        $loadout = StoreLoadout::find($loadoutid);
+        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.view',compact('loadout'));
     }
 
+    /**
+     * Displays the Edit Loadout Page
+     *
+     * @param $loadoutid
+     * @return \BladeView|bool|\Illuminate\View\View
+     */
     public function getLoadoutEdit($loadoutid)
     {
         $loadout = StoreLoadout::find($loadoutid);
-        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.edit',compact('loadout'));
+
+        if ($loadout->owner_id == Session::get('store_user_id',0))
+        {
+            return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.edit',compact('loadout'));
+        }
+        else
+        {
+            abort(401);
+        }
+    }
+
+    /**
+     * Saves the Edited Loadout
+     *
+     * @param $loadoutid
+     * @param Request $request
+     */
+    public function postLoadoutEdit($loadoutid, Request $request)
+    {
+        $loadout = StoreLoadout::find($loadoutid);
+
+        if ($loadout->owner_id == Session::get('store_user_id',0))
+        {
+            $loadout->update($request->all());
+            return redirect()->route('userpanel.loadouts.view',$loadout->id);
+        }
+        else
+        {
+            abort(401);
+        }
     }
 
     /**

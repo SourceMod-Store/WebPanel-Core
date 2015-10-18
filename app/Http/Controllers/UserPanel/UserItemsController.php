@@ -35,6 +35,8 @@ class UserItemsController extends Controller
 
     /**
      * Perform the actual Purchase
+     *
+     * @return Response
      */
     public function postBuy(Request $request)
     {
