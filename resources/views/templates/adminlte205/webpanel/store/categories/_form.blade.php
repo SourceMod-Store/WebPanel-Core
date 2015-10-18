@@ -81,7 +81,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('server_list', 'Servers') !!}
-                    {!! Form::select('server_list[]', $servers, null,['id' => 'server_list','class' => 'form-control','multiple']) !!}
+                    {!! Form::select('server_list[]', $servers, $current_servers,['id' => 'server_list','class' => 'form-control','multiple']) !!}
                 </div>
             </div>
         </div>

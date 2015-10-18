@@ -124,7 +124,7 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('server_list', 'Servers') !!}
-                        {!! Form::select('server_list[]', $servers, null,['id' => 'server_list','class' => 'form-control','multiple']) !!}
+                        {!! Form::select('server_list[]', $servers, $current_servers,['id' => 'server_list','class' => 'form-control','multiple']) !!}
                     </div>
                     <div class="form-group">
 
@@ -165,7 +165,7 @@
             placeholder: 'Select a Category'
         });
         $('#server_list').select2({
-            placeholder: 'Select a Category'
+            placeholder: 'Select a Server'
         });
     </script>
 @endsection

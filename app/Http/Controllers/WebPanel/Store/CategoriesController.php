@@ -25,7 +25,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.categories.create');
+        $current_servers = array();
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.categories.create',compact('current_servers'));
     }
 
     /**
@@ -64,7 +65,8 @@ class CategoriesController extends Controller
      */
     public function edit($category)
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.categories.edit', compact('category'));
+        $current_servers = array_pluck($category->servers()->get(['servers.id'])->toArray(),'id');
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.categories.edit', compact('category','current_servers'));
     }
 
     /**

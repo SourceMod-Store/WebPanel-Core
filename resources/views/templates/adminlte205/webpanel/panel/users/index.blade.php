@@ -39,7 +39,7 @@
                                         </div>
                                         <div style="float: right">
                                             {!! Form::open(['method' => 'GET', 'url' => route('webpanel.panel.users.edit',$user->id)]) !!}
-                                            {!! Form::submit('Edit',['class' => 'btn btn-danger']) !!}
+                                            {!! Form::submit('Edit',['class' => 'btn btn-warning']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                     </div>
