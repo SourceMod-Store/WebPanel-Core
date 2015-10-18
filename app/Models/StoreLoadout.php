@@ -13,4 +13,9 @@ class StoreLoadout extends Model
     {
         return $this->belongsTo('App\Models\StoreUser','owner_id','id');
     }
+
+    public function subscribers()
+    {
+        return $this->belongsToMany('App\Models\StoreUser','users_loadouts', 'loadout_id', 'user_id')->withTimestamps();
+    }
 }

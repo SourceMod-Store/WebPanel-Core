@@ -12,7 +12,6 @@ use Carbon\Carbon;
 use Session;
 
 //TODO: Add Logging
-//TODO: Check if the supplied loadout is valid. If not -> fail
 
 class LoadoutController extends Controller
 {
