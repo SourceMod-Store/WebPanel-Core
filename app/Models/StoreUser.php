@@ -15,8 +15,8 @@ class StoreUser extends Model
     }
 
     public function owned_loadouts()
-    { //TODO: Fix this
-        $this->hasMany('App\Models\StoreLoadout','owner_id','id');
+    {
+        return $this->hasMany('App\Models\StoreLoadout','owner_id','id');
     }
 
     public function subscribed_loadouts()

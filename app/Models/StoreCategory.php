@@ -23,5 +23,4 @@ class StoreCategory extends Model
     {
         return $this->servers->lists('id');
     }
-
 }

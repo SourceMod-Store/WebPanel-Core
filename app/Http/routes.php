@@ -129,8 +129,8 @@ Route::group(['prefix' => 'userpanel'], function () {
             Route::get('{loadout}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@getLoadoutEdit']);
             Route::post('{loadout}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@postLoadoutEdit']);
             Route::get('{loadout}/subscribers', ['as' => 'userpanel.loadouts.subscribers','uses' => 'UserPanel\LoadoutController@getLoadoutSubscribers']); //Shows who subscribed to the loadout
-            Route::get('{loadout}/itemdata', ['as' => 'userpanel.loadouts.itemdata', 'uses' => 'UserPanel\LoadoutController@getItemDataForLoadout']);
-            Route::get('{loadout}/subscriberdata', ['as' => 'userpanel.loadouts.subscriberdata', 'uses' => 'UserPanel\LoadoutController@getSubscriberDataForLoadout']);
+            Route::get('{loadout}/itemdata', ['as' => 'userpanel.loadouts.itemdata', 'uses' => 'UserPanel\LoadoutController@getItemDataForLoadout']); //Get the datatables data of the items associated to the loadout
+            Route::get('{loadout}/subscriberdata', ['as' => 'userpanel.loadouts.subscriberdata', 'uses' => 'UserPanel\LoadoutController@getSubscriberDataForLoadout']); //Get the datatables data of the subsscribers associated with the loadout
         });
     });
 
