@@ -12,8 +12,7 @@ use Carbon\Carbon;
 use Session;
 
 //TODO: Add Logging
-//TODO: Convert the loadoutid to a loadout object
-//TODO: Check if the supplied loadoutid is valid. If not -> fail
+//TODO: Check if the supplied loadout is valid. If not -> fail
 
 class LoadoutController extends Controller
 {
@@ -43,7 +42,7 @@ class LoadoutController extends Controller
      * This page allows the user to create a new loadout
      * Once the loadout is created the user is redirected to the new loadout
      */
-    public function postCreate(Request $request)
+    public function postCreate(Requests\StoreLoadoutRequest $request)
     {
         $input = $request->all();
         $loadout = StoreLoadout::create($input);
@@ -58,9 +57,8 @@ class LoadoutController extends Controller
      *
      * @param $loadoutid
      */
-    public function getLoadout($loadoutid)
+    public function getLoadout($loadout)
     {
-        $loadout = StoreLoadout::find($loadoutid);
         return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.view',compact('loadout'));
     }
 
@@ -70,10 +68,8 @@ class LoadoutController extends Controller
      * @param $loadoutid
      * @return \BladeView|bool|\Illuminate\View\View
      */
-    public function getLoadoutEdit($loadoutid)
+    public function getLoadoutEdit($loadout)
     {
-        $loadout = StoreLoadout::find($loadoutid);
-
         if ($loadout->owner_id == Session::get('store_user_id',0))
         {
             return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.edit',compact('loadout'));
@@ -90,10 +86,8 @@ class LoadoutController extends Controller
      * @param $loadoutid
      * @param Request $request
      */
-    public function postLoadoutEdit($loadoutid, Request $request)
+    public function postLoadoutEdit($loadout, Requests\StoreLoadoutRequest $request)
     {
-        $loadout = StoreLoadout::find($loadoutid);
-
         if ($loadout->owner_id == Session::get('store_user_id',0))
         {
             $loadout->update($request->all());
@@ -111,9 +105,8 @@ class LoadoutController extends Controller
      * @param $loadoutid
      * @param Request $request
      */
-    public function getDelete($loadoutid, Request $request)
+    public function getDelete($loadout, Request $request)
     {
-        $loadout = StoreLoadout::find($loadoutid);
         if ($loadout->owner_id == Session::get('store_user_id',0))
         {
             $loadout->delete();
@@ -130,7 +123,7 @@ class LoadoutController extends Controller
      *
      * @param $loadoutid
      */
-    public function getLoadoutSubscribers($loadoutid)
+    public function getLoadoutSubscribers($loadout)
     {
 
     }
@@ -138,7 +131,7 @@ class LoadoutController extends Controller
     /**
      *
      */
-    public function getSubscribe($loadoutid)
+    public function getSubscribe($loadout)
     {
 
     }
@@ -148,7 +141,7 @@ class LoadoutController extends Controller
      *
      * @param $loadoutid
      */
-    public function getClone ($loadoutid)
+    public function getClone ($loadout)
     {
 
     }
@@ -178,7 +171,7 @@ class LoadoutController extends Controller
      *
      * @param $loadoutid
      */
-    public function getItemDataForLoadout($loadoutid)
+    public function getItemDataForLoadout($loadout)
     {
 
     }
@@ -188,7 +181,7 @@ class LoadoutController extends Controller
      *
      * @param $loadoutid
      */
-    public function getSubscriberDataForLoadout($loadoutid)
+    public function getSubscriberDataForLoadout($loadout)
     {
 
     }

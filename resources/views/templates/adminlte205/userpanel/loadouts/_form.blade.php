@@ -34,7 +34,17 @@
                 <div class="form-group">
                     {!! Form::label('class', 'Class') !!}
                     @if (!$disabled)
-                        {!! Form::select('class', array(''=>'','scout'=>'Scout','sniper'=>'Sniper'),null, ['class' => 'form-control']) !!}
+                        {!! Form::select('class', array(''=>'',
+                                                        'scout'=>'Scout',
+                                                        'sniper'=>'Sniper',
+                                                        'soldier'=>'Soldier',
+                                                        'demoman'=>'Demoman',
+                                                        'medic'=>'Medic',
+                                                        'heavy'=>'Heavy',
+                                                        'pyro'=>'Pyro',
+                                                        'spy'=>'Spy',
+                                                        'engineer'=>'Engineer'
+                        ),null, ['class' => 'form-control']) !!}
                     @else
                         {!! Form::select('class', array(''=>'','scout'=>'Scout','sniper'=>'Sniper'),null, ['class' => 'form-control','disabled']) !!}
                     @endif
