@@ -55,16 +55,10 @@ class LoadoutController extends Controller
 
     }
 
-    /**
-     * Shows a Add item page for the loadout
-     * Displays all available items
-     * Add a way to display only the owned items
-     *
-     * @param $loadoutid
-     */
-    public function getAddItemToLoadout($loadoutid)
+    public function getLoadoutEdit($loadoutid)
     {
-
+        $loadout = StoreLoadout::find($loadoutid);
+        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.edit',compact('loadout'));
     }
 
     /**

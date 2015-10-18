@@ -118,6 +118,7 @@ Route::group(['prefix' => 'userpanel'], function () {
         Route::group(['prefix' => 'loadouts'],function(){
             Route::get('', ['as' => 'userpanel.loadouts.index', 'uses' => 'UserPanel\LoadoutController@getIndex']); //Get the overview of all available loadouts. Display tags for the loadouts (owned, subscribe) and display a subscribe and maybe a clone button on
             Route::get('create',['as' => 'userpanel.loadouts.create', 'uses' => 'UserPanel\LoadoutController@getCreate']);
+            Route::post('create',['as' => 'userpanel.loadouts.create', 'uses' => 'UserPanel\LoadoutController@postCreate']);
             Route::get('loadoutdata', ['as' => 'userpanel.loadouts.loadoutdata', 'uses' => 'UserPanel\LoadoutController@getLoadoutData']);
 
             Route::get('{loadoutid}', ['as' => 'userpanel.useritems.userdata', 'uses' => 'UserPanel\LoadoutController@getLoadout']); //Shows a overview of the loadout with the associated items
@@ -125,8 +126,8 @@ Route::group(['prefix' => 'userpanel'], function () {
             Route::get('{loadoutid}/unsubscribe',['as' => 'userpanel.loadouts.unsubscribe', 'uses' => 'UserPanel\LoadoutController@getUnsubscribe']);
             Route::get('{loadoutid}/clone',['as' => 'userpanel.loadouts.clone', 'uses' => 'UserPanel\LoadoutController@getClone']);
             Route::get('{loadoutid}/delete',['as' => 'userpanel.loadouts.delete', 'uses' => 'UserPanel\LoadoutController@getDelete']);
-            Route::get('{loadoutid}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@getEdit']);
-            Route::get('{loadoutid}/items', ['as' => 'userpanel.loadouts.items','uses' => 'UserPanel\LoadoutController@getAddItemToLoadout']); //Shows the menu to add an item to the loadout
+            Route::get('{loadoutid}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@getLoadoutEdit']);
+            Route::post('{loadoutid}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@postLoadoutEdit']);
             Route::get('{loadoutid}/subscribers', ['as' => 'userpanel.loadouts.subscribers','uses' => 'UserPanel\LoadoutController@getLoadoutSubscribers']); //Shows who subscribed to the loadout
             Route::get('{loadoutid}/itemdata', ['as' => 'userpanel.loadouts.itemdata', 'uses' => 'UserPanel\LoadoutController@getItemDataForLoadout']);
             Route::get('{loadoutid}/subscriberdata', ['as' => 'userpanel.loadouts.subscriberdata', 'uses' => 'UserPanel\LoadoutController@getSubscriberDataForLoadout']);
