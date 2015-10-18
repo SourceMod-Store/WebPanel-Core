@@ -149,7 +149,7 @@ class UserItemsController extends Controller
 
         return Datatables::of($useritems)
             ->addColumn('action', function ($item) {
-                $actions = view('templates.' . \Config::get('userpanel.template') . 'userpanel.useritems._actions', compact('item'))->render();
+                $actions = view('templates.' . \Config::get('userpanel.template') . 'userpanel.useritems._sellactions', compact('item'))->render();
                 return $actions;
             })
             ->make(true);
