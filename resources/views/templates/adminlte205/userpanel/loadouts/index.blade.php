@@ -48,14 +48,14 @@
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                {{--ajax: '{{ url("userpanel/useritems/userdata") }}', TEMP REMOVED--}}
+                ajax: '{{ route("userpanel.loadouts.loadoutdata") }}',
                 columns: [
                     {data: 'display_name', name: 'display_name'},
                     {data: 'game', name: 'game'},
                     {data: 'class', name: 'class'},
                     {data: 'team', name: 'team'},
                     {data: 'privacy', name: 'privacy'},
-                    {data: 'owner', name: 'owner'},
+                    {data: 'owner.name', name: 'owner'},
                     {data: 'action', name: 'Action', orderable: false, searchable: false},
                 ]
             });

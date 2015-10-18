@@ -139,13 +139,14 @@ class UserItemsController extends Controller
      * Returns the Datatables data
      * Get the Useritems for the user
      *
+     * @param $request
      * @return mixed
      */
     public function getUserData(Request $request)
     {
         $user = StoreUser::find($request->session()->get('store_user_id'));
 
-        $useritems = $user->items()->get();
+        $useritems = $user->items();
 
         return Datatables::of($useritems)
             ->addColumn('action', function ($item) {
