@@ -9,6 +9,7 @@ use App\Models\StoreServer;
 use App\User;
 use App\Role;
 use App\Permission;
+use Session;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         $this->ComposeWebPanelForms();
         $this->ComposeWebPanelHeader();
         $this->ComposeUserPanelHeader();
+        $this->ComposeUserPanelForms();
     }
 
     /**
@@ -53,6 +55,9 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * Passes the required variables to the sidebar
+     */
     public function ComposeUserPanelSidebar()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'userpanel.includes.sidebar', function ($view) {
@@ -60,9 +65,7 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Passes the required variables to the sidebar
-     */
+
     public function ComposeWebPanelForms()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items._form', function ($view) {
@@ -84,6 +87,13 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.permissions._form', function ($view) {
             $view->with('roles', Role::lists('display_name', 'id'));
+        });
+    }
+
+    public function ComposeUserPanelForms()
+    {
+        view()->composer('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts._overviewactions', function ($view) {
+            $view->with('user_id', Session::get('store_user_id',0));
         });
     }
 

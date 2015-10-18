@@ -121,10 +121,11 @@ Route::group(['prefix' => 'userpanel'], function () {
             Route::get('loadoutdata', ['as' => 'userpanel.loadouts.loadoutdata', 'uses' => 'UserPanel\LoadoutController@getLoadoutData']);
 
             Route::get('{loadoutid}', ['as' => 'userpanel.useritems.userdata', 'uses' => 'UserPanel\LoadoutController@getLoadout']); //Shows a overview of the loadout with the associated items
-            Route::any('{loadoutid}/subscribe',['as' => 'userpanel.loadouts.subscribe', 'uses' => 'UserPanel\LoadoutController@getSubscribe']);
-            Route::any('{loadoutid}/unsubscribe',['as' => 'userpanel.loadouts.unsubscribe', 'uses' => 'UserPanel\LoadoutController@getUnsubscribe']);
-            Route::any('{loadoutid}/clone',['as' => 'userpanel.loadouts.clone', 'uses' => 'UserPanel\LoadoutController@getClone']);
-            Route::any('{loadoutid}/delete',['as' => 'userpanel.loadouts.delete', 'uses' => 'UserPanel\LoadoutController@getDelete']);
+            Route::get('{loadoutid}/subscribe',['as' => 'userpanel.loadouts.subscribe', 'uses' => 'UserPanel\LoadoutController@getSubscribe']);
+            Route::get('{loadoutid}/unsubscribe',['as' => 'userpanel.loadouts.unsubscribe', 'uses' => 'UserPanel\LoadoutController@getUnsubscribe']);
+            Route::get('{loadoutid}/clone',['as' => 'userpanel.loadouts.clone', 'uses' => 'UserPanel\LoadoutController@getClone']);
+            Route::get('{loadoutid}/delete',['as' => 'userpanel.loadouts.delete', 'uses' => 'UserPanel\LoadoutController@getDelete']);
+            Route::get('{loadoutid}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@getEdit']);
             Route::get('{loadoutid}/items', ['as' => 'userpanel.loadouts.items','uses' => 'UserPanel\LoadoutController@getAddItemToLoadout']); //Shows the menu to add an item to the loadout
             Route::get('{loadoutid}/subscribers', ['as' => 'userpanel.loadouts.subscribers','uses' => 'UserPanel\LoadoutController@getLoadoutSubscribers']); //Shows who subscribed to the loadout
             Route::get('{loadoutid}/itemdata', ['as' => 'userpanel.loadouts.itemdata', 'uses' => 'UserPanel\LoadoutController@getItemDataForLoadout']);
