@@ -9,4 +9,9 @@ class StoreLoadout extends Model
     protected $table = 'loadouts';
     protected $fillable = [];
 
+    public function owner()
+    {
+        return $this->belongsTo('App\Models\StoreUser','owner_id','id');
+    }
+
 }
