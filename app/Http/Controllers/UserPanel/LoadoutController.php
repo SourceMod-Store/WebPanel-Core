@@ -12,6 +12,8 @@ use Carbon\Carbon;
 use Session;
 
 //TODO: Add Logging
+//TODO: Convert the loadoutid to a loadout object
+//TODO: Check if the supplied loadoutid is valid. If not -> fail
 
 class LoadoutController extends Controller
 {
@@ -96,6 +98,26 @@ class LoadoutController extends Controller
         {
             $loadout->update($request->all());
             return redirect()->route('userpanel.loadouts.view',$loadout->id);
+        }
+        else
+        {
+            abort(401);
+        }
+    }
+
+    /**
+     * Deletes the Loadout
+     *
+     * @param $loadoutid
+     * @param Request $request
+     */
+    public function getDelete($loadoutid, Request $request)
+    {
+        $loadout = StoreLoadout::find($loadoutid);
+        if ($loadout->owner_id == Session::get('store_user_id',0))
+        {
+            $loadout->delete();
+            return redirect()->route('userpanel.loadouts.index');
         }
         else
         {
