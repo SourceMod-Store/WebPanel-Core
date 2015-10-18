@@ -50,7 +50,7 @@
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ url("userpanel/useritems/itemdata") }}',
+                ajax: '{{ route("userpanel.useritems.itemdata") }}',
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'priority', name: 'priority'},

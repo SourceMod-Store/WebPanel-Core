@@ -46,7 +46,7 @@
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ url("webpanel/store/categories/data") }}'
+                ajax: '{{ route("webpanel.store.categories.data") }}'
             });
         } );
     </script>

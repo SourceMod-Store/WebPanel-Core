@@ -47,7 +47,7 @@
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ url("userpanel/useritems/userdata") }}',
+                ajax: '{{ route("userpanel.useritems.userdata") }}',
                 columns: [
                     {data: 'display_name', name: 'display_name'},
                     {data: 'description', name: 'description'},

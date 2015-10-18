@@ -56,7 +56,7 @@
                     {data: 'team', name: 'team'},
                     {data: 'privacy', name: 'privacy'},
                     {data: 'owner.name', name: 'owner'},
-                    {data: 'action', name: 'Action', orderable: false, searchable: false},
+                    {data: 'action', name: 'Action', orderable: false, searchable: false}
                 ]
             });
         } );
