@@ -1,8 +1,7 @@
 <div>
     <div style="float: right">
-        {!! Form::open(['method' => 'post', 'url' => route('userpanel.useritems.remove')]) !!}
+        {!! Form::open(['method' => 'post', 'url' => route('userpanel.useritems.sell', ["item_id"=>$item->item_id])]) !!}
         {!! Form::token() !!}
-        {!! Form::hidden('item_id',$item->id) !!}
         {!! Form::hidden('single_item',true) !!}
         @if ($item->is_refundable == 1)
             {!! Form::submit('Sell One',['class' => 'btn btn-warning']) !!}
@@ -13,9 +12,8 @@
     </div>
 
     <div style="float: right">
-        {!! Form::open(['method' => 'post', 'url' => route('userpanel.useritems.remove')]) !!}
+        {!! Form::open(['method' => 'post', 'url' => route('userpanel.useritems.sell', ["item_id"=>$item->item_id])]) !!}
         {!! Form::token() !!}
-        {!! Form::hidden('item_id',$item->id) !!}
         {!! Form::hidden('single_item',false) !!}
         @if ($item->is_refundable == 1)
             {!! Form::submit('Sell All',['class' => 'btn btn-warning']) !!}

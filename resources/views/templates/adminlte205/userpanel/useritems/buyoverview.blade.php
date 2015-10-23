@@ -26,7 +26,6 @@
                                 <th>Display Name</th>
                                 <th>Description</th>
                                 <th>Category</th>
-                                <th>Type</th>
                                 <th>Loadout Slot</th>
                                 <th>Price</th>
                                 <th>Action</th>
@@ -57,7 +56,6 @@
                     {data: 'display_name', name: 'display_name'},
                     {data: 'description', name: 'description'},
                     {data: 'category.display_name', name: 'category', orderable: false, searchable: false},
-                    {data: 'type', name: 'type'},
                     {data: 'loadout_slot', name: 'loadout_slot'},
                     {data: 'price', name: 'price'},
                     {data: 'action', name: 'Action', orderable: false, searchable: false},

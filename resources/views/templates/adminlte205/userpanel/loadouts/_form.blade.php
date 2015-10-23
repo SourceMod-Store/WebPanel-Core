@@ -17,7 +17,7 @@
             <div class="box-body">
                 <div class="form-group">
                     {!! Form::label('display_name', 'Display Name') !!}
-                    @if (!$disabled)
+                    @if ($edit)
                         {!! Form::text('display_name', null, ['class' => 'form-control']) !!}
                     @else
                         {!! Form::text('display_name', null, ['class' => 'form-control','disabled']) !!}
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('game', 'Game') !!}
-                    @if (!$disabled)
+                    @if ($edit)
                         {!! Form::select('game', array(''=>'','css' => 'Counter Strike: Source', 'tf2' => 'Team Fortress 2', 'csgo' => 'Counter Strike: GO'), null,['class' => 'form-control']) !!}
                     @else
                         {!! Form::select('game', array(''=>'','css' => 'Counter Strike: Source', 'tf2' => 'Team Fortress 2', 'csgo' => 'Counter Strike: GO'), null,['class' => 'form-control','disabled']) !!}
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('class', 'Class') !!}
-                    @if (!$disabled)
+                    @if ($edit)
                         {!! Form::select('class', array(''=>'',
                                                         'scout'=>'Scout',
                                                         'sniper'=>'Sniper',
@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('team', 'Team') !!}
-                    @if (!$disabled)
+                    @if ($edit)
                         {!! Form::select('team', array(''=>'','2' => 'T / RED', '3' => 'CT / BLUE'),null, ['class' => 'form-control']) !!}
                     @else
                         {!! Form::select('team', array(''=>'','2' => 'T / RED', '3' => 'CT / BLUE'),null, ['class' => 'form-control','disabled']) !!}
@@ -59,19 +59,54 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('privacy', 'Privacy') !!}
-                    @if (!$disabled)
+                    @if ($edit)
                         {!! Form::select('privacy', array(''=>'','private' => 'Private', 'public' => 'Public'), null, ['class' => 'form-control']) !!}
                     @else
                         {!! Form::select('privacy', array(''=>'','private' => 'Private', 'public' => 'Public'), null, ['class' => 'form-control','disabled']) !!}
                     @endif
                 </div>
             </div><!-- /.box-body -->
+            @if ($edit)
             <div class="box-footer">
-                @if ($disabled == false)
-                    {!! Form::hidden('owner_id', $user_id) !!}
-                    {!! Form::submit($SubmitButtonText, ['class' => 'btn btn-primary']) !!}
-                @endif
+                {!! Form::hidden('owner_id', $user_id) !!}
+                {!! Form::submit($SubmitButtonText, ['class' => 'btn btn-primary']) !!}
             </div>
+            @endif
+        </div><!-- /.box -->
+    </div><!-- /.col -->
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">{{$RightMenuTitle}}</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table table-striped">
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Loadout Slot</th>
+                        <th style="width: 50px">Action</th>
+                    </tr>
+                    @foreach($items as $item)
+                        <tr>
+                            <td>{{$item["id"]}}.</td>
+                            <td>{{$item["name"]}}</td>
+                            <td>{{$item["type"]}}</td>
+                            <td>{{$item["loadout_slot"]}}</td>
+                            <td>
+                                <a href="{{route("userpanel.useritems.buyconf",["item_id"=> $item["id"]])}}"><span class="badge bg-green">Buy</span></a>
+                                @if($edit)<a href="#"<span class="badge bg-red">>Remove</span></a>@endif()
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div><!-- /.box-body -->
+            @if($edit)
+                <div class="box-footer">
+                    <a href="{{route("userpanel.loadouts.items",['loadout'=>$loadout->id])}}"><span class="btn btn-success">Add new Items</span></a>
+                </div>
+            @endif
         </div><!-- /.box -->
     </div><!-- /.col -->
 </div><!-- /.row -->

@@ -6,7 +6,7 @@
             <li><a href="{{URL::route('userpanel.dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 
             <li><a href="{{URL::route('userpanel.useritems.index')}}"><i class="fa fa-dashboard"></i> Your Items</a></li> <!-- TODO: FIX Icon -->
-            <li><a href="{{URL::route('userpanel.useritems.buy')}}"><i class="fa fa-dashboard"></i> Buy new Items</a></li> <!-- TODO: FIX Icon -->
+            <li><a href="{{URL::route('userpanel.useritems.buyoverview')}}"><i class="fa fa-dashboard"></i> Buy new Items</a></li> <!-- TODO: FIX Icon -->
 
             <!-- Loadouts -->
             <li class="treeview">

@@ -18,4 +18,9 @@ class StoreLoadout extends Model
     {
         return $this->belongsToMany('App\Models\StoreUser','users_loadouts', 'loadout_id', 'user_id')->withTimestamps();
     }
+
+    public function items()
+    {
+        return $this->belongsToMany('App\Models\StoreItem','items_loadouts', 'loadout_id', 'item_id')->withTimestamps();
+    }
 }

@@ -58,7 +58,8 @@ class LoadoutController extends Controller
      */
     public function getLoadout($loadout)
     {
-        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.view',compact('loadout'));
+        $items = $loadout->with("items")->find($loadout->id)->toArray()['items'];
+        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.view',compact('loadout','items'));
     }
 
     /**
@@ -69,9 +70,10 @@ class LoadoutController extends Controller
      */
     public function getLoadoutEdit($loadout)
     {
+        $items = $loadout->with("items")->find($loadout->id)->toArray()['items'];
         if ($loadout->owner_id == Session::get('store_user_id',0))
         {
-            return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.edit',compact('loadout'));
+            return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.edit',compact('loadout','items'));
         }
         else
         {
@@ -118,6 +120,41 @@ class LoadoutController extends Controller
     }
 
     /**
+     * Shows the page to add items to a loadout
+     *
+     * @param $loadout
+     * @param Request $request
+     */
+    public function getLoadoutItems($loadout, Request $request)
+    {
+        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.loadoutadditems',compact("loadout"));
+    }
+
+    /**
+     * Adds the item to the loadout
+     *
+     * @param $loadout
+     * @param Request $request
+     */
+    public function postLoadoutItemsAdd($loadout, Request $request)
+    {
+        //Check if a item with that type is already added
+        //Then redirect to the loadout edit page
+    }
+
+    /**
+     * Removes the item from the loadout
+     *
+     * @param $loadout
+     * @param Request $request
+     */
+    public function postLoadoutItemsRemove($loadout, Request $request)
+    {
+        //Remvoe the item from the loadout
+        //Then redirect to the loadout edit page
+    }
+
+    /**
      * Shows everyone who subscribed to the loadout
      *
      * @param $loadoutid
@@ -128,7 +165,7 @@ class LoadoutController extends Controller
     }
 
     /**
-     *
+     * Subscribes a user to a loadout
      */
     public function getSubscribe($loadout)
     {
@@ -168,11 +205,12 @@ class LoadoutController extends Controller
     /**
      * Datatable data for items for a specific Loadout
      *
-     * @param $loadoutid
+     * @param Store_Loadout $loadout
+     * @param Request $request
      */
-    public function getItemDataForLoadout($loadout)
+    public function getItemDataForLoadout($loadout, Request $request)
     {
-
+        //Only display items with a loadoutslot that has not jet been added to a loadout
     }
 
     /**

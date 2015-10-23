@@ -104,9 +104,10 @@ Route::group(['prefix' => 'userpanel'], function () {
         //Shows the items the user owns (inventory) and allows him to buy / sell new items
         Route::group(['prefix' => 'useritems'],function(){
             Route::get('', ['as' => 'userpanel.useritems.index', 'uses' => 'UserPanel\UserItemsController@getIndex']);
-            Route::get('buy', ['as' => 'userpanel.useritems.buy', 'uses' => 'UserPanel\UserItemsController@getBuy']);
-            Route::post('buy', ['uses' => 'UserPanel\UserItemsController@postBuy']);
-            Route::post('remove',['as' => 'userpanel.useritems.remove', 'uses' => 'UserPanel\UserItemsController@postRemove']);
+            Route::get('buyoverview', ['as' => 'userpanel.useritems.buyoverview', 'uses' => 'UserPanel\UserItemsController@getBuyOverview']); //Shows the buy overview page
+            Route::get('buy/{item_id}', ['as' => 'userpanel.useritems.buyconf', 'uses' => 'UserPanel\UserItemsController@getBuy']); //Shows the buy details page
+            Route::post('buy/{item_id}', ['as' => 'userpanel.useritems.buyproc', 'uses' => 'UserPanel\UserItemsController@postBuy']); // Processes the Puchase
+            Route::post('sell/{item_id}', ['as' => 'userpanel.useritems.sell', 'uses' => 'UserPanel\UserItemsController@postSell']); //Sells the item --> Add a confirm page
             Route::get('userdata', ['as' => 'userpanel.useritems.userdata', 'uses' => 'UserPanel\UserItemsController@getUserData']);
             Route::get('itemdata', ['as' => 'userpanel.useritems.itemdata', 'uses' => 'UserPanel\UserItemsController@getItemData']);
         });
@@ -117,17 +118,20 @@ Route::group(['prefix' => 'userpanel'], function () {
         // Also shows the items that belong to a specific loadout
         Route::group(['prefix' => 'loadouts'],function(){
             Route::get('', ['as' => 'userpanel.loadouts.index', 'uses' => 'UserPanel\LoadoutController@getIndex']); //Get the overview of all available loadouts. Display tags for the loadouts (owned, subscribe) and display a subscribe and maybe a clone button on
-            Route::get('create',['as' => 'userpanel.loadouts.create', 'uses' => 'UserPanel\LoadoutController@getCreate']);
-            Route::post('create',['as' => 'userpanel.loadouts.create', 'uses' => 'UserPanel\LoadoutController@postCreate']);
-            Route::get('loadoutdata', ['as' => 'userpanel.loadouts.loadoutdata', 'uses' => 'UserPanel\LoadoutController@getLoadoutData']);
+            Route::get('create',['as' => 'userpanel.loadouts.create', 'uses' => 'UserPanel\LoadoutController@getCreate']); //Shows the create loadout page
+            Route::post('create',['as' => 'userpanel.loadouts.create', 'uses' => 'UserPanel\LoadoutController@postCreate']); //Creates the loadout
+            Route::get('loadoutdata', ['as' => 'userpanel.loadouts.loadoutdata', 'uses' => 'UserPanel\LoadoutController@getLoadoutData']); //Gets the datatables data for all available loadouts
 
             Route::get('{loadout}', ['as' => 'userpanel.loadouts.view', 'uses' => 'UserPanel\LoadoutController@getLoadout']); //Shows a overview of the loadout with the associated items
-            Route::get('{loadout}/subscribe',['as' => 'userpanel.loadouts.subscribe', 'uses' => 'UserPanel\LoadoutController@getSubscribe']);
-            Route::get('{loadout}/unsubscribe',['as' => 'userpanel.loadouts.unsubscribe', 'uses' => 'UserPanel\LoadoutController@getUnsubscribe']);
-            Route::get('{loadout}/clone',['as' => 'userpanel.loadouts.clone', 'uses' => 'UserPanel\LoadoutController@getClone']);
-            Route::get('{loadout}/delete',['as' => 'userpanel.loadouts.delete', 'uses' => 'UserPanel\LoadoutController@getDelete']);
-            Route::get('{loadout}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@getLoadoutEdit']);
-            Route::post('{loadout}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@postLoadoutEdit']);
+            Route::get('{loadout}/subscribe',['as' => 'userpanel.loadouts.subscribe', 'uses' => 'UserPanel\LoadoutController@getSubscribe']); //Subscribes the user to the selected loadout
+            Route::get('{loadout}/unsubscribe',['as' => 'userpanel.loadouts.unsubscribe', 'uses' => 'UserPanel\LoadoutController@getUnsubscribe']); //Unsubscribes the user from the selected loadout
+            Route::get('{loadout}/clone',['as' => 'userpanel.loadouts.clone', 'uses' => 'UserPanel\LoadoutController@getClone']); //Clones the selected loadout
+            Route::get('{loadout}/delete',['as' => 'userpanel.loadouts.delete', 'uses' => 'UserPanel\LoadoutController@getDelete']); //Deletes the selected loadout
+            Route::get('{loadout}/items',['as' => 'userpanel.loadouts.items', 'uses' => 'UserPanel\LoadoutController@getLoadoutItems']); // Show the add items page
+            Route::post('{loadout}/items/{item_id}/add',['as' => 'userpanel.loadouts.items.add', 'uses' => 'UserPanel\LoadoutController@postLoadoutItemsAdd']); //Processes the item add
+            Route::post('{loadout}/items/{item_id}/remove',['as' => 'userpanel.loadouts.items.remove', 'uses' => 'UserPanel\LoadoutController@postLoadoutItemsRemove']); //Processes the item add
+            Route::get('{loadout}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@getLoadoutEdit']); //Shows the page to edit the selected loadout
+            Route::post('{loadout}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@postLoadoutEdit']); //Processes edit to the selected loadout
             Route::get('{loadout}/subscribers', ['as' => 'userpanel.loadouts.subscribers','uses' => 'UserPanel\LoadoutController@getLoadoutSubscribers']); //Shows who subscribed to the loadout
             Route::get('{loadout}/itemdata', ['as' => 'userpanel.loadouts.itemdata', 'uses' => 'UserPanel\LoadoutController@getItemDataForLoadout']); //Get the datatables data of the items associated to the loadout
             Route::get('{loadout}/subscriberdata', ['as' => 'userpanel.loadouts.subscriberdata', 'uses' => 'UserPanel\LoadoutController@getSubscriberDataForLoadout']); //Get the datatables data of the subsscribers associated with the loadout

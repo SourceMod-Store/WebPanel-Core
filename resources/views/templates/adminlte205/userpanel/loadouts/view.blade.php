@@ -12,6 +12,10 @@
 
 @section('content')
     {!! Form::model($loadout,[]) !!}
-        @include('templates.adminlte205.userpanel.loadouts._form',['LeftMenuTitle'=>'View Loadout '.$loadout->name,'SubmitButtonText' => 'View Loadout','disabled' => true])
+        @include('templates.adminlte205.userpanel.loadouts._form',
+                ['LeftMenuTitle'=>'View Loadout '.$loadout->name,
+                'SubmitButtonText' => 'View Loadout',
+                'edit' => false,
+                'RightMenuTitle'=>'View Items'])
     {!! Form::close() !!}
 @stop

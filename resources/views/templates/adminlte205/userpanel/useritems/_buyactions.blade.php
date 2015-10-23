@@ -1,7 +1,6 @@
 <div>
     <div style="float: right">
-        {!! Form::open(['method' => 'post', 'url' => route('userpanel.useritems.buy')]) !!}
-        {!! Form::hidden('item_id',$item->id) !!}
+        {!! Form::open(['method' => 'post', 'url' => route('userpanel.useritems.buyproc', ["item_id" => $item->id])]) !!}
         {!! Form::submit('Buy',['class' => 'btn btn-success']) !!}
         {!! Form::close() !!}
     </div>

@@ -28,9 +28,16 @@ class UserItemsController extends Controller
      *
      * @return Response
      */
-    public function getBuy()
+    public function getBuyOverview()
     {
-        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.useritems.buy');
+        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.useritems.buyoverview');
+    }
+
+
+    public function getBuy($item_id)
+    {
+        $item = StoreItem::find($item_id);
+        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.useritems.buyconfirm', compact("item"));
     }
 
     /**
@@ -38,12 +45,8 @@ class UserItemsController extends Controller
      *
      * @return Response
      */
-    public function postBuy(Request $request)
+    public function postBuy(Request $request, $item_id)
     {
-        //TODO: Add a detail page with some more info about the item and let the user confirm the purchase
-
-        $item_id = $request->input("item_id");
-
         $user = StoreUser::find($request->session()->get('store_user_id'));
         $item = StoreItem::find($item_id);
 
@@ -71,14 +74,13 @@ class UserItemsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function postRemove(Request $request)
+    public function postSell(Request $request, $item_id)
     {
         //TODO: Add Logging
         //TODO: Add Tests
 
-        $item_id = $request->input("item_id");
         $single_item = $request->input("single_item");
-
+        if(!isset($single_item) || $single_item = NULL) $single_item = true;
 
         $user = StoreUser::find($request->session()->get('store_user_id'));
         $item = StoreItem::find($item_id);
