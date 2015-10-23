@@ -23,4 +23,9 @@ class StoreLoadout extends Model
     {
         return $this->belongsToMany('App\Models\StoreItem','items_loadouts', 'loadout_id', 'item_id')->withTimestamps();
     }
+
+    public function equipped_users()
+    {
+        return $this->hasMany('App\Models\StoreUser','eqp_loadout_id','id');
+    }
 }

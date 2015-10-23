@@ -109,17 +109,17 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-warning text-yellow"></i> You own XYZ Loadouts
+                                        <i class="fa fa-warning text-yellow"></i> You own {{$owned_loadout_count}} Loadouts
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-warning text-yellow"></i> You are subscribed to XYZ Loadouts
+                                        <i class="fa fa-warning text-yellow"></i> You are subscribed to {{$subscribed_loadout_count}} Loadouts
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-users text-yellow"></i> Your Top Loadout has XYZ Subscribers
+                                        <i class="fa fa-users text-yellow"></i> You have selected the loadout {{$equipped_loadout_name}}
                                     </a>
                                 </li>
                             </ul>

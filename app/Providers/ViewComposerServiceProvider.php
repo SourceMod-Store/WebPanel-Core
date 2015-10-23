@@ -122,11 +122,17 @@ class ViewComposerServiceProvider extends ServiceProvider
             $credits = $store_user->credits;
             $owned_item_count = $store_user->items()->count();
             $latest_items = $store_user->items()->orderBy('acquire_date','desc')->take(5)->get();
+            $owned_loadout_count = $store_user->owned_loadouts()->count();
+            $subscribed_loadout_count = $store_user->subscribed_loadouts()->count();
+            $equipped_loadout = $store_user->equipped_loadout->display_name;
 
             $view->with('latest_items',$latest_items);
             $view->with('username', Session("store_user_name"));
             $view->with('credits',$credits);
             $view->with('owned_item_count',$owned_item_count);
+            $view->with('owned_loadout_count',$owned_loadout_count);
+            $view->with('subscribed_loadout_count',$subscribed_loadout_count);
+            $view->with('equipped_loadout_name',$equipped_loadout);
         });
     }
 }
