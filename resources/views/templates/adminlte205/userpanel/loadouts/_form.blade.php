@@ -46,7 +46,17 @@
                                                         'engineer'=>'Engineer'
                         ),null, ['class' => 'form-control']) !!}
                     @else
-                        {!! Form::select('class', array(''=>'','scout'=>'Scout','sniper'=>'Sniper'),null, ['class' => 'form-control','disabled']) !!}
+                        {!! Form::select('class', array(''=>'',
+                                'scout'=>'Scout',
+                                'sniper'=>'Sniper',
+                                'soldier'=>'Soldier',
+                                'demoman'=>'Demoman',
+                                'medic'=>'Medic',
+                                'heavy'=>'Heavy',
+                                'pyro'=>'Pyro',
+                                'spy'=>'Spy',
+                                'engineer'=>'Engineer'
+                        ),null, ['class' => 'form-control', 'disabled']) !!}
                     @endif
                 </div>
                 <div class="form-group">
@@ -69,8 +79,12 @@
             @if ($edit)
             <div class="box-footer">
                 {!! Form::hidden('owner_id', $user_id) !!}
-                {!! Form::submit($SubmitButtonText, ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit("Save Changes", ['class' => 'btn btn-primary']) !!}
             </div>
+            @elseif(!$edit && $loadout->owner_id == $user_id)
+                <div class="box-footer">
+                    <a href="{{route("userpanel.loadouts.edit",["loadout"=>$loadout->id])}}"><span class="btn btn-info">Switch to Edit Mode</span></a>
+                </div>
             @endif
         </div><!-- /.box -->
     </div><!-- /.col -->

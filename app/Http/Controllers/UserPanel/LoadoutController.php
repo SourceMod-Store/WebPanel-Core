@@ -217,6 +217,21 @@ class LoadoutController extends Controller
     }
 
     /**
+     * Sets the loadout as primary loadout
+     *
+     * @param $loadout
+     */
+    public function postSelect($loadout)
+    {
+        $user = StoreUser::findOrFail(Session::get('store_user_id',0));
+        $user->eqp_loadout_id = $loadout->id;
+        $user->save();
+        //redirect back to loadout edit page with success message
+        return redirect()->route("userpanel.loadouts.view",["loadout" => $loadout->id])
+            ->with("flash_notification",array("message"=>"The selected loadout has been set as your equipped loadout", "level"=>"success"));
+    }
+
+    /**
      * Subscribes a user to a loadout
      */
     public function getSubscribe($loadout)

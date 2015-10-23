@@ -6,11 +6,11 @@
         {!! Form::close() !!}
     </div>
     @else
-    <div style="float: right">
-        {!! Form::open(['method' => 'get', 'url' => route('userpanel.loadouts.clone',['loadoutid'=>$loadout->id])]) !!}
-        {!! Form::submit('Clone',['class' => 'btn btn-success']) !!}
-        {!! Form::close() !!}
-    </div>
+    {{--<div style="float: right">--}}
+        {{--{!! Form::open(['method' => 'get', 'url' => route('userpanel.loadouts.clone',['loadoutid'=>$loadout->id])]) !!}--}}
+        {{--{!! Form::submit('Clone',['class' => 'btn btn-success']) !!}--}}
+        {{--{!! Form::close() !!}--}}
+    {{--</div>--}}
     @endif
     <!-- TODO: Check if the User is already subscribed / unsubscribed -->
     <div style="float: right">
@@ -36,5 +36,10 @@
                 {!! Form::close() !!}
             </div>
     @endif
+    <div style="float: right">
+        {!! Form::open(['method' => 'post', 'url' => route('userpanel.loadouts.select',['loadoutid'=>$loadout->id])]) !!}
+        {!! Form::submit('Make Primary',['class' => 'btn btn-success']) !!}
+        {!! Form::close() !!}
+    </div>
 
 </div>

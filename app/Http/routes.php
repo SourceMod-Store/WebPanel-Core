@@ -123,6 +123,7 @@ Route::group(['prefix' => 'userpanel'], function () {
             Route::get('loadoutdata', ['as' => 'userpanel.loadouts.loadoutdata', 'uses' => 'UserPanel\LoadoutController@getLoadoutData']); //Gets the datatables data for all available loadouts
 
             Route::get('{loadout}', ['as' => 'userpanel.loadouts.view', 'uses' => 'UserPanel\LoadoutController@getLoadout']); //Shows a overview of the loadout with the associated items
+            Route::post('{loadout}/select',['as' => 'userpanel.loadouts.select', 'uses' => 'UserPanel\LoadoutController@postSelect']); //Selects the loadout as main loadout
             Route::get('{loadout}/subscribe',['as' => 'userpanel.loadouts.subscribe', 'uses' => 'UserPanel\LoadoutController@getSubscribe']); //Subscribes the user to the selected loadout
             Route::get('{loadout}/unsubscribe',['as' => 'userpanel.loadouts.unsubscribe', 'uses' => 'UserPanel\LoadoutController@getUnsubscribe']); //Unsubscribes the user from the selected loadout
             Route::get('{loadout}/clone',['as' => 'userpanel.loadouts.clone', 'uses' => 'UserPanel\LoadoutController@getClone']); //Clones the selected loadout
