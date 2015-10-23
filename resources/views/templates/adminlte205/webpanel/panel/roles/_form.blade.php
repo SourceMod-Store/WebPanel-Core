@@ -36,7 +36,7 @@
             </div><!-- /.box-header -->
             <div class="box-body">
                 {!! Form::label('permission_list', 'Permissions') !!}
-                {!! Form::select('permission_list[]', $permissions, null,['id' => 'permission_list','class' => 'form-control','multiple']) !!}
+                {!! Form::select('permission_list[]', $permissions, $current_permissions,['id' => 'permission_list','class' => 'form-control','multiple']) !!}
             </div><!-- /.box-body -->
         </div><!-- /.box -->
     </div>

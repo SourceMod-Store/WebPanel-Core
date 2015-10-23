@@ -35,6 +35,10 @@
 		<div class="container">
 			<div class="content">
 				<div class="title">Be right back.</div>
+				<div class="subtitle">HTTP Error 503</div>
+				@if(isset($message))
+					<div class="info">{{ $message }}</div>
+				@endif
 			</div>
 		</div>
 	</body>

@@ -28,7 +28,8 @@ class PermissionsController extends Controller
      */
     public function create()
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.permissions.create');
+        $current_roles = array();
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.permissions.create',compact('current_roles'));
     }
 
     /**
@@ -65,7 +66,8 @@ class PermissionsController extends Controller
      */
     public function edit($permission)
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.permissions.edit', compact('permission'));
+        $current_roles = array_pluck($permission->roles()->get(['roles.id'])->toArray(),'id');
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.permissions.edit', compact('permission','current_roles'));
     }
 
     /**

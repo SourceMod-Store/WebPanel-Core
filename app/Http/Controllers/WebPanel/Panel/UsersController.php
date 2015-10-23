@@ -28,7 +28,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.users.create');
+        $current_roles = array();
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.users.create',compact('current_roles'));
     }
 
     /**
@@ -69,7 +70,8 @@ class UsersController extends Controller
      */
     public function edit(User $panel_user)
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.users.edit', compact('panel_user'));
+        $current_roles = array_pluck($panel_user->roles()->get(['roles.id'])->toArray(),'id');
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.panel.users.edit', compact('panel_user','current_roles'));
     }
 
     /**

@@ -15,9 +15,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = StoreUser::all();
-
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.users.index', compact('users'));
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.users.index');
     }
 
     /**

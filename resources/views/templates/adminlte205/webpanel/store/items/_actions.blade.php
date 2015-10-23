@@ -6,7 +6,7 @@
     </div>
     <div style="float: right">
         {!! Form::open(['method' => 'GET', 'url' => route('webpanel.store.items.edit',$item->id)]) !!}
-        {!! Form::submit('Edit ' . $item->id,['class' => 'btn btn-danger']) !!}
+        {!! Form::submit('Edit ' . $item->id,['class' => 'btn btn-warning']) !!}
         {!! Form::close() !!}
     </div>
 </div>

@@ -14,6 +14,7 @@ class WebpanelCreateUsersTable extends Migration {
 	{
 		Schema::connection('webpanel')->create('users', function(Blueprint $table)
 		{
+			$table->engine = "InnoDB";
 			$table->increments('id');
 			$table->string('name');
 			$table->string('email')->unique();

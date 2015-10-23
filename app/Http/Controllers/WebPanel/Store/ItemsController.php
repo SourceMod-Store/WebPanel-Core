@@ -15,9 +15,7 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = StoreItem::all();
-
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items.index', compact('items'));
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items.index');
     }
 
     /**
@@ -27,7 +25,8 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items.create');
+        $current_servers = null;
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items.create',compact('current_servers'));
     }
 
     /**
@@ -66,7 +65,8 @@ class ItemsController extends Controller
      */
     public function edit($item)
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items.edit', compact('item'));
+        $current_servers = array_pluck($item->servers()->get(['servers.id'])->toArray(),'id');
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items.edit', compact('item','current_servers'));
     }
 
     /**

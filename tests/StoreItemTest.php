@@ -48,12 +48,11 @@ class StoreItemTest extends TestCase
         $this->press('Create Item');
 
 
-        //TODO: Check if the item exists in the db
-
-
-
         //Get the ID of the Item
         $item_id = $this->get_item_id();
+        $this->assertNotNull($item_id); //Check that the item exists
+
+        //TODO: Verify that the item is shown at the gui
 
 
         //Visit the Edit page
@@ -85,7 +84,14 @@ class StoreItemTest extends TestCase
     private function get_item_id()
     {
         $item = StoreItem::where('name', 'test-itm')->first();
-        return $item->id;
+        if ($item != NULL)
+        {
+            return $item->id;
+        }
+        else
+        {
+            return NULL;
+        }
     }
 
     private function delete_item_if_exists()

@@ -14,4 +14,18 @@ class StoreUser extends Model
         return $this->belongsToMany('App\Models\StoreItem','users_items', 'user_id', 'item_id')->withTimestamps();
     }
 
+    public function owned_loadouts()
+    {
+        return $this->hasMany('App\Models\StoreLoadout','owner_id','id');
+    }
+
+    public function subscribed_loadouts()
+    {
+        return $this->belongsToMany('App\Models\StoreLoadout','users_loadouts', 'user_id', 'loadout_id')->withTimestamps();
+    }
+
+    public function equipped_loadout()
+    {
+        return $this->belongsTo('App\Models\StoreLoadout','eqp_loadout_id','id');
+    }
 }

@@ -111,7 +111,7 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse">
                             <div class="box-body">
-                                If you would like to restrict a category to a specific server, then you have to enable server restrictions for that category by checking the checkbox "Enable Server Restrictions".
+                                If you would like to restrict a item to a specific server, then you have to enable server restrictions for that item by checking the checkbox "Enable Server Restrictions".
                                 <br>
                                 Once you have done that, you have to enter your servers below.
                             </div>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('server_list', 'Servers') !!}
-                        {!! Form::select('server_list[]', $servers, null,['id' => 'server_list','class' => 'form-control','multiple']) !!}
+                        {!! Form::select('server_list[]', $servers, $current_servers,['id' => 'server_list','class' => 'form-control','multiple']) !!}
                     </div>
                     <div class="form-group">
 
@@ -165,7 +165,7 @@
             placeholder: 'Select a Category'
         });
         $('#server_list').select2({
-            placeholder: 'Select a Category'
+            placeholder: 'Select a Server'
         });
     </script>
 @endsection
