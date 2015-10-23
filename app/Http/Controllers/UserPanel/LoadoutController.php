@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\StoreLoadout;
+use App\Models\StoreUser;
+use App\Models\StoreItem;
 use yajra\Datatables\Datatables;
 use Carbon\Carbon;
 use Session;
@@ -127,19 +129,52 @@ class LoadoutController extends Controller
      */
     public function getLoadoutItems($loadout, Request $request)
     {
-        return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.loadoutadditems',compact("loadout"));
+        if ($loadout->owner_id == Session::get('store_user_id',0))
+        {
+            return view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts.loadoutadditems',compact("loadout"));
+        }
+        else
+        {
+            abort(401);
+        }
     }
 
     /**
      * Adds the item to the loadout
      *
      * @param $loadout
+     * @param $item_id
      * @param Request $request
      */
-    public function postLoadoutItemsAdd($loadout, Request $request)
+    public function postLoadoutItemsAdd($loadout, $item_id, Request $request)
     {
         //Check if a item with that type is already added
         //Then redirect to the loadout edit page
+        if ($loadout->owner_id == Session::get('store_user_id',0)) //Check if the User is the Owner of the loadout
+        {
+            $loadout_types = $loadout->items()->lists("loadout_slot")->toArray(); //Get the item types that are currently added to the loadout
+
+            $item = StoreItem::findOrFail($item_id); //Get the item the user wants to add to the loadout
+
+            //Check if the itemtype is not in the list of the currently added items
+            if(in_array($item->loadout_slot, $loadout_types))
+            {
+                //redirect user to loadout edit page with error message
+                return redirect()->route("userpanel.loadouts.edit",["loadout" => $loadout->id])
+                    ->with("flash_notification",array("message"=>"The item can not be added to the loadout because a item with the same loadout slot is already assigned to that loadout", "level"=>"error"));
+            }
+
+            //attach item to loadout
+            $loadout->items()->attach($item->id);
+
+            //redirect back to loadout edit page with success message
+            return redirect()->route("userpanel.loadouts.edit",["loadout" => $loadout->id])
+                ->with("flash_notification",array("message"=>"The item has successfully been added to the loadout", "level"=>"success"));
+        }
+        else
+        {
+            abort(401);
+        }
     }
 
     /**
@@ -175,7 +210,7 @@ class LoadoutController extends Controller
     /**
      *
      *
-     * @param $loadoutid
+     * @param $loadout
      */
     public function getClone ($loadout)
     {
@@ -210,13 +245,30 @@ class LoadoutController extends Controller
      */
     public function getItemDataForLoadout($loadout, Request $request)
     {
+        //TODO: Add logging
         //Only display items with a loadoutslot that has not jet been added to a loadout
+
+        //Get the types for the items that are currently associated with that loadout
+        $loadout_types = $loadout->items()->lists("loadout_slot");
+
+        $items = StoreItem::where("is_buyable","1")
+            ->whereNotIn('loadout_slot',$loadout_types)
+            ->with('category');
+
+        Session::flash("loadout_id",$loadout->id); //Dirty hack to get the loadout id into the table via the ViewComposerServiceProvider
+
+        return Datatables::of($items)
+            ->addColumn('action', function ($item) {
+                $actions = view('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts._additemactions', compact('item'))->render();
+                return $actions;
+            })
+            ->make(true);
     }
 
     /**
      * Datatable data for subscribers for a specific loadout
      *
-     * @param $loadoutid
+     * @param $loadout
      */
     public function getSubscriberDataForLoadout($loadout)
     {

@@ -22,11 +22,10 @@
                         <thead>
                         <tr>
                             <th>Display Name</th>
-                            <th>Game</th>
-                            <th>Class</th>
-                            <th>Team</th>
-                            <th>Privacy</th>
-                            <th>Owner</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Loadout Slot</th>
+                            <th>Price</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -51,12 +50,11 @@
                 ajax: '{{ route("userpanel.loadouts.itemdata",["loadout" => $loadout->id]) }}',
                 columns: [
                     {data: 'display_name', name: 'display_name'},
-                    {data: 'game', name: 'game'},
-                    {data: 'class', name: 'class'},
-                    {data: 'team', name: 'team'},
-                    {data: 'privacy', name: 'privacy'},
-                    {data: 'owner.name', name: 'owner'},
-                    {data: 'action', name: 'Action', orderable: false, searchable: false}
+                    {data: 'description', name: 'description'},
+                    {data: 'type', name: 'type'},
+                    {data: 'loadout_slot', name: 'loadout_slot'},
+                    {data: 'price', name: 'price'},
+                    {data: 'action', name: 'Action', orderable: false, searchable: false},
                 ]
             });
         } );
