@@ -47,6 +47,7 @@ class UserItemsController extends Controller
      */
     public function postBuy(Request $request, $item_id)
     {
+        //TODO: Add Logging
         $user = StoreUser::find($request->session()->get('store_user_id'));
         $item = StoreItem::find($item_id);
 
@@ -111,6 +112,8 @@ class UserItemsController extends Controller
         }
         elseif ($item->is_refundable == 1) //Check if credits should be awarded
         {
+            $refundfee = Config::get('userpanel.items_refundfee');
+
             if($single_item == true) //Check if only a single item should be removed
             {
                 //TODO: Find a way to replace the for loop
@@ -120,13 +123,13 @@ class UserItemsController extends Controller
                     $user->items()->attach($item->id);
                 }
 
-                $user->credits = $user->credits + $item->price; //Award Credits TODO: Add "refund-fee"
+                $user->credits = $user->credits + $item->price * $refundfee; //Return the Credits
                 $user->save(); //Save Credts
             }
             else //All items should be removed
             {
                 $user->items()->detach($item->id);
-                $user->credits = $user->credits + $item->price * $owned_items; //TODO: Add "refund-fee"
+                $user->credits = $user->credits + $item->price * $owned_items * $refundfee; //Return the Credits
                 $user->save();
             }
 
