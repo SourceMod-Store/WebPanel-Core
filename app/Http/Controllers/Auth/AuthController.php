@@ -68,7 +68,7 @@ class AuthController extends Controller
      */
     public function getRegister()
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'auth.register');
+        return view('templates.' . \Config::get('webpanel.template') . 'auth.webpanelregister');
     }
 
     /**
@@ -78,7 +78,7 @@ class AuthController extends Controller
      */
     public function getLogin()
     {
-        return view('templates.' . \Config::get('webpanel.template') . 'auth.login');
+        return view('templates.' . \Config::get('webpanel.template') . 'auth.webpanellogin');
     }
 
 }

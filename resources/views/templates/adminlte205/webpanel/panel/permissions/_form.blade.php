@@ -36,7 +36,7 @@
             </div><!-- /.box-header -->
             <div class="box-body">
                 {!! Form::label('role_list', 'Roles') !!}
-                {!! Form::select('role_list[]', $roles, null,['id' => 'role_list','class' => 'form-control','multiple']) !!}
+                {!! Form::select('role_list[]', $roles, $current_roles,['id' => 'role_list','class' => 'form-control','multiple']) !!}
             </div><!-- /.box-body -->
         </div><!-- /.box -->
     </div>

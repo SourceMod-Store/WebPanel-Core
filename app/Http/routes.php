@@ -17,15 +17,15 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 //Installer Routes
-Route::group(['prefix' => 'installer'], function () {
-    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome']);
-    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome']);
-    Route::get('settings', ['as' => 'installer.settings.show', 'uses' => 'InstallerController@showSettings']);
-    Route::post('settings', ['as' => 'installer.settings.post', 'uses' => 'InstallerController@postSettings']);
-    Route::get('users', ['as' => 'installer.users.show', 'uses' => 'InstallerController@showUsers']);
-    Route::post('users', ['as' => 'installer.users.post', 'uses' => 'InstallerController@postUsers']);
-    Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
-});
+//Route::group(['prefix' => 'installer'], function () {
+//    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome']);
+//    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome']);
+//    Route::get('settings', ['as' => 'installer.settings.show', 'uses' => 'InstallerController@showSettings']);
+//    Route::post('settings', ['as' => 'installer.settings.post', 'uses' => 'InstallerController@postSettings']);
+//    Route::get('users', ['as' => 'installer.users.show', 'uses' => 'InstallerController@showUsers']);
+//    Route::post('users', ['as' => 'installer.users.post', 'uses' => 'InstallerController@postUsers']);
+//    Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
+//});
 
 //WebPanel Routes
 Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], function () {
@@ -68,9 +68,7 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], fu
     });
 });
 
-
-//Auth Routes
-
+//WebPanel Auth Routes
 Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 Route::get('/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
 
@@ -78,3 +76,71 @@ Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
+
+
+//Store UserPanel Routes
+Route::group(['prefix' => 'userpanel'], function () {
+
+    Route::get('',function(){
+        return redirect()->route('userpanel.dashboard');
+    });
+
+    //Auth
+    //Authenticates the User if not authenticated
+    Route::group(['prefix' => 'auth'],function(){
+        Route::get('', ['as' => 'userpanel.auth.index', 'uses' => 'UserPanel\AuthController@getIndex']);
+        Route::any('serverlogin',['as' => 'userpanel.auth.serverlogin', 'uses' => 'UserPanel\AuthController@serverlogin']);
+        Route::get('steamlogin',['as' => 'userpanel.auth.steamlogin', 'uses' => 'UserPanel\AuthController@steamlogin']);
+        Route::get('logout', ['as' => 'userpanel.auth.logout', 'uses' => 'UserPanel\AuthController@logout']);
+    });
+
+
+    Route::group(['middleware' => 'storeuserauth'],function(){
+        //Dashboard
+        // Will show an overview of the users items, his credits, recent transactions, ...
+        Route::get('dashboard', ['as' => 'userpanel.dashboard', 'uses' => 'UserPanel\DashboardController@getIndex']);
+
+        //User Items
+        //Shows the items the user owns (inventory) and allows him to buy / sell new items
+        Route::group(['prefix' => 'useritems'],function(){
+            Route::get('', ['as' => 'userpanel.useritems.index', 'uses' => 'UserPanel\UserItemsController@getIndex']);
+            Route::get('buyoverview', ['as' => 'userpanel.useritems.buyoverview', 'uses' => 'UserPanel\UserItemsController@getBuyOverview']); //Shows the buy overview page
+            Route::get('buy/{item_id}', ['as' => 'userpanel.useritems.buyconf', 'uses' => 'UserPanel\UserItemsController@getBuy']); //Shows the buy details page
+            Route::post('buy/{item_id}', ['as' => 'userpanel.useritems.buyproc', 'uses' => 'UserPanel\UserItemsController@postBuy']); // Processes the Puchase
+            Route::post('sell/{item_id}', ['as' => 'userpanel.useritems.sell', 'uses' => 'UserPanel\UserItemsController@postSell']); //Sells the item --> Add a confirm page
+            Route::get('userdata', ['as' => 'userpanel.useritems.userdata', 'uses' => 'UserPanel\UserItemsController@getUserData']);
+            Route::get('itemdata', ['as' => 'userpanel.useritems.itemdata', 'uses' => 'UserPanel\UserItemsController@getItemData']);
+        });
+
+        //Loadouts - Controller
+        // Allows to user to Create View Edit and Delete Loadouts (Only the Creator of a Loadout can Edit and Delete it)
+        // Also Links to the loadout items controller
+        // Also shows the items that belong to a specific loadout
+        Route::group(['prefix' => 'loadouts'],function(){
+            Route::get('', ['as' => 'userpanel.loadouts.index', 'uses' => 'UserPanel\LoadoutController@getIndex']); //Get the overview of all available loadouts. Display tags for the loadouts (owned, subscribe) and display a subscribe and maybe a clone button on
+            Route::get('create',['as' => 'userpanel.loadouts.create', 'uses' => 'UserPanel\LoadoutController@getCreate']); //Shows the create loadout page
+            Route::post('create',['as' => 'userpanel.loadouts.create', 'uses' => 'UserPanel\LoadoutController@postCreate']); //Creates the loadout
+            Route::get('loadoutdata', ['as' => 'userpanel.loadouts.loadoutdata', 'uses' => 'UserPanel\LoadoutController@getLoadoutData']); //Gets the datatables data for all available loadouts
+
+            Route::get('{loadout}', ['as' => 'userpanel.loadouts.view', 'uses' => 'UserPanel\LoadoutController@getLoadout']); //Shows a overview of the loadout with the associated items
+            Route::post('{loadout}/select',['as' => 'userpanel.loadouts.select', 'uses' => 'UserPanel\LoadoutController@postSelect']); //Selects the loadout as main loadout
+            Route::get('{loadout}/subscribe',['as' => 'userpanel.loadouts.subscribe', 'uses' => 'UserPanel\LoadoutController@getSubscribe']); //Subscribes the user to the selected loadout
+            Route::get('{loadout}/unsubscribe',['as' => 'userpanel.loadouts.unsubscribe', 'uses' => 'UserPanel\LoadoutController@getUnsubscribe']); //Unsubscribes the user from the selected loadout
+            Route::get('{loadout}/clone',['as' => 'userpanel.loadouts.clone', 'uses' => 'UserPanel\LoadoutController@getClone']); //Clones the selected loadout
+            Route::get('{loadout}/delete',['as' => 'userpanel.loadouts.delete', 'uses' => 'UserPanel\LoadoutController@getDelete']); //Deletes the selected loadout
+            Route::get('{loadout}/items',['as' => 'userpanel.loadouts.items', 'uses' => 'UserPanel\LoadoutController@getLoadoutItems']); // Show the add items page
+            Route::any('{loadout}/items/{item_id}/add',['as' => 'userpanel.loadouts.items.add', 'uses' => 'UserPanel\LoadoutController@postLoadoutItemsAdd']); //Processes the item add
+            Route::any('{loadout}/items/{item_id}/remove',['as' => 'userpanel.loadouts.items.remove', 'uses' => 'UserPanel\LoadoutController@postLoadoutItemsRemove']); //Processes the item add
+            Route::get('{loadout}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@getLoadoutEdit']); //Shows the page to edit the selected loadout
+            Route::post('{loadout}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@postLoadoutEdit']); //Processes edit to the selected loadout
+            Route::get('{loadout}/subscribers', ['as' => 'userpanel.loadouts.subscribers','uses' => 'UserPanel\LoadoutController@getLoadoutSubscribers']); //Shows who subscribed to the loadout
+            Route::get('{loadout}/itemdata', ['as' => 'userpanel.loadouts.itemdata', 'uses' => 'UserPanel\LoadoutController@getItemDataForLoadout']); //Get the datatables data of the items associated to the loadout
+            Route::get('{loadout}/subscriberdata', ['as' => 'userpanel.loadouts.subscriberdata', 'uses' => 'UserPanel\LoadoutController@getSubscriberDataForLoadout']); //Get the datatables data of the subsscribers associated with the loadout
+        });
+    });
+
+    //Helper Functions
+    Route::get('steamimage', ['as' => 'userpanel.steamimage.current', 'uses' => 'UserPanel\SteamImageController@getUserImageForCurrent']);
+    Route::get('steamimage/refresh', ['as' => 'userpanel.steamimage.auth', 'uses' => 'UserPanel\SteamImageController@refreshUserImage']);
+    Route::get('steamimage/{auth}', ['as' => 'userpanel.steamimage.auth', 'uses' => 'UserPanel\SteamImageController@getUserImageForAuth']);
+});

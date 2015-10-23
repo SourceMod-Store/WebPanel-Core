@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
+    <a href="index2.html" class="logo"><b>Admin</b>Panel</a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
@@ -194,7 +194,7 @@
                             </ul>
                         </li>
                         <li class="footer">
-                            <a href="#">View all tasks</a><!-- TODO: LInk to a tasks overview page (maybe the same as messages / notifications ?) -->
+                            <a href="#">View all tasks</a><!-- TODO: Link to a tasks overview page (maybe the same as messages / notifications ?) -->
                         </li>
                     </ul>
                 </li>

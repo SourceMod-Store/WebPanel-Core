@@ -37,7 +37,7 @@
             <div class="box-body">
                 <div class="form-group">
                     {!! Form::label('role_list', 'Roles') !!}
-                    {!! Form::select('role_list[]', $roles, null,['id' => 'role_list','class' => 'form-control','multiple']) !!}
+                    {!! Form::select('role_list[]', $roles, $current_roles,['id' => 'role_list','class' => 'form-control','multiple']) !!}
                 </div>
             </div><!-- /.box-body -->
         </div><!-- /.box -->

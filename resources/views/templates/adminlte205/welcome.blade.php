@@ -41,6 +41,17 @@
             font-size: 16px;
             margin-bottom: 10px;
         }
+
+        .footer-first {
+            font-size: 12px;
+            margin-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .footer {
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -48,9 +59,10 @@
     <div class="content">
         <div class="title">Store WebPanel 2</div>
         <div class="subtitle">A glimpse to the future of the Store Plugin</div>
-        <div class="link">Proceed to the Admin Interface</div>
-        <div class="link">Proceed to the Items Viewer</div>
-        <div class="link">Proceed to the Redeem Page</div>
+        <div class="link"><a href="{{URL::route("webpanel.dashboard")}}">Proceed to the Admin Interface</a></div>
+        <div class="link"><a href="{{URL::route("userpanel.dashboard")}}">Proceed to the User Interface</a></div>
+        <div class="footer-first">Store Webpanel 2 - &copy; 2015 by Werner Maisl</div>
+        <div class="footer">Store Plugin - &copy; 2013-2015 Alon Gubkin, Keith Warren (Drixevel)</div>
     </div>
 </div>
 </body>

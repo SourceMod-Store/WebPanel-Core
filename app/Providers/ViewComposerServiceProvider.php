@@ -9,6 +9,7 @@ use App\Models\StoreServer;
 use App\User;
 use App\Role;
 use App\Permission;
+use Session;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -20,9 +21,11 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->ComposeSidebar();
-        $this->ComposeForms();
-        $this->ComposeHeader();
+        $this->ComposeWebPanelSidebar();
+        $this->ComposeWebPanelForms();
+        $this->ComposeWebPanelHeader();
+        $this->ComposeUserPanelHeader();
+        $this->ComposeUserPanelForms();
     }
 
     /**
@@ -39,7 +42,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     /**
      * Passes the required variables to the sidebar
      */
-    public function ComposeSidebar()
+    public function ComposeWebPanelSidebar()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.includes.sidebar', function ($view) {
             $view->with('storeItemCount', StoreItem::all()->count());
@@ -55,7 +58,15 @@ class ViewComposerServiceProvider extends ServiceProvider
     /**
      * Passes the required variables to the sidebar
      */
-    public function ComposeForms()
+    public function ComposeUserPanelSidebar()
+    {
+        view()->composer('templates.' . \Config::get('webpanel.template') . 'userpanel.includes.sidebar', function ($view) {
+            $view->with('storeItemCount', StoreItem::all()->count()); //Not used
+        });
+    }
+
+
+    public function ComposeWebPanelForms()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.store.items._form', function ($view) {
             $view->with('categories', StoreCategory::lists('display_name', 'id'));
@@ -79,14 +90,49 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
     }
 
+    public function ComposeUserPanelForms()
+    {
+        view()->composer('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts._overviewactions', function ($view) {
+            $view->with('user_id', Session::get('store_user_id',0));
+        });
+        view()->composer('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts._form', function ($view) {
+            $view->with('user_id', Session::get('store_user_id',0));
+        });
+        view()->composer('templates.' . \Config::get('userpanel.template') . 'userpanel.loadouts._additemactions', function ($view) {
+            $view->with('user_id', Session::get('store_user_id',0));
+            $view->with('loadout_id',Session::get('loadout_id',0));
+        });
+    }
+
 
     /**
      * Passes the required variables to the header
      */
-    public function ComposeHeader()
+    public function ComposeWebPanelHeader()
     {
         view()->composer('templates.' . \Config::get('webpanel.template') . 'webpanel.includes.header', function ($view) {
             $view->with('username', Auth::user()->name);
+        });
+    }
+
+    public function ComposeUserPanelHeader()
+    {
+        view()->composer('templates.' . \Config::get('webpanel.template') . 'userpanel.includes.header', function ($view) {
+            $store_user = StoreUser::find(Session("store_user_id"));
+            $credits = $store_user->credits;
+            $owned_item_count = $store_user->items()->count();
+            $latest_items = $store_user->items()->orderBy('acquire_date','desc')->take(5)->get();
+            $owned_loadout_count = $store_user->owned_loadouts()->count();
+            $subscribed_loadout_count = $store_user->subscribed_loadouts()->count();
+            $equipped_loadout = $store_user->equipped_loadout->display_name;
+
+            $view->with('latest_items',$latest_items);
+            $view->with('username', Session("store_user_name"));
+            $view->with('credits',$credits);
+            $view->with('owned_item_count',$owned_item_count);
+            $view->with('owned_loadout_count',$owned_loadout_count);
+            $view->with('subscribed_loadout_count',$subscribed_loadout_count);
+            $view->with('equipped_loadout_name',$equipped_loadout);
         });
     }
 }

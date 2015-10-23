@@ -35,6 +35,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('roles', 'App\Role');
         $router->model('permissions', 'App\Permission');
         $router->model('panel_user', 'App\User');
+        $router->model('loadout', 'App\Models\StoreLoadout');
 
     }
 

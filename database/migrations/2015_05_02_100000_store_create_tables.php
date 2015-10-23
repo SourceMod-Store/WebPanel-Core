@@ -14,6 +14,7 @@ class StoreCreateTables extends Migration {
 	{
 		// Create table for store categories
         Schema::connection('store')->create('categories', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('priority')->nullable();
             $table->string('display_name',32);
@@ -27,6 +28,7 @@ class StoreCreateTables extends Migration {
 
 		// Create table for store items
         Schema::connection('store')->create('items', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('priority')->nullable();
 			$table->string('name',32)->unique();
@@ -52,6 +54,7 @@ class StoreCreateTables extends Migration {
 		
 		// Create table for store loadouts
         Schema::connection('store')->create('loadouts', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
 			$table->string('display_name',32);
 			$table->string('game',32)->nullable();
@@ -62,6 +65,7 @@ class StoreCreateTables extends Migration {
 		
 		// Create table for store users
         Schema::connection('store')->create('users', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
 			$table->integer('auth')->unique();
 			$table->string('name',32);
@@ -71,6 +75,7 @@ class StoreCreateTables extends Migration {
 		
 		// Create table for store users items
         Schema::connection('store')->create('users_items', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
 			$table->integer('user_id')->unsigned()->index();
 			$table->integer('item_id')->unsigned()->index();
@@ -87,6 +92,7 @@ class StoreCreateTables extends Migration {
 		
 		// Create table for store users items loadouts
         Schema::connection('store')->create('users_items_loadouts', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
 			$table->integer('useritem_id')->unsigned();
 			$table->integer('loadout_id')->unsigned();
@@ -101,6 +107,7 @@ class StoreCreateTables extends Migration {
 		
 		// Create table for store versions
         Schema::connection('store')->create('versions', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
 			$table->string('mod_name',64);
 			$table->string('mod_description',64)->nullable();
@@ -115,6 +122,7 @@ class StoreCreateTables extends Migration {
 
         // Create table for store servers
         Schema::connection('store')->create('servers', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->string('name',32);
             $table->string('display_name',50)->nullable();
@@ -125,6 +133,7 @@ class StoreCreateTables extends Migration {
 
         // Create table for store server items
         Schema::connection('store')->create('servers_items', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('item_id')->unsigned()->index();
             $table->integer('server_id')->unsigned()->index();
@@ -139,6 +148,7 @@ class StoreCreateTables extends Migration {
 
         // Create table for store server categories
         Schema::connection('store')->create('servers_categories', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('category_id')->unsigned()->index();
             $table->integer('server_id')->unsigned()->index();

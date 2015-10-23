@@ -147,13 +147,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
-        yajra\Datatables\DatatablesServiceProvider::class,
-
 
         /*
          * Other Service Providers
          */
+		yajra\Datatables\DatatablesServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+		Ehesp\SteamLogin\Laravel\SteamLoginServiceProvider::class,
+		Intervention\Image\ImageServiceProvider::class,
 
 
 	],
@@ -207,6 +208,8 @@ return [
         'Form'      => 'Illuminate\Html\FormFacade',
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Datatables' => 'yajra\Datatables\Datatables',
+		'SteamLogin' => 'Ehesp\SteamLogin\Laravel\Facades\SteamLogin',
+		'Image' => 'Intervention\Image\Facades\Image'
 	],
 
 ];
