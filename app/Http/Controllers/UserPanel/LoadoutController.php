@@ -148,6 +148,7 @@ class LoadoutController extends Controller
      */
     public function postLoadoutItemsAdd($loadout, $item_id, Request $request)
     {
+        //TODO: Add logging
         //Check if a item with that type is already added
         //Then redirect to the loadout edit page
         if ($loadout->owner_id == Session::get('store_user_id',0)) //Check if the User is the Owner of the loadout
@@ -183,10 +184,26 @@ class LoadoutController extends Controller
      * @param $loadout
      * @param Request $request
      */
-    public function postLoadoutItemsRemove($loadout, Request $request)
+    public function postLoadoutItemsRemove($loadout, $item_id, Request $request)
     {
+        //TODO: Add logging
         //Remvoe the item from the loadout
         //Then redirect to the loadout edit page
+        if ($loadout->owner_id == Session::get('store_user_id',0)) //Check if the User is the Owner of the loadout
+        {
+            $item = StoreItem::findOrFail($item_id); //Get the item the user wants to add to the loadout
+
+            //attach item to loadout
+            $loadout->items()->detach($item->id);
+
+            //redirect back to loadout edit page with success message
+            return redirect()->route("userpanel.loadouts.edit",["loadout" => $loadout->id])
+                ->with("flash_notification",array("message"=>"The item has successfully been removed from the loadout", "level"=>"success"));
+        }
+        else
+        {
+            abort(401);
+        }
     }
 
     /**
@@ -245,7 +262,6 @@ class LoadoutController extends Controller
      */
     public function getItemDataForLoadout($loadout, Request $request)
     {
-        //TODO: Add logging
         //Only display items with a loadoutslot that has not jet been added to a loadout
 
         //Get the types for the items that are currently associated with that loadout

@@ -128,8 +128,8 @@ Route::group(['prefix' => 'userpanel'], function () {
             Route::get('{loadout}/clone',['as' => 'userpanel.loadouts.clone', 'uses' => 'UserPanel\LoadoutController@getClone']); //Clones the selected loadout
             Route::get('{loadout}/delete',['as' => 'userpanel.loadouts.delete', 'uses' => 'UserPanel\LoadoutController@getDelete']); //Deletes the selected loadout
             Route::get('{loadout}/items',['as' => 'userpanel.loadouts.items', 'uses' => 'UserPanel\LoadoutController@getLoadoutItems']); // Show the add items page
-            Route::post('{loadout}/items/{item_id}/add',['as' => 'userpanel.loadouts.items.add', 'uses' => 'UserPanel\LoadoutController@postLoadoutItemsAdd']); //Processes the item add
-            Route::post('{loadout}/items/{item_id}/remove',['as' => 'userpanel.loadouts.items.remove', 'uses' => 'UserPanel\LoadoutController@postLoadoutItemsRemove']); //Processes the item add
+            Route::any('{loadout}/items/{item_id}/add',['as' => 'userpanel.loadouts.items.add', 'uses' => 'UserPanel\LoadoutController@postLoadoutItemsAdd']); //Processes the item add
+            Route::any('{loadout}/items/{item_id}/remove',['as' => 'userpanel.loadouts.items.remove', 'uses' => 'UserPanel\LoadoutController@postLoadoutItemsRemove']); //Processes the item add
             Route::get('{loadout}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@getLoadoutEdit']); //Shows the page to edit the selected loadout
             Route::post('{loadout}/edit',['as' => 'userpanel.loadouts.edit', 'uses' => 'UserPanel\LoadoutController@postLoadoutEdit']); //Processes edit to the selected loadout
             Route::get('{loadout}/subscribers', ['as' => 'userpanel.loadouts.subscribers','uses' => 'UserPanel\LoadoutController@getLoadoutSubscribers']); //Shows who subscribed to the loadout

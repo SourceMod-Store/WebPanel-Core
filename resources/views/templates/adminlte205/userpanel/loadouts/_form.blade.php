@@ -96,7 +96,7 @@
                             <td>{{$item["loadout_slot"]}}</td>
                             <td>
                                 <a href="{{route("userpanel.useritems.buyconf",["item_id"=> $item["id"]])}}"><span class="badge bg-green">Buy</span></a>
-                                @if($edit)<a href="#"<span class="badge bg-red">>Remove</span></a>@endif()
+                                @if($edit)<a href="{{route("userpanel.loadouts.items.remove",["loadout"=>$loadout->id, "item_id"=> $item["id"]])}}"<span class="badge bg-red">Remove</span></a>@endif()
                             </td>
                         </tr>
                     @endforeach
@@ -104,7 +104,7 @@
             </div><!-- /.box-body -->
             @if($edit)
                 <div class="box-footer">
-                    <a href="{{route("userpanel.loadouts.items",['loadout'=>$loadout->id])}}"><span class="btn btn-success">Add new Items</span></a>
+                    <a href="{{route("userpanel.loadouts.items",["loadout"=>$loadout->id])}}"><span class="btn btn-success">Add new Items</span></a>
                 </div>
             @endif
         </div><!-- /.box -->
