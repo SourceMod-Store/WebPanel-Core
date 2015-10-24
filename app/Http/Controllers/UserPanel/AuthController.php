@@ -98,7 +98,7 @@ class AuthController extends Controller
             switch ($page)
             {
                 case "item_buy":
-                    $data["namedroute"] = "userpanel.useritems.buy";
+                    $data["namedroute"] = "userpanel.useritems.buyoverview";
                     $data["title"] = "Store UserPanel";
                     break;
                 case "inventory":
@@ -130,7 +130,7 @@ class AuthController extends Controller
             switch ($page)
             {
                 case "item_buy":
-                    return redirect()->route('userpanel.useritems.buy');
+                    return redirect()->route('userpanel.useritems.buyoverview');
                     break;
                 case "inventory":
                     return redirect()->route('userpanel.useritems.index');
