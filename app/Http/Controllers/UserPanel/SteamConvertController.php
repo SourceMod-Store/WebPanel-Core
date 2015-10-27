@@ -20,6 +20,8 @@ class SteamConvertController extends Controller
     }
     public static function steamid_to_community($steamid)
     {
+        if (substr_count($steamid, ":") != 2)
+            return 0;
         $parts = explode(':', str_replace('STEAM_', '', $steamid));
         $result = bcadd(bcadd('76561197960265728', $parts['1']), bcmul($parts['2'], '2'));
         $remove = strpos($result, ".");
