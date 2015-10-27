@@ -81,13 +81,14 @@
                 {!! Form::hidden('owner_id', $user_id) !!}
                 {!! Form::submit("Save Changes", ['class' => 'btn btn-primary']) !!}
             </div>
-            @elseif(!$edit && $loadout->owner_id == $user_id)
+            @elseif(!$edit && @$loadout->owner_id == $user_id)
                 <div class="box-footer">
                     <a href="{{route("userpanel.loadouts.edit",["loadout"=>$loadout->id])}}"><span class="btn btn-info">Switch to Edit Mode</span></a>
                 </div>
             @endif
         </div><!-- /.box -->
     </div><!-- /.col -->
+    @if($create != true)
     <div class="col-md-6">
         <div class="box">
             <div class="box-header">
@@ -123,6 +124,7 @@
             @endif
         </div><!-- /.box -->
     </div><!-- /.col -->
+    @endif
 </div><!-- /.row -->
 
 @section('footer')

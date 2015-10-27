@@ -119,7 +119,11 @@
                                 </li>
                                 <li>
                                     <a href="#">
+                                        @if($equipped_loadout_name != NULL)
                                         <i class="fa fa-users text-yellow"></i> You have selected the loadout {{$equipped_loadout_name}}
+                                        @else
+                                        <i class="fa fa-users text-yellow"></i> You have not equipped a loadout
+                                        @endif
                                     </a>
                                 </li>
                             </ul>

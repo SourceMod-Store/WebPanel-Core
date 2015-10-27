@@ -16,6 +16,7 @@
                 ['LeftMenuTitle'=>'View Loadout '.$loadout->name,
                 'SubmitButtonText' => 'View Loadout',
                 'edit' => false,
+                'create' => false,
                 'RightMenuTitle'=>'View Items'])
     {!! Form::close() !!}
 @stop

@@ -15,6 +15,8 @@
         @include('templates.adminlte205.userpanel.loadouts._form',
                 ['LeftMenuTitle'=>'Create a new Loadout',
                 'SubmitButtonText' => 'Create Loadout',
-                'edit' => true])
+                'edit' => true,
+                'create' => true,
+                'RightMenuTitle'=>'Edit Items'])
     {!! Form::close() !!}
 @stop
