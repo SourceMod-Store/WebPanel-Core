@@ -112,7 +112,7 @@ class UserItemsController extends Controller
         }
         elseif ($item->is_refundable == 1) //Check if credits should be awarded
         {
-            $refundfee = Config::get('userpanel.items_refundfee');
+            $refundfee = \Config::get('userpanel.items_refundfee');
 
             if($single_item == true) //Check if only a single item should be removed
             {
