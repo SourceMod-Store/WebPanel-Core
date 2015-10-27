@@ -4,3 +4,4 @@
 .env
 /tests/logs
 /packages
+composer.phar
