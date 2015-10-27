@@ -15,6 +15,7 @@
         @include('templates.adminlte205.userpanel.loadouts._form',
                 ['LeftMenuTitle'=>'Edit Loadout '.$loadout->name,
                 'edit' => true,
+                'create' => false,
                 'RightMenuTitle'=>'Edit Items'])
     {!! Form::close() !!}
 @stop

@@ -48,7 +48,7 @@ class LoadoutController extends Controller
         $input = $request->all();
         $loadout = StoreLoadout::create($input);
 
-        return redirect()->route('userpanel.loadouts.view',$loadout->id);
+        return redirect()->route('userpanel.loadouts.edit',$loadout->id);
     }
 
     /**
