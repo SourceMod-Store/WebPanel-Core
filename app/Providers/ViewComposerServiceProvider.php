@@ -124,7 +124,12 @@ class ViewComposerServiceProvider extends ServiceProvider
             $latest_items = $store_user->items()->orderBy('acquire_date','desc')->take(5)->get();
             $owned_loadout_count = $store_user->owned_loadouts()->count();
             $subscribed_loadout_count = $store_user->subscribed_loadouts()->count();
-            $equipped_loadout = $store_user->equipped_loadout->display_name;
+            if ( $equipped_loadout = $store_user->equipped_loadout != NULL ){
+                $equipped_loadout = $store_user->equipped_loadout->display_name;
+            }else{
+                $equipped_loadout = NULL;
+            }
+
 
             $view->with('latest_items',$latest_items);
             $view->with('username', Session("store_user_name"));
