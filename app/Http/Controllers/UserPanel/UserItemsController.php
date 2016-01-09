@@ -25,7 +25,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\StoreUser;
 use App\Models\StoreItem;
-use yajra\Datatables\Datatables;
+use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 
 class UserItemsController extends Controller

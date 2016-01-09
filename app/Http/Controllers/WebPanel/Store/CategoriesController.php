@@ -20,7 +20,7 @@
 use App\Models\StoreCategory;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use yajra\Datatables\Datatables;
+use Yajra\Datatables\Datatables;
 
 class CategoriesController extends Controller
 {
