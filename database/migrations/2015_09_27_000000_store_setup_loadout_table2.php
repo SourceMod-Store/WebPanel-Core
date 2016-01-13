@@ -45,7 +45,7 @@ class StoreSetupLoadoutTable2 extends Migration
     {
         //Remove the owner id as foreign key
         Schema::connection('store')->table('loadouts',function (Blueprint $table) {
-            $table->dropForeign('owner_id');
+            $table->dropForeign('loadouts_owner_id_foreign');
         });
     }
 }

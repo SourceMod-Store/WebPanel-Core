@@ -46,7 +46,7 @@ class SaveEquippedLoadoutWithUser extends Migration
     {
         //Remove the owner id as foreign key
         Schema::connection('store')->table('users',function (Blueprint $table) {
-            $table->dropForeign('eqp_loadout_id');
+            $table->dropForeign('users_eqp_loadout_id_foreign');
             $table->dropColumn('eqp_loadout_id');
         });
     }
