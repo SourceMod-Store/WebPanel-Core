@@ -1,10 +1,10 @@
 # WebPanel-Core
-The Core for the New WebPanel
+This is the Core for the new Webpanel.
 
-One day this repo will contain the new Store Webpanel.
-It will be based on Laravel 5.
+It already contains 90% of the features the old WebPanel contained
+and even some the old WebPanel did not contain.
 
-Until then, this is repo just contains a "glimpse of the future".
+If you are brave enough you can use the new WebPanel for your store installation.
 
 ## Aim of the Project
 The Aim of this Project is to change the Framework from the quite dated Codeigniter 2.1 to Laravel 5 which is currently developed actively.
