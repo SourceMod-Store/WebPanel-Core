@@ -17,41 +17,39 @@
 
 @extends('templates.installer.app')
 
-@section('title', 'Welcome')
+@section('title', 'Fill Database')
 
 @section('navbar')
-    <li class="active"><a href="#">Welcome</a></li>
-    <li><a href="#">Settings</a></li>
-    <li><a href="#">User</a></li>
+    <li><a href="#">Welcome</a></li>
+    <li class="active"><a href="#">Fill Database</a></li>
+    <li><a href="#">Migrate Data</a></li>
     <li><a href="#">Finish</a></li>
 @endsection
 
 @section('body')
     <div class="top-container">
-        <h1>Webpanel Installer</h1>
         <p class="lead">
-            This is the installer for the WebPanel<br>
-            Please make sure to read the instructions carefully.
+            This page will help you setup the database<br>
+            Once you click on proceed the database will be populated.<br>
         </p>
     </div>
+    {!! Form::open(['method'=>'post','route' => 'installer.fill_db.post']) !!}
     <div class="middle-container">
-        <div class="alert alert-danger" role="alert">
-            <strong>Error!</strong> This is an example for an Error. You have to fix any issues mentioned here before you can proceed
+        <div class="alert alert-info" role="alert">
+            Make sure that the <strong>.env file</strong> is filled out correctly before clicking on "Fill Database".
         </div>
         <div class="alert alert-info" role="alert">
-            <strong>Heads up!</strong> This is a example for a info message. If you see this. Read it. It offers helpful advice
+            It could take a few minutes until the database is populated. <strong>DO NOT ABORT THE PROCESS</strong>
         </div>
-        <div class="alert alert-success" role="alert">
-            <strong>Well done!</strong> This is a example for a success message. This means you have successfully performed an action
+        <div class="alert alert-info" role="alert">
+            Make sure that the php_max_execution time is at least 120 seconds.
         </div>
     </div>
     <div class="bottom-container">
-        <div class="floatCenter">
-            Step 1 / 4</div>
+        <div class="floatCenter">Step 2 / 4</div>
         <div class="floatRight">
-            {!! Form::open(['method'=>'get','route' => 'installer.fill_db.show']) !!}
-            {!! Form::submit("Proceed to Settings", ['class' => 'btn btn-primary']) !!}
-            {!! Form::close() !!}
+            {!! Form::submit("Fill Database", ['class' => 'btn btn-primary']) !!}
         </div>
     </div>
+    {!! Form::close() !!}
 @endsection

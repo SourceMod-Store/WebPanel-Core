@@ -19,6 +19,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Symfony\Component\Console\Output\StreamOutput;
 
 use Illuminate\Http\Request;
 
@@ -35,24 +36,42 @@ class InstallerController extends Controller
 
     }
 
-    public function showSettings()
+    public function showFillDb()
     {
-        return view('templates.installer.settings');
+        return view('templates.installer.fill');
     }
 
-    public function postSettings()
+    public function postFillDb()
     {
-
+        \Artisan::call('migrate', array());
+        $output = \Artisan::output();
+        return view('templates.installer.fillresult',compact("output"));
     }
 
-    public function showUsers()
+    public function showMigrate()
     {
-        return view('templates.installer.user');
+        return view('templates.installer.migrate');
     }
 
-    public function postUsers()
+    public function postMigrate(Request $request)
     {
+        $store = $request->input("store");
 
+        if($store == "new")
+        {
+            return redirect()->route("installer.finish.show");
+        }
+        elseif($store == "store12") {
+            //Run the database Migration Script
+            $old_store_db = $request->input('store12_old_store_db');
+            $new_store_db = $request->input('store12_new_store_db');
+            $new_store_prefix = $request->input('store12_new_store_prefix');
+
+        }
+        else
+        {
+            return redirect()->route("installer.finish.show");
+        }
     }
 
     public function showFinish()
@@ -60,4 +79,20 @@ class InstallerController extends Controller
         return view('templates.installer.finish');
     }
 
+    /**
+     * @param $settings Settings to write to the Env File
+     */
+    private function writeEnvFile($settings)
+    {
+        $envcontent = "";
+
+        foreach($settings as $setting=>$value)
+        {
+            $envcontent .= $setting."=".$value.PHP_EOL;
+        }
+        dd($envcontent);
+
+        $envfile = fopen(".test.env","w");
+
+    }
 }

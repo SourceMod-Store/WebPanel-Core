@@ -17,40 +17,39 @@
 
 @extends('templates.installer.app')
 
-@section('title', 'Welcome')
+@section('title', 'Fill Database Result')
 
 @section('navbar')
-    <li class="active"><a href="#">Welcome</a></li>
-    <li><a href="#">Settings</a></li>
-    <li><a href="#">User</a></li>
+    <li><a href="#">Welcome</a></li>
+    <li class="active"><a href="#">Fill Database</a></li>
+    <li><a href="#">Migrate Data</a></li>
     <li><a href="#">Finish</a></li>
 @endsection
 
 @section('body')
     <div class="top-container">
-        <h1>Webpanel Installer</h1>
         <p class="lead">
-            This is the installer for the WebPanel<br>
-            Please make sure to read the instructions carefully.
+            The Database Migrations have been executed<br>
+            Check the log for errors and click on proceed to get to the data migration.<br>
         </p>
     </div>
     <div class="middle-container">
-        <div class="alert alert-danger" role="alert">
-            <strong>Error!</strong> This is an example for an Error. You have to fix any issues mentioned here before you can proceed
+        <div class="alert alert-info" role="alert">
+            The Database has been migrated. The output of the migrator can be found below.
         </div>
         <div class="alert alert-info" role="alert">
-            <strong>Heads up!</strong> This is a example for a info message. If you see this. Read it. It offers helpful advice
+            If there are error messages: Fix them and reload this page.
         </div>
-        <div class="alert alert-success" role="alert">
-            <strong>Well done!</strong> This is a example for a success message. This means you have successfully performed an action
+        <div class="form-group">
+            <label for="comment">Log:</label>
+            <textarea class="form-control" rows="5" id="comment">{{$output}}</textarea>
         </div>
     </div>
     <div class="bottom-container">
-        <div class="floatCenter">
-            Step 1 / 4</div>
+        <div class="floatCenter">Step 2 / 4</div>
         <div class="floatRight">
-            {!! Form::open(['method'=>'get','route' => 'installer.fill_db.show']) !!}
-            {!! Form::submit("Proceed to Settings", ['class' => 'btn btn-primary']) !!}
+            {!! Form::open(['method'=>'get','route' => 'templates.installer.finish']) !!}
+            {!! Form::submit("Proceed", ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
         </div>
     </div>

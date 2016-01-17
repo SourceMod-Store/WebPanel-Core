@@ -21,8 +21,8 @@
 
 @section('navbar')
     <li><a href="#">Welcome</a></li>
-    <li><a href="#">Settings</a></li>
-    <li><a href="#">User</a></li>
+    <li><a href="#">Fill DB</a></li>
+    <li><a href="#">Migrate Data</a></li>
     <li class="active"><a href="#">Finish</a></li>
 @endsection
 
@@ -30,6 +30,6 @@
     <div class="alert alert-success" role="alert">
         <strong>Setup Complete</strong><br>
         The Setup has been completed<br>
-        <a href="{{ url('/webpanel') }}">Click here to log into the webpanel</a>
+        <a href="{{ url('/webpanel') }}">Click here</a> to log into the webpanel with the admin credentials (admin@admin.com / password)
     </div>
 @endsection

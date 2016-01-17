@@ -34,15 +34,15 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 //Installer Routes
-//Route::group(['prefix' => 'installer'], function () {
-//    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome']);
-//    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome']);
-//    Route::get('settings', ['as' => 'installer.settings.show', 'uses' => 'InstallerController@showSettings']);
-//    Route::post('settings', ['as' => 'installer.settings.post', 'uses' => 'InstallerController@postSettings']);
-//    Route::get('users', ['as' => 'installer.users.show', 'uses' => 'InstallerController@showUsers']);
-//    Route::post('users', ['as' => 'installer.users.post', 'uses' => 'InstallerController@postUsers']);
-//    Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
-//});
+Route::group(['prefix' => 'installer'], function () {
+    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome']);
+    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome']);
+    Route::get('fill_db', ['as' => 'installer.fill_db.show', 'uses' => 'InstallerController@showFillDb']);
+    Route::post('fill_db', ['as' => 'installer.fill_db.post', 'uses' => 'InstallerController@postFillDb']);
+    Route::get('migrate', ['as' => 'installer.migrate.show', 'uses' => 'InstallerController@showMigrate']);
+    Route::post('migrate', ['as' => 'installer.migrate.post', 'uses' => 'InstallerController@postMigrate']);
+    Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
+});
 
 //WebPanel Routes
 Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], function () {
