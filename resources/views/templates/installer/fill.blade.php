@@ -21,8 +21,8 @@
 
 @section('navbar')
     <li><a href="#">Welcome</a></li>
-    <li class="active"><a href="#">Fill Database</a></li>
-    <li><a href="#">Migrate Data</a></li>
+    <li><a href="#">Settings</a></li>
+    <li class="active"><a href="#">Setup Database</a></li>
     <li><a href="#">Finish</a></li>
 @endsection
 

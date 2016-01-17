@@ -35,12 +35,12 @@ Route::get('home', 'HomeController@index');
 
 //Installer Routes
 Route::group(['prefix' => 'installer'], function () {
-    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome']);
-    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome']);
-    Route::get('fill_db', ['as' => 'installer.fill_db.show', 'uses' => 'InstallerController@showFillDb']);
-    Route::post('fill_db', ['as' => 'installer.fill_db.post', 'uses' => 'InstallerController@postFillDb']);
-    Route::get('migrate', ['as' => 'installer.migrate.show', 'uses' => 'InstallerController@showMigrate']);
-    Route::post('migrate', ['as' => 'installer.migrate.post', 'uses' => 'InstallerController@postMigrate']);
+    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome','middleware' => 'notinstalled']);
+    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome','middleware' => 'notinstalled']);
+    Route::get('settings', ['as' => 'installer.settings.show', 'uses' => 'InstallerController@showSettings','middleware' => 'notinstalled']);
+    Route::post('settings', ['as' => 'installer.settings.post', 'uses' => 'InstallerController@postSettings','middleware' => 'notinstalled']);
+    Route::get('fill_db', ['as' => 'installer.fill_db.show', 'uses' => 'InstallerController@showFillDb','middleware' => 'notinstalled']);
+    Route::post('fill_db', ['as' => 'installer.fill_db.post', 'uses' => 'InstallerController@postFillDb','middleware' => 'notinstalled']);
     Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
 });
 
