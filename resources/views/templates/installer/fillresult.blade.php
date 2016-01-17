@@ -48,7 +48,7 @@
     <div class="bottom-container">
         <div class="floatCenter">Step 2 / 4</div>
         <div class="floatRight">
-            {!! Form::open(['method'=>'get','route' => 'templates.installer.finish']) !!}
+            {!! Form::open(['method'=>'get','route' => 'installer.finish.show']) !!}
             {!! Form::submit("Proceed", ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
         </div>
