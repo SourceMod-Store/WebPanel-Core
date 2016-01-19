@@ -22,7 +22,7 @@
 @section('navbar')
     <li><a href="#">Welcome</a></li>
     <li class="active"><a href="#">Settings</a></li>
-    <li><a href="#">User</a></li>
+    <li><a href="#">Setup Database</a></li>
     <li><a href="#">Finish</a></li>
 @endsection
 
@@ -33,46 +33,31 @@
             It will ask you for you database credentials, mail queue and session driver as well as your E-Mail Settings
         </p>
     </div>
-    {!! Form::open(['method'=>'get','route' => 'installer.users.show']) !!}
+    {!! Form::open(['method'=>'post','route' => 'installer.settings.post']) !!}
     <div class="middle-container">
-        <div class="alert alert-info" role="alert">
-            <strong>Generic Application Settings</strong> This are some General Settings for the Application
-        </div>
-        <div class="form-group">
-            {!! Form::label('app_env', 'Environment') !!}
-            {!! Form::text('app_env', null, ['class' => 'form-control']) !!}
-        </div>
-        <div class="form-group">
-            {!! Form::label('app_debug', 'Debug') !!}
-            {!! Form::text('app_debug', 'false', ['class' => 'form-control']) !!}
-        </div>
-        <div class="form-group">
-            {!! Form::label('app_key', 'Key') !!}
-            {!! Form::text('app_key', null, ['class' => 'form-control']) !!}
-        </div>
-        <div class="form-group">
-            {!! Form::label('app_url', 'URL') !!}
-            {!! Form::text('app_url', null, ['class' => 'form-control']) !!}
-        </div>
 
         <div class="alert alert-info" role="alert">
             <strong>WebPanel Database Configuration</strong> This are the Database Settings for the Webpanel
         </div>
         <div class="form-group">
-            {!! Form::label('db_host_webpanel', 'Webpanel Database Host') !!}
-            {!! Form::text('db_host_webpanel', 'localhost', ['class' => 'form-control']) !!}
+            {!! Form::label('db_host_panel', 'Webpanel Database Host') !!}
+            {!! Form::text('db_host_panel', 'localhost', ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('db_name_webpanel', 'Webpanel Database Name') !!}
-            {!! Form::text('db_name_webpanel', null, ['class' => 'form-control']) !!}
+            {!! Form::label('db_database_panel', 'Webpanel Database Name') !!}
+            {!! Form::text('db_database_panel', null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('db_user_webpanel', 'Webpanel Database User') !!}
-            {!! Form::text('db_user_webpanel', null, ['class' => 'form-control']) !!}
+            {!! Form::label('db_prefix_panel', 'Webpanel Database Prefix') !!}
+            {!! Form::text('db_prefix_panel', 'webpanel_', ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('db_pass_webpanel', 'Webpanel Database Password') !!}
-            {!! Form::text('db_pass_webpanel', null, ['class' => 'form-control']) !!}
+            {!! Form::label('db_username_panel', 'Webpanel Database User') !!}
+            {!! Form::text('db_username_panel', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('db_password_panel', 'Webpanel Database Password') !!}
+            {!! Form::text('db_password_panel', null, ['class' => 'form-control']) !!}
         </div>
 
         <div class="alert alert-info" role="alert">
@@ -83,44 +68,66 @@
             {!! Form::text('db_host_store', 'localhost', ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('db_name_store', 'Store Database Name') !!}
-            {!! Form::text('db_name_store', null, ['class' => 'form-control']) !!}
+            {!! Form::label('db_database_store', 'Store Database Name') !!}
+            {!! Form::text('db_database_store', null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('db_user_store', 'Store Database User') !!}
-            {!! Form::text('db_user_store', null, ['class' => 'form-control']) !!}
+            {!! Form::label('db_prefix_store', 'Store Database Prefix') !!}
+            {!! Form::text('db_prefix_store', 'store_', ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('db_pass_store', 'Store Database Password') !!}
-            {!! Form::text('db_pass_store', null, ['class' => 'form-control']) !!}
+            {!! Form::label('db_username_store', 'Store Database User') !!}
+            {!! Form::text('db_username_store', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('db_password_store', 'Store Database Password') !!}
+            {!! Form::text('db_password_store', null, ['class' => 'form-control']) !!}
         </div>
 
+        <div class="alert alert-info" role="alert">
+            <strong>Mail Configuration</strong> This is the Mail Configuration
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('mail_from_adr', 'Mail Sender Address') !!}
+            {!! Form::text('mail_from_adr', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('mail_from_name', 'Mail Sender Name') !!}
+            {!! Form::text('mail_from_name', "Store WebPanel", ['class' => 'form-control']) !!}
+        </div>
+
+
+        <div class="alert alert-warning" role="alert">
+           <strong>The settings below are optional.</strong><br>
+            Usually you are safe to leave them as they are
+        </div>
         <div class="alert alert-info" role="alert">
             <strong>Driver Configuration</strong> This is the driver configuration
         </div>
         <div class="form-group">
             {!! Form::label('cache_driver', 'Cache Driver') !!}
-            {!! Form::text('cache_driver', 'local', ['class' => 'form-control']) !!}
+            {!! Form::text('cache_driver', 'file', ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('session_driver', 'Session Driver') !!}
-            {!! Form::text('session_driver', 'local', ['class' => 'form-control']) !!}
+            {!! Form::text('session_driver', 'file', ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('queue_driver', 'Queue Driver') !!}
-            {!! Form::text('queue_driver', 'local', ['class' => 'form-control']) !!}
+            {!! Form::text('queue_driver', 'sync', ['class' => 'form-control']) !!}
         </div>
 
         <div class="alert alert-info" role="alert">
-            <strong>Mail Configuration</strong> This is the mail configuration
+            <strong>Mail Driver Configuration</strong> This configures the mail driver
         </div>
         <div class="form-group">
             {!! Form::label('mail_driver', 'Mail Driver') !!}
-            {!! Form::text('mail_driver', 's,tp', ['class' => 'form-control']) !!}
+            {!! Form::text('mail_driver', 'smtp', ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('mail_host', 'Mail Host') !!}
-            {!! Form::text('session_driver', null, ['class' => 'form-control']) !!}
+            {!! Form::text('mail_host', null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('mail_port', 'Mail Port') !!}
@@ -134,16 +141,6 @@
             {!! Form::label('mail_password', 'Session Driver') !!}
             {!! Form::text('mail_password', null, ['class' => 'form-control']) !!}
         </div>
-        <div class="form-group">
-            {!! Form::label('mail_from_adr', 'Mail Sender Address') !!}
-            {!! Form::text('mail_from_adr', null, ['class' => 'form-control']) !!}
-        </div>
-        <div class="form-group">
-            {!! Form::label('mail_from_name', 'Mail Sender Name') !!}
-            {!! Form::text('mail_from_name', null, ['class' => 'form-control']) !!}
-        </div>
-
-
     </div>
     <div class="bottom-container">
         <div class="floatCenter">Step 2 / 4</div>

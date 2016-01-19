@@ -130,11 +130,14 @@ class StoreCreateTables extends Migration {
 			$table->string('mod_description',64)->nullable();
 			$table->string('mod_ver_convar',64)->nullable();
 			$table->string('mod_ver_number',64);
-			$table->string('server_id',64);
+			$table->integer('server_id')->unsigned();
 			$table->timestamp('last_updated');
 			$table->timestamps();
 			
 			$table->unique(['mod_ver_convar', 'server_id']);
+
+            $table->foreign('server_id')->references('id')->on('servers')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
 
         // Create table for store servers

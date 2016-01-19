@@ -34,15 +34,15 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 //Installer Routes
-//Route::group(['prefix' => 'installer'], function () {
-//    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome']);
-//    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome']);
-//    Route::get('settings', ['as' => 'installer.settings.show', 'uses' => 'InstallerController@showSettings']);
-//    Route::post('settings', ['as' => 'installer.settings.post', 'uses' => 'InstallerController@postSettings']);
-//    Route::get('users', ['as' => 'installer.users.show', 'uses' => 'InstallerController@showUsers']);
-//    Route::post('users', ['as' => 'installer.users.post', 'uses' => 'InstallerController@postUsers']);
-//    Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
-//});
+Route::group(['prefix' => 'installer'], function () {
+    Route::get('', ['as' => 'installer.welcome.show', 'uses' => 'InstallerController@showWelcome','middleware' => 'notinstalled']);
+    Route::post('', ['as' => 'installer.welcome.post', 'uses' => 'InstallerController@postWelcome','middleware' => 'notinstalled']);
+    Route::get('settings', ['as' => 'installer.settings.show', 'uses' => 'InstallerController@showSettings','middleware' => 'notinstalled']);
+    Route::post('settings', ['as' => 'installer.settings.post', 'uses' => 'InstallerController@postSettings','middleware' => 'notinstalled']);
+    Route::get('fill_db', ['as' => 'installer.fill_db.show', 'uses' => 'InstallerController@showFillDb','middleware' => 'notinstalled']);
+    Route::post('fill_db', ['as' => 'installer.fill_db.post', 'uses' => 'InstallerController@postFillDb','middleware' => 'notinstalled']);
+    Route::get('finish', ['as' => 'installer.finish.show', 'uses' => 'InstallerController@showFinish']);
+});
 
 //WebPanel Routes
 Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], function () {
@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], fu
 
         Route::group(['prefix' => 'versions'], function () {
             Route::get('', ['as' => 'webpanel.store.versions.index', 'uses' => 'WebPanel\Store\VersionsController@index']);
+            Route::get('update', ['as' => 'webpanel.store.versions.update', 'uses' => 'WebPanel\Store\VersionsController@update']);
             Route::get('/{versions}', ['as' => 'webpanel.store.versions.show', 'uses' => 'WebPanel\Store\VersionsController@show']);
         });
 

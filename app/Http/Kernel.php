@@ -47,6 +47,8 @@ class Kernel extends HttpKernel
         'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
         'authorize' => 'App\Http\Middleware\Authorize',
         'storeuserauth' => 'App\Http\Middleware\StoreUserAuth',
+        'installed' => 'App\Http\Middleware\Installed',
+        'notinstalled' => 'App\Http\Middleware\NotInstalled',
     ];
 
 }
