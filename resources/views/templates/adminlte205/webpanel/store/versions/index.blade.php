@@ -38,11 +38,17 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
+                        @if($private_plugins)
+                            <div class="callout callout-danger">
+                                <h4>Private Plugins detected</h4>
+                                <p>You are using private plugins. Private plugins are not supported by the updater. Therefore it will not work.</p>
+                            </div>
+                        @endif
                         @if($date_diff > 10)
-                        <div class="callout callout-danger">
-                            <h4>Version Data of of Date</h4>
-                            <p>The Version Data is out of date. You should click on "Update Plugin Versions" to update to check against the latest version</p>
-                        </div>
+                            <div class="callout callout-info">
+                                <h4>Version Data of of Date</h4>
+                                <p>The Version Data is out of date. You should click on "Update Plugin Versions" to update to check against the latest version</p>
+                            </div>
                         @endif
                         This Page shows you the installed versions of the store modules on your servers.<br>
                         Every once in a while you should click on the "Update Plugin Version" button to download the latest version information.<br>
@@ -50,30 +56,38 @@
                         There will be a notification if it has not been updated for 10 days.<br>
                     </div><!-- /.tab-pane -->
                     <div class="tab-pane" id="tab_2">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Module Name</th>
-                                <th>Module Description</th>
-                                <th>Installed Version</th>
-                                <th>Current Version</th>
-                                <th>Server ID</th>
-                                <th>Last Updated</th>
-                                <th>Update Status</th>
-                            </tr>
-                            @foreach($plugin_versions as $version)
+                        @if(!$private_plugins)
+                            <table class="table table-bordered">
                                 <tr>
-                                    <td><a href="{{ route('webpanel.store.versions.show', array($version["mod_id"])) }}">{{$version["mod_id"]}}</a></td>
-                                    <td>{{$version["display-name"]}}</td>
-                                    <td>{{$version["description"]}}</td>
-                                    <td>{{$version["mod_ver_number"]}}</td>
-                                    <td>{{$version["current-version"]}}</td>
-                                    <td>{{$version["server_id"]}}</td>
-                                    <td>{{$version["mod_last_updated"]}}</td>
-                                    <td>{{$version["version"]["txt_short"]}}</td>
+                                    <th style="width: 10px">#</th>
+                                    <th>Module Name</th>
+                                    <th>Module Description</th>
+                                    <th>Installed Version</th>
+                                    <th>Current Version</th>
+                                    <th>Server ID</th>
+                                    <th>Last Updated</th>
+                                    <th>Update Status</th>
                                 </tr>
-                            @endforeach
-                        </table>
+                                @foreach($plugin_versions as $version)
+                                    <tr>
+                                        <td><a href="{{ route('webpanel.store.versions.show', array($version["mod_id"])) }}">{{$version["mod_id"]}}</a></td>
+                                        <td>{{$version["display-name"]}}</td>
+                                        <td>{{$version["description"]}}</td>
+                                        <td>{{$version["mod_ver_number"]}}</td>
+                                        <td>{{$version["current-version"]}}</td>
+                                        <td>{{$version["server_id"]}}</td>
+                                        <td>{{$version["mod_last_updated"]}}</td>
+                                        @if($version["version"]["code"] == 0)
+                                            <td><small class="label label-success"> Up2Date</small></td>
+                                        @elseif($version["version"]["code"] >= 10 && $version["version"]["code"] <= 19)
+                                            <td><small class="label label-warning"> OutOfDate</small></td>
+                                        @elseif($version["version"]["code"] >= 910 && $version["version"]["code"] <= 99)
+                                            <td><small class="label label-danger"> Error</small></td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            </table>
+                        @endif
                     </div><!-- /.tab-pane -->
                 </div><!-- /.tab-content -->
             </div><!-- nav-tabs-custom -->

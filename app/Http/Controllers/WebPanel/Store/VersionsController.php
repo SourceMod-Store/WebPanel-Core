@@ -35,6 +35,9 @@ class VersionsController extends Controller
      */
     public function index()
     {
+        //If the user us using private plugins
+        $private_plugins = false;
+
         //Check if the Versions are cached
         if(!Storage::exists('/versions/master.json'))
         {
@@ -66,39 +69,42 @@ class VersionsController extends Controller
         $plugin_versions = array();
         foreach($plugins as $plugin)
         {
-            //Populate the default fields
-            $plugin_versions[$plugin->id]["mod_id"] = $plugin->id;
-            $plugin_versions[$plugin->id]["mod_name"] = $plugin->mod_name;
-            $plugin_versions[$plugin->id]["mod_description"] = $plugin->mod_description;
-            $plugin_versions[$plugin->id]["mod_ver_convar"] = $plugin->mod_ver_convar;
-            $plugin_versions[$plugin->id]["mod_ver_number"] = $plugin->mod_ver_number;
-            $plugin_versions[$plugin->id]["mod_last_updated"] = $plugin->last_updated;
-            $plugin_versions[$plugin->id]["server_id"] = $plugin->server_id;
+            if(Storage::exists('/versions/'.$plugin->mod_ver_convar.'.json'))
+            {
+                //Populate the default fields
+                $plugin_versions[$plugin->id]["mod_id"] = $plugin->id;
+                $plugin_versions[$plugin->id]["mod_name"] = $plugin->mod_name;
+                $plugin_versions[$plugin->id]["mod_description"] = $plugin->mod_description;
+                $plugin_versions[$plugin->id]["mod_ver_convar"] = $plugin->mod_ver_convar;
+                $plugin_versions[$plugin->id]["mod_ver_number"] = $plugin->mod_ver_number;
+                $plugin_versions[$plugin->id]["mod_last_updated"] = $plugin->last_updated;
+                $plugin_versions[$plugin->id]["server_id"] = $plugin->server_id;
 
-            //Get the online data for the plugin
-            $plugin_data =json_decode(Storage::get('/versions/'.$plugin->mod_ver_convar.'.json'),true);
+                //Get the online data for the plugin
+                $plugin_data =json_decode(Storage::get('/versions/'.$plugin->mod_ver_convar.'.json'),true);
 
-            //Add the online data to the plugin
-            $plugin_versions[$plugin->id]["name"] = $plugin_data["name"];
-            $plugin_versions[$plugin->id]["display-name"] = $plugin_data["display-name"];
-            $plugin_versions[$plugin->id]["description"] = $plugin_data["description"];
-            $plugin_versions[$plugin->id]["author"] = $plugin_data["author"];
-            $plugin_versions[$plugin->id]["current-version"] = $plugin_data["current-version"];
-            $plugin_versions[$plugin->id]["min-store-version"] = $plugin_data["min-store-version"];
-            $plugin_versions[$plugin->id]["max-store-version"] = $plugin_data["max-store-version"];
-            $plugin_versions[$plugin->id]["link"] = $plugin_data["link"];
-            $plugin_versions[$plugin->id]["tags"] = $plugin_data["tags"];
+                //Add the online data to the plugin
+                $plugin_versions[$plugin->id]["name"] = $plugin_data["name"];
+                $plugin_versions[$plugin->id]["display-name"] = $plugin_data["display-name"];
+                $plugin_versions[$plugin->id]["description"] = $plugin_data["description"];
+                $plugin_versions[$plugin->id]["author"] = $plugin_data["author"];
+                $plugin_versions[$plugin->id]["current-version"] = $plugin_data["current-version"];
+                $plugin_versions[$plugin->id]["min-store-version"] = $plugin_data["min-store-version"];
+                $plugin_versions[$plugin->id]["max-store-version"] = $plugin_data["max-store-version"];
+                $plugin_versions[$plugin->id]["link"] = $plugin_data["link"];
+                $plugin_versions[$plugin->id]["tags"] = $plugin_data["tags"];
 
-            //Check if its up2date
-            $u2d = $this->check_if_up2date($plugin->mod_ver_number, $plugin_data["current-version"]);
-            $plugin_versions[$plugin->id]["version"] = $u2d;
+                //Check if its up2date
+                $u2d = $this->check_if_up2date($plugin->mod_ver_number, $plugin_data["current-version"]);
+                $plugin_versions[$plugin->id]["version"] = $u2d;
+            }
+            else
+            {
+                $private_plugins = true;
+            }
         }
 
-        //dd($plugin_versions);
-
-
-
-        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.versions.index', compact('date_diff','plugin_versions'));
+        return view('templates.' . \Config::get('webpanel.template') . 'webpanel.store.versions.index', compact('date_diff','plugin_versions','private_plugins'));
     }
 
     /**
