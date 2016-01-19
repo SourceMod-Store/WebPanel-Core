@@ -121,24 +121,6 @@ class StoreCreateTables extends Migration {
 			$table->foreign('loadout_id')->references('id')->on('loadouts')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
-		
-		// Create table for store versions
-        Schema::connection('store')->create('versions', function (Blueprint $table) {
-            $table->engine = "InnoDB";
-            $table->increments('id');
-			$table->string('mod_name',64);
-			$table->string('mod_description',64)->nullable();
-			$table->string('mod_ver_convar',64)->nullable();
-			$table->string('mod_ver_number',64);
-			$table->integer('server_id')->unsigned();
-			$table->timestamp('last_updated');
-			$table->timestamps();
-			
-			$table->unique(['mod_ver_convar', 'server_id']);
-
-            $table->foreign('server_id')->references('id')->on('servers')
-                ->onUpdate('cascade')->onDelete('cascade');
-        });
 
         // Create table for store servers
         Schema::connection('store')->create('servers', function (Blueprint $table) {
@@ -149,6 +131,24 @@ class StoreCreateTables extends Migration {
             $table->string('ip',15)->nullable();
             $table->string('port',5)->nullable();
             $table->timestamps();
+        });
+
+        // Create table for store versions
+        Schema::connection('store')->create('versions', function (Blueprint $table) {
+            $table->engine = "InnoDB";
+            $table->increments('id');
+            $table->string('mod_name',64);
+            $table->string('mod_description',64)->nullable();
+            $table->string('mod_ver_convar',64)->nullable();
+            $table->string('mod_ver_number',64);
+            $table->integer('server_id')->unsigned();
+            $table->timestamp('last_updated');
+            $table->timestamps();
+
+            $table->unique(['mod_ver_convar', 'server_id']);
+
+            $table->foreign('server_id')->references('id')->on('servers')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
 
         // Create table for store server items
