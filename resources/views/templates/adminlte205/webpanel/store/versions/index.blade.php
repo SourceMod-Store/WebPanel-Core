@@ -81,12 +81,17 @@
                                             <td><small class="label label-success"> Up2Date</small></td>
                                         @elseif($version["version"]["code"] >= 10 && $version["version"]["code"] <= 19)
                                             <td><small class="label label-warning"> OutOfDate</small></td>
-                                        @elseif($version["version"]["code"] >= 910 && $version["version"]["code"] <= 99)
+                                        @elseif($version["version"]["code"] >= 91 && $version["version"]["code"] <= 99)
                                             <td><small class="label label-danger"> Error</small></td>
                                         @endif
                                     </tr>
                                 @endforeach
                             </table>
+                        @else()
+                            <div class="callout callout-danger">
+                                <h4>Private Plugins detected</h4>
+                                <p>You are using private plugins. Private plugins are not supported by the updater. Therefore it will not work.</p>
+                            </div>
                         @endif
                     </div><!-- /.tab-pane -->
                 </div><!-- /.tab-content -->
