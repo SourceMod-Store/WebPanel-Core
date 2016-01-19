@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth', 'authorize'], 'prefix' => 'webpanel'], fu
 
         Route::group(['prefix' => 'versions'], function () {
             Route::get('', ['as' => 'webpanel.store.versions.index', 'uses' => 'WebPanel\Store\VersionsController@index']);
+            Route::get('update', ['as' => 'webpanel.store.versions.update', 'uses' => 'WebPanel\Store\VersionsController@update']);
             Route::get('/{versions}', ['as' => 'webpanel.store.versions.show', 'uses' => 'WebPanel\Store\VersionsController@show']);
         });
 

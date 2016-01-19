@@ -30,47 +30,53 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title">All Versions</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Module Name</th>
-                            <th>Module Description</th>
-                            <th>Installed Version</th>
-                            <th>Current Version</th>
-                            <th>Server ID</th>
-                            <th>Last Updated</th>
-                        </tr>
-                        @foreach($versions as $version)
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Intro</a></li>
+                    <li><a href="#tab_2" data-toggle="tab">Version Overview</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route("webpanel.store.versions.update")}}">Update Plugin Versions</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        @if($date_diff > 10)
+                        <div class="callout callout-danger">
+                            <h4>Version Data of of Date</h4>
+                            <p>The Version Data is out of date. You should click on "Update Plugin Versions" to update to check against the latest version</p>
+                        </div>
+                        @endif
+                        This Page shows you the installed versions of the store modules on your servers.<br>
+                        Every once in a while you should click on the "Update Plugin Version" button to download the latest version information.<br>
+                        This is not done automatically, because it can take quite a while to download the updated version files.<br>
+                        There will be a notification if it has not been updated for 10 days.<br>
+                    </div><!-- /.tab-pane -->
+                    <div class="tab-pane" id="tab_2">
+                        <table class="table table-bordered">
                             <tr>
-                                <td><a href="{{ route('webpanel.store.versions.show', array($version->id)) }}">{{$version->id}}</a></td>
-                                <td>{{$version->mod_name}}</td>
-                                <td>{{$version->mod_description}}</td>
-                                <td>{{$version->mod_ver_number}}</td>
-                                <td>n/a</td>
-                                <td>{{$version->server_id}}</td>
-                                <td>{{$version->last_updated}}</td>
+                                <th style="width: 10px">#</th>
+                                <th>Module Name</th>
+                                <th>Module Description</th>
+                                <th>Installed Version</th>
+                                <th>Current Version</th>
+                                <th>Server ID</th>
+                                <th>Last Updated</th>
+                                <th>Update Status</th>
                             </tr>
-                        @endforeach
-                    </table>
-                </div><!-- /.box-body -->
-                <!--
-                <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-right">
-                        <li><a href="#">&laquo;</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>
-                </div>
-                -->
-            </div><!-- /.box -->
-
+                            @foreach($plugin_versions as $version)
+                                <tr>
+                                    <td><a href="{{ route('webpanel.store.versions.show', array($version["mod_id"])) }}">{{$version["mod_id"]}}</a></td>
+                                    <td>{{$version["display-name"]}}</td>
+                                    <td>{{$version["description"]}}</td>
+                                    <td>{{$version["mod_ver_number"]}}</td>
+                                    <td>{{$version["current-version"]}}</td>
+                                    <td>{{$version["server_id"]}}</td>
+                                    <td>{{$version["mod_last_updated"]}}</td>
+                                    <td>{{$version["version"]["txt_short"]}}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div><!-- /.tab-pane -->
+                </div><!-- /.tab-content -->
+            </div><!-- nav-tabs-custom -->
         </div><!-- /.col -->
     </div><!-- /.row -->
 @stop
