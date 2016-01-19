@@ -194,11 +194,11 @@ class StoreCreateTables extends Migration {
         Schema::connection('store')->drop('users_items');
         Schema::connection('store')->drop('servers_items');
         Schema::connection('store')->drop('servers_categories');
+        Schema::connection('store')->drop('versions');
         Schema::connection('store')->drop('servers');
         Schema::connection('store')->drop('items');
 		Schema::connection('store')->drop('categories');
         Schema::connection('store')->drop('users');
-		Schema::connection('store')->drop('versions');
 	}
 
 }
